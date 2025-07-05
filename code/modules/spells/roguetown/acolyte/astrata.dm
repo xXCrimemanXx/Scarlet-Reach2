@@ -74,6 +74,10 @@
 			target.visible_message(span_danger("[target]'s body is wracked with searing pain as the gods reject them!"), span_userdanger("I am wracked with pain as the gods reject me!"))
 			revert_cast()
 			return FALSE
+		if(HAS_TRAIT(target, TRAIT_NECRA_CURSE))
+			to_chat(user, span_warning("[target] cannot be returned. Mark of Necra prevents it."))
+			revert_cast()
+			return FALSE
 		if(!target.mind)
 			revert_cast()
 			return FALSE
