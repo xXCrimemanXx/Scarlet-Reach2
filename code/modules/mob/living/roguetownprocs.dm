@@ -218,7 +218,7 @@
 					prob2defend += sentinel
 
 			if(HAS_TRAIT(H, TRAIT_RAVOX_CURSE))
-				prob2defend -= 20
+				prob2defend -= 30
 
 			prob2defend = clamp(prob2defend, 5, 90)
 			if(HAS_TRAIT(user, TRAIT_HARDSHELL) && H.client)	//Dwarf-merc specific limitation w/ their armor on in pvp
