@@ -1138,7 +1138,7 @@
 				// Find the index of grab intent in the possible intents list
 				var/grab_index = 0
 				for(var/j = 1, j <= C.possible_a_intents.len, j++)
-					if(C.possible_a_intents[j].type == INTENT_GRAB)
+					if(istype(C.possible_a_intents[j], INTENT_GRAB))
 						grab_index = j
 						break
 				if(grab_index > 0)
