@@ -273,7 +273,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	src.visible_message(span_notice("[src] begins preaching a sermon..."))
 
-	if (!do_after(src, 120, target = src)) // 120 seconds
+	if (!do_after(src, 300, target = src)) // 30 seconds
 		src.visible_message(span_warning("[src] stops preaching."))
 		return
 
@@ -306,7 +306,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
     if (stat)
         return
 
-    if (world.time < last_curse_time + 1200) // 1200 seconds = 20 minutes
+    if (world.time < last_curse_time + 12000) // 1200 seconds = 20 minutes
         to_chat(src, span_warning("You must wait before invoking divine punishment again."))
         return
 
