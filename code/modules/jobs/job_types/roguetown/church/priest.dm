@@ -315,12 +315,12 @@ GLOBAL_LIST_EMPTY(heretical_players)
         return
 
     var/list/curse_choices = list(
-        "Ravox's Curse" = /datum/curse/ravox,
-        "Necra's Curse" = /datum/curse/necra,
-        "Pestra's Curse" = /datum/curse/pestra,
-        "Eora's Curse" = /datum/curse/eora,
-        "Abyssor's Curse" = /datum/curse/abyssor,
-        "Malum's Curse" = /datum/curse/malum
+        "Ravox's Curse" = /datum/curse/ravox, //your way to deal with TOP 10 ROGUE BUILD PLAYERS. They lose ~2 level of their combat skills (-30 parry dodge accuracy)
+        "Necra's Curse" = /datum/curse/necra, //they cannot be revived 
+        "Pestra's Curse" = /datum/curse/pestra, //annoying effects 
+        "Eora's Curse" = /datum/curse/eora, //locks their 50% erp buttons and they cannot end up 
+        "Abyssor's Curse" = /datum/curse/abyssor, //water burns them
+        "Malum's Curse" = /datum/curse/malum //They cannot craft or touch smith hammer
     )
 
     var/curse_pick = input("Choose a curse to apply or lift.", "Select Curse") as null|anything in curse_choices
