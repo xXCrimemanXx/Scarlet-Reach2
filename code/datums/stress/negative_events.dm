@@ -317,6 +317,11 @@
 	desc = span_boldred("By Psydon, the great comet's shard is no more! What will we do now!?")
 	timer = 15 MINUTES
 
+/datum/stressevent/hithead
+	timer = 2 MINUTES
+	stressadd = 2
+	desc = span_red("Oww, my head...")
+
 /datum/stressevent/psycurse
 
 	stressadd = 3

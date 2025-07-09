@@ -222,6 +222,16 @@
 	desc = span_green("I have prevailed over my rival! Graggar favours me now!")
 	timer = INFINITY
 
+/datum/stressevent/eoran_blessing
+	stressadd = -1
+	desc = span_info("An Eoran shone their brightness upon me.")
+	timer = 5 MINUTES
+
+/datum/stressevent/eoran_blessing_greater
+	stressadd = -2
+	desc = span_info("A Devout Eoran shone their brightness upon me.")
+	timer = 10 MINUTES
+
 /datum/stressevent/gazeuponme
 	stressadd = -5
 	desc = span_green("I am a heretic under Ten's gaze... My patron is proud of me!")

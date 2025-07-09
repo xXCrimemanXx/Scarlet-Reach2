@@ -22,7 +22,7 @@
 		if("Lupian accent")
 			return strings("polish_replacement.json", type, convert_HTML = TRUE)
 		if("Tiefling accent")
-			return strings("spanish_replacement.json", type, convert_HTML = TRUE)
+			return strings("tiefling_replacement.json", type, convert_HTML = TRUE)
 		if("Half Orc accent")
 			return strings("middlespeak.json", type, convert_HTML = TRUE)
 		if("Urban Orc accent")

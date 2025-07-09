@@ -57,26 +57,26 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	ADD_TRAIT(H, TRAIT_CHOSEN, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
-	if(H.mind)
-		H.cmode_music = 'sound/music/combat_holy.ogg'
-		H.mind.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/medicine, 4, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/magic/holy, 5, TRUE)
-		H.mind.adjust_skillrank(/datum/skill/craft/alchemy, 3, TRUE)
-		if(H.age == AGE_OLD)
-			H.mind.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
-		H.change_stat("strength", -1)
-		H.change_stat("intelligence", 3)
-		H.change_stat("constitution", -1)
-		H.change_stat("endurance", 1)
-		H.change_stat("speed", -1)
+
+	H.cmode_music = 'sound/music/combat_holy.ogg' 
+	H.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/reading, 6, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/medicine, 4, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/crafting, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/sewing, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/labor/farming, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/magic/holy, 5, TRUE)
+	H.adjust_skillrank(/datum/skill/craft/alchemy, 3, TRUE)
+	if(H.age == AGE_OLD)
+		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)
+	H.change_stat("strength", -1)
+	H.change_stat("intelligence", 3)
+	H.change_stat("constitution", -1)
+	H.change_stat("endurance", 1)
+	H.change_stat("speed", -1)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron) // This creates the cleric holder used for devotion spells
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
 
@@ -86,6 +86,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	H.verbs |= /mob/living/carbon/human/proc/churchpriestcurse //snowflake priests button. Will not sacrifice them
 	H.verbs |= /mob/living/carbon/human/proc/churcheapostasy //punish the lamb reward the wolf
 	H.verbs |= /mob/living/carbon/human/proc/completesermon
+  	H.verbs |= /mob/living/carbon/human/proc/change_miracle_set
 //	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)		- You are literally disinherited. Begone......
 
 /datum/job/priest/vice //just used to change the priest title
@@ -96,11 +97,41 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	total_positions = 0
 	spawn_positions = 0
 
+/mob/living/carbon/human/proc/change_miracle_set(mob/living/user)
+	set name = "Change Miracle Set"
+	set category = "Priest"
+	if(!mind)
+		return
+	var/list/god_choice = list()
+	var/list/god_type = list()
+	for (var/path as anything in GLOB.patrons_by_faith[/datum/faith/divine])
+		var/datum/patron/patron = GLOB.patronlist[path]
+		god_choice += list("[patron.name]" = icon(icon = 'icons/mob/overhead_effects.dmi', icon_state = "sign_[patron.name]"))
+		god_type[patron.name] = patron
+	var/string_choice = show_radial_menu(src, src, god_choice, require_near = FALSE)
+	if(!string_choice)
+		return
+	var/datum/patron/god = god_type[string_choice]
+	mind.RemoveAllSpells()
+	var/datum/devotion/patrondev = new /datum/devotion(src, god)
+	patrondev.grant_miracles(src, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = FALSE)
+	if (string_choice == "Astrata")
+		to_chat(src, "<font color='yellow'>HEAVEN SHALL THEE RECOMPENSE. THOU BEARS MYNE POWER ONCE MORE.</font>")
+	else
+		to_chat(src, "<font color='yellow'>Thou wieldeth now the power of [string_choice].</font>")
+	to_chat(src, "<font color='yellow'>TThe strain of changing your miracles has consumed all your devotion.</font>")
+	mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/cure_rot) 
+	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/monk) 
+	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/templar)
+
 /mob/living/carbon/human/proc/coronate_lord()
 	set name = "Coronate"
 	set category = "Priest"
 	if(!mind)
 		return
+	if(world.time < 30 MINUTES)
+		to_chat(src, span_warning("It is a bad omen to coronate so early in the week."))
+		return FALSE
 	if(!istype(get_area(src), /area/rogue/indoors/town/church/chapel))
 		to_chat(src, span_warning("I need to do this in the chapel."))
 		return FALSE
@@ -117,13 +148,11 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		//Abdicate previous King
 		for(var/mob/living/carbon/human/HL in GLOB.human_list)
 			if(HL.mind)
-				if(HL.mind.assigned_role == "Grand Duke" || HL.mind.assigned_role == "Consort")
+				if(HL.mind.assigned_role == "Grand Duke")
 					HL.mind.assigned_role = "Towner" //So they don't get the innate traits of the king
 			//would be better to change their title directly, but that's not possible since the title comes from the job datum
 			if(HL.job == "Grand Duke")
 				HL.job = "Duke Emeritus"
-			if(HL.job == "Consort")
-				HL.job = "Consort Dowager"
 
 		//Coronate new King (or Queen)
 		HU.mind.assigned_role = "Grand Duke"
@@ -133,10 +162,15 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		else
 			SSticker.rulertype = "Grand Duke"
 		SSticker.rulermob = HU
+		SSticker.regentmob = null
 		var/dispjob = mind.assigned_role
 		removeomen(OMEN_NOLORD)
 		say("By the authority of the gods, I pronounce you Ruler of all Scarlet Reach!")
 		priority_announce("[real_name] the [dispjob] has named [HU.real_name] the inheritor of SCARLET REACH!", title = "Long Live [HU.real_name]!", sound = 'sound/misc/bell.ogg')
+		var/datum/job/roguetown/nomoredukes = SSjob.GetJob("Grand Duke")
+		if(nomoredukes)
+			nomoredukes.total_positions = -1000 //We got what we got now.
+
 
 /mob/living/carbon/human/proc/churchexcommunicate()
     set name = "Excommunicate"
@@ -208,7 +242,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		if(!istype(get_area(src), /area/rogue/indoors/town/church/chapel))
 			to_chat(src, span_warning("I need to do this from the chapel."))
 			return FALSE
-		priority_announce("[inputty]", title = "The Priest Speaks", sound = 'sound/misc/bell.ogg')
+		priority_announce("[inputty]", title = "The Priest Speaks", sound = 'sound/misc/bell.ogg', sender = src)
 
 /mob/living/carbon/human/proc/churcheapostasy()
 	set name = "Apostasy"
