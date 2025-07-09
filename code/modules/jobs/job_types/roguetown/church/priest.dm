@@ -58,7 +58,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	ADD_TRAIT(H, TRAIT_RITUALIST, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_GRAVEROBBER, TRAIT_GENERIC)
 
-	H.cmode_music = 'sound/music/combat_holy.ogg' 
+	H.cmode_music = 'sound/music/combat_holy.ogg'
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 5, TRUE)
@@ -86,7 +86,8 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	H.verbs |= /mob/living/carbon/human/proc/churchpriestcurse //snowflake priests button. Will not sacrifice them
 	H.verbs |= /mob/living/carbon/human/proc/churcheapostasy //punish the lamb reward the wolf
 	H.verbs |= /mob/living/carbon/human/proc/completesermon
-  	H.verbs |= /mob/living/carbon/human/proc/change_miracle_set
+	H.verbs |= /mob/living/carbon/human/proc/change_miracle_set
+
 //	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)		- You are literally disinherited. Begone......
 
 /datum/job/priest/vice //just used to change the priest title
@@ -120,8 +121,8 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	else
 		to_chat(src, "<font color='yellow'>Thou wieldeth now the power of [string_choice].</font>")
 	to_chat(src, "<font color='yellow'>TThe strain of changing your miracles has consumed all your devotion.</font>")
-	mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/cure_rot) 
-	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/monk) 
+	mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/cure_rot)
+	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/monk)
 	mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/templar)
 
 /mob/living/carbon/human/proc/coronate_lord()
@@ -293,7 +294,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	if (!found)
 		return FALSE
-		
+
 /mob/living/carbon/human/proc/completesermon()
 	set name = "Sermon"
 	set category = "Priest"
@@ -350,9 +351,9 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
     var/list/curse_choices = list(
         "Ravox's Curse" = /datum/curse/ravox, //your way to deal with TOP 10 ROGUE BUILD PLAYERS. They lose ~2 level of their combat skills (-30 parry dodge accuracy)
-        "Necra's Curse" = /datum/curse/necra, //they cannot be revived 
-        "Pestra's Curse" = /datum/curse/pestra, //annoying effects 
-        "Eora's Curse" = /datum/curse/eora, //locks their 50% erp buttons and they cannot end up 
+        "Necra's Curse" = /datum/curse/necra, //they cannot be revived
+        "Pestra's Curse" = /datum/curse/pestra, //annoying effects
+        "Eora's Curse" = /datum/curse/eora, //locks their 50% erp buttons and they cannot end up
         "Abyssor's Curse" = /datum/curse/abyssor, //water burns them
         "Malum's Curse" = /datum/curse/malum //They cannot craft or touch smith hammer
     )
