@@ -396,7 +396,7 @@
 		return
 	else
 		do_sparks(3, FALSE, src)
-		playsound(user, 'sound/items/skeleton_key.ogg')
+		playsound(user, 'sound/items/skeleton_key.ogg', 100)
 		togglelock(user) //All That It Does.
 		return
 

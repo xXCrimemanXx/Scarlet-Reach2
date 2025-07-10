@@ -639,21 +639,22 @@
 				continue
 		return
 
-/obj/structure/mineral_door/proc/tryskeletonlock(obj/item/I, mob/user, autobump = FALSE)
+/obj/structure/mineral_door/proc/tryskeletonlock(mob/user)
 	if(door_opened || isSwitchingStates)
 		return
 	if(!keylock)
 		return
 	if(lockbroken)
 		to_chat(user, span_warning("The lock to this door is broken."))
+		return
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		message_admins("[H.real_name]([key_name(user)]) successfully skeletonkey'd [src.name] & [locked ? "unlocked" : "locked"] it. [ADMIN_JMP(src)]")
 		log_admin("[H.real_name]([key_name(user)]) successfully used a skeleton key on [src.name].")
-	user.changeNext_move(CLICK_CD_INTENTCAP)
 	do_sparks(3, FALSE, src)
-	playsound(user, 'sound/items/skeleton_key.ogg')
+	playsound(user, 'sound/items/skeleton_key.ogg', 100)
 	lock_toggle(user) //All That It Does.
+	user.changeNext_move(CLICK_CD_INTENTCAP)
 	return
 
 /obj/structure/mineral_door/proc/lock_toggle(mob/user)
