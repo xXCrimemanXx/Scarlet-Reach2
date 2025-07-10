@@ -639,7 +639,7 @@
 				continue
 		return
 
-/obj/structure/mineral_door/proc/trykeylock(obj/item/I, mob/user, autobump = FALSE)
+/obj/structure/mineral_door/proc/tryskeletonlock(obj/item/I, mob/user, autobump = FALSE)
 	if(door_opened || isSwitchingStates)
 		return
 	if(!keylock)
@@ -649,7 +649,7 @@
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	do_sparks(3, FALSE, src)
 	playsound(src, 'sound/items/skeleton_key.ogg')
-	togglelock(user) //All That It Does.
+	lock_toggle(user) //All That It Does.
 	return
 
 /obj/structure/mineral_door/proc/lock_toggle(mob/user)
