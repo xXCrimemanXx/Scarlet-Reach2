@@ -310,6 +310,7 @@
 	blade_dulling = DULLING_BASH
 	item_chair = null
 	anchored = TRUE
+	var/submission = TRUE
 	max_integrity = 999999
 
 /obj/structure/chair/arrestchair/attack_right(mob/living/carbon/human/A)
@@ -360,6 +361,10 @@
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
 		sleep(1 SECONDS)
 
+	INVOKE_ASYNC(src, PROC_REF(giveup), M)
+	say("Assessing value of lyfe...")
+	sleep(10 SECONDS)
+
 	var/list/headcrush = list('sound/combat/fracture/headcrush (2).ogg', 'sound/combat/fracture/headcrush (3).ogg', 'sound/combat/fracture/headcrush (4).ogg')
 	playsound(src, pick_n_take(headcrush), 100, FALSE, -1)
 	M.emote("scream")
@@ -385,11 +390,24 @@
 	else
 		say("This skull carries no reward, you fool.")
 		playsound(src, 'sound/misc/machineno.ogg', 100, FALSE, -1)
-	M.Unconscious(15 SECONDS)
 
-	sleep(2 SECONDS)
-	playsound(src, 'sound/combat/vite.ogg', 100, FALSE, -1)
+	if(!submission)
+		if(M.Adjacent(src))
+			say("Resistance detected...")
+			src.Shake()
+			var/obj/item/bodypart/head/victim_head = M.get_bodypart(BODY_ZONE_HEAD)
+			playsound(src, 'sound/combat/vite.ogg', 100, FALSE, -1)
+			victim_head.skeletonize()
+			submission = TRUE
+	else
+		M.Unconscious(15 SECONDS)
+		sleep(2 SECONDS)
+		playsound(src, 'sound/combat/vite.ogg', 100, FALSE, -1)
 	unbuckle_all_mobs()
+
+/obj/structure/chair/arrestchair/proc/giveup(mob/living/carbon/human/M)
+	if(alert(M, "Do you submit to the Mask, or do you die? You have 10 seconds to decide.", "CHOICE OF LYFE", "Submit", "Perish") == "Perish")
+		submission = FALSE
 
 /obj/structure/chair/arrestchair/proc/budget2change(budget, mob/user, specify)
 	var/turf/T
