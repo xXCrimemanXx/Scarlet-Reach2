@@ -646,9 +646,13 @@
 		return
 	if(lockbroken)
 		to_chat(user, span_warning("The lock to this door is broken."))
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		message_admins("[H.real_name]([key_name(user)]) successfully skeletonkey'd [src.name] & [locked ? "unlocked" : "locked"] it. [ADMIN_JMP(src)]")
+		log_admin("[H.real_name]([key_name(user)]) successfully used a skeleton key on [src.name].")
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	do_sparks(3, FALSE, src)
-	playsound(src, 'sound/items/skeleton_key.ogg')
+	playsound(user, 'sound/items/skeleton_key.ogg')
 	lock_toggle(user) //All That It Does.
 	return
 
