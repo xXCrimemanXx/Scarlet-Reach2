@@ -315,6 +315,7 @@
 
 /obj/structure/chair/arrestchair/attack_right(mob/living/carbon/human/A)
 	. = ..()
+	submission = TRUE
 	var/mob/living/carbon/human/M = null
 	for(var/l in buckled_mobs)
 		M = l
@@ -365,6 +366,7 @@
 	say("Assessing value of lyfe...")
 	sleep(10 SECONDS)
 
+	submission = TRUE
 	var/list/headcrush = list('sound/combat/fracture/headcrush (2).ogg', 'sound/combat/fracture/headcrush (3).ogg', 'sound/combat/fracture/headcrush (4).ogg')
 	playsound(src, pick_n_take(headcrush), 100, FALSE, -1)
 	M.emote("scream")
@@ -396,6 +398,8 @@
 			say("Resistance detected...")
 			src.Shake()
 			var/obj/item/bodypart/head/victim_head = M.get_bodypart(BODY_ZONE_HEAD)
+			message_admins("[M.real_name] was killed by the Excidium.")
+			log_admin("[M.real_name] was killed by the Excidium.")
 			playsound(src, 'sound/combat/vite.ogg', 100, FALSE, -1)
 			victim_head.skeletonize()
 			submission = TRUE
@@ -407,7 +411,10 @@
 
 /obj/structure/chair/arrestchair/proc/giveup(mob/living/carbon/human/M)
 	if(alert(M, "Do you submit to the Mask, or do you die? You have 10 seconds to decide.", "CHOICE OF LYFE", "Submit", "Perish") == "Perish")
-		submission = FALSE
+		message_admins("[M.real_name] chose to die to the Excidium.")
+		log_admin("[M.real_name] opted to die to the Excidium.")
+		if(M.Adjacent(src))	//No buffering this for later
+			submission = FALSE
 
 /obj/structure/chair/arrestchair/proc/budget2change(budget, mob/user, specify)
 	var/turf/T
