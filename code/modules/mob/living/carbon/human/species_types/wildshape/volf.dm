@@ -7,7 +7,7 @@
 	// Someone else balance this, I am here for code, not numbers
 
 //BUCKLING
-/mob/living/carbon/human/species/wildshape/saiga/buckle_mob(mob/living/target, force = TRUE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0)
+/mob/living/carbon/human/species/wildshape/volf/buckle_mob(mob/living/target, force = TRUE, check_loc = TRUE, lying_buckle = FALSE, hands_needed = 0, target_hands_needed = 0)
 	. = ..(target, force, check_loc, lying_buckle, hands_needed, target_hands_needed)
 
 /mob/living/carbon/human/species/wildshape/volf/gain_inherent_skills()
