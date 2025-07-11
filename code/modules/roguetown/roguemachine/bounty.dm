@@ -366,7 +366,6 @@
 	say("Assessing value of lyfe...")
 	sleep(10 SECONDS)
 
-	submission = TRUE
 	var/list/headcrush = list('sound/combat/fracture/headcrush (2).ogg', 'sound/combat/fracture/headcrush (3).ogg', 'sound/combat/fracture/headcrush (4).ogg')
 	playsound(src, pick_n_take(headcrush), 100, FALSE, -1)
 	M.emote("scream")
