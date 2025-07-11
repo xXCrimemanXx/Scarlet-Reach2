@@ -16,7 +16,10 @@
         list("Staff of the Shepherd", /obj/item/rogueweapon/woodstaff/aries),
         list("Crown of Scarlet Reach", /obj/item/clothing/head/roguetown/crown/serpcrown),
         list("Bell Ringer", /obj/item/rogueweapon/mace/church),
-        list("Pepper Mill", /obj/item/reagent_containers/food/condiment/peppermill)
+        list("Pepper Mill", /obj/item/reagent_containers/food/condiment/peppermill),
+        list("Sword of the Mad Duke", /obj/item/rogueweapon/sword/rapier/lord),
+        list("Judgement", /obj/item/rogueweapon/sword/long/judgement),
+        list("Holy Book", /obj/item/book/rogue/bookofpriests)
     )
     var/selected
     selected = pick(items)
@@ -37,7 +40,7 @@
     is_mammon = FALSE
     is_assassinate = TRUE
     var/list/valid_roles
-    valid_roles = list("Grand Duke", "Prince", "Priest", "Priestess", "Councillor", "Acolyte")
+    valid_roles = list("Grand Duke", "Prince", "Priest", "Priestess", "Councillor", "Acolyte", "Inquisitor", "Merchant")
     var/list/strong_combat_roles
     strong_combat_roles = list("Knight", "Marshal", "Knight Captain", "Man at Arms", "Sergeant", "Warden", "Watchman", "Squire", "Dungeoneer", "Mercenary", "Veteran")
     var/list/candidates
@@ -63,17 +66,18 @@
     if(owner)
         src.owner = owner
         var/roll
-        roll = rand(1, 100)
+        roll = rand(1, 3)
         var/assigned
         assigned = FALSE
-        if(roll <= 33)
+        if(roll == 1)
             assigned = src.setup_steal_objective()
-        else if(roll <= 66)
+        else if(roll == 2)
             assigned = src.setup_mammon_objective()
         else
             assigned = src.setup_assassinate_objective()
         if(!assigned)
-            src.setup_steal_objective()
+            // If assassination fails (no valid targets), fall back to steal
+            assigned = src.setup_steal_objective()
     update_explanation_text()
 
 /datum/objective/thieves_guild_objective/proc/get_assassinate_explanation()
