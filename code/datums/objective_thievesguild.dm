@@ -19,7 +19,8 @@
         list("Pepper Mill", /obj/item/reagent_containers/food/condiment/peppermill),
         list("Sword of the Mad Duke", /obj/item/rogueweapon/sword/rapier/lord),
         list("Judgement", /obj/item/rogueweapon/sword/long/judgement),
-        list("Holy Book", /obj/item/book/rogue/bookofpriests)
+        list("Holy Book", /obj/item/book/rogue/bookofpriests),
+		list("The Master Key", /obj/item/roguekey/lord)
     )
     var/selected
     selected = pick(items)
@@ -33,7 +34,7 @@
 /datum/objective/thieves_guild_objective/proc/setup_mammon_objective()
 	is_mammon = TRUE
 	is_assassinate = FALSE
-	mammon_amount = 3000
+	mammon_amount = 1000
 	return TRUE
 
 /datum/objective/thieves_guild_objective/proc/setup_assassinate_objective()
@@ -52,8 +53,15 @@
             continue
         if(!H.mind || !H.mind.assigned_role) 
             continue
-        if(H.mind.assigned_role in valid_roles && !(H.mind.assigned_role in strong_combat_roles) && H.stat != DEAD)
+        var/assigned_role = H.mind.assigned_role
+        var/role_name = get_role_name(assigned_role)
+        var/in_valid_roles = (role_name in valid_roles)
+        var/in_strong_combat_roles = (role_name in strong_combat_roles)
+        var/is_alive = (H.stat != DEAD)
+        if(in_valid_roles && !in_strong_combat_roles && is_alive)
             candidates += H
+        else
+            continue
     if(candidates.len)
         assassinate_target = pick(candidates)
         return TRUE
@@ -66,7 +74,7 @@
     if(owner)
         src.owner = owner
         var/roll
-        roll = rand(1, 3)
+        roll = rand(1, 3) // Restore random objective assignment
         var/assigned
         assigned = FALSE
         if(roll == 1)
@@ -143,9 +151,18 @@
 	if(is_assassinate)
 		return src.check_assassinate_completion()
 	if(is_mammon)
-		return FALSE
+		var/total_mammon = get_mammons_in_atom(owner.current)
+		if(owner.current && owner.current.client)
+			to_chat(owner.current, "[span_notice("Mammon objective check: you have [total_mammon] mammon counted in all containers.")]")
+		return total_mammon >= mammon_amount
 	if(target_item_path)
 		for(var/obj/item/I in get_all_mob_items(owner.current))
 			if(istype(I, target_item_path))
 				return TRUE
 	return FALSE 
+
+/proc/get_role_name(var/role)
+	if(istype(role, /datum/job))
+		if("title" in role)
+			return role["title"]
+	return "[role]" 

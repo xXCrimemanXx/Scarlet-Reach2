@@ -29,16 +29,7 @@
 		// Grant skill bonuses
 		owner.current.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
 		owner.current.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
-		// Give lockpick ring in ring slot
-		if(!owner.current.get_item_by_slot(SLOT_RING))
-			var/obj/item/lockpickring/mundane/ring = new /obj/item/lockpickring/mundane(owner.current)
-			owner.current.equip_to_slot(ring, SLOT_RING)
-			to_chat(world, "<span class='adminnotice'><b>DEBUG:</b> Gave lockpick ring to [owner.current.real_name]</span>")
-		// Give strong poison vial
-		var/obj/item/reagent_containers/glass/bottle/rogue/strongpoison/poison = new /obj/item/reagent_containers/glass/bottle/rogue/strongpoison(owner.current)
-		owner.current.put_in_hands(poison)
-		to_chat(world, "<span class='adminnotice'><b>DEBUG:</b> Gave strong poison to [owner.current.real_name]</span>")
-		// Add items to special inventory
+		// Only add items to special inventory, do not spawn them directly
 		owner.special_items["Lockpick Ring"] = /obj/item/lockpickring/mundane
 		owner.special_items["Strong Poison"] = /obj/item/reagent_containers/glass/bottle/rogue/strongpoison
 		to_chat(world, "<span class='adminnotice'><b>DEBUG:</b> Added items to special_items for [owner.current.real_name]. Special items count: [owner.special_items.len]</span>")
@@ -55,7 +46,7 @@
 			to_chat(owner.current, "<span class='notice'>You can view your objective again in the Notes tab under Memory.</span>")
 		to_chat(world, "<span class='adminnotice'><b>DEBUG:</b> Thieves' Guild setup complete for [owner.current.real_name]</span>")
 	else
-		to_chat(world, "<span class='adminnotice'><b>DEBUG:</b> Thieves' Guild on_gain() - owner or owner.current is null!</span>")
+		to_chat(world, "<span class='adminnotice'><b>DEBUG:</b> Thieves' Guild on_gain() - owner or owner.current is null!")
 
 /datum/antagonist/thievesguild/apply_innate_effects(mob/living/mob_override)
 	to_chat(world, "<span class='adminnotice'><b>DEBUG:</b> Thieves' Guild apply_innate_effects() called</span>")
