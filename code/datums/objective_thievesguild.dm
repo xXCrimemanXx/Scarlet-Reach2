@@ -9,6 +9,7 @@
     var/mammon_amount
     var/is_assassinate
     var/assassinate_target
+    triumph_count = 5
 
 /datum/objective/thieves_guild_objective/proc/setup_steal_objective()
     var/list/items
