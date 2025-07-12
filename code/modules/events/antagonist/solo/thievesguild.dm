@@ -114,8 +114,9 @@
 	var/list/candidates = get_candidates()
 	to_chat(world, "<span class='adminnotice'><b>DEBUG:</b> Thieves' Guild candidates found: [candidates.len]</span>")
 	
-	if(length(candidates) < antag_amt)
-		to_chat(world, "<span class='adminnotice'><b>DEBUG:</b> Thieves' Guild canSpawnEvent() failed - not enough candidates</span>")
+	// Allow the event to run if there's at least 1 candidate, even if fewer than desired
+	if(length(candidates) < 1)
+		to_chat(world, "<span class='adminnotice'><b>DEBUG:</b> Thieves' Guild canSpawnEvent() failed - no candidates at all</span>")
 		return FALSE
 	
 	to_chat(world, "<span class='adminnotice'><b>DEBUG:</b> Thieves' Guild canSpawnEvent() returning TRUE</span>")
