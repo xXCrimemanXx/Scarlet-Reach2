@@ -1056,18 +1056,18 @@
 	surrendering = 0
 	update_mobility()
 
-/mob/living/proc/toggle_passivity()
-	set name = "Toggle Passivity"
+/mob/living/proc/toggle_compliance()
+	set name = "Toggle Compliance"
 	set category = "IC"
 	set hidden = 1
 
-	if(has_status_effect(/datum/status_effect/passivity))
-		src.passivity = 0
-		remove_status_effect(/datum/status_effect/passivity)
+	if(has_status_effect(/datum/status_effect/compliance))
+		src.compliance = 0
+		remove_status_effect(/datum/status_effect/compliance)
 		to_chat(src, span_info("I will struggle against grabs as usual."))
 	else
-		src.passivity = 1
-		apply_status_effect(/datum/status_effect/passivity)
+		src.compliance = 1
+		apply_status_effect(/datum/status_effect/compliance)
 		to_chat(src, span_info("I will allow all grabs and resistance attempts by others."))
 
 
@@ -1126,7 +1126,7 @@
 	resist_chance *= combat_modifier
 	resist_chance = clamp(resist_chance, 5, 95)
 
-	if(L.passivity)
+	if(L.compliance)
 		resist_chance = 100
 
 	if(moving_resist && client) //we resisted by trying to move

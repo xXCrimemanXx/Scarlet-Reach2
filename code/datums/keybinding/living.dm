@@ -142,17 +142,17 @@
 	L.submit(TRUE)
 	return TRUE
 
-/datum/keybinding/living/toggle_passivity
+/datum/keybinding/living/toggle_compliance
 	hotkey_keys = list()
-	name = "toggle_passivity"
-	full_name = "Toggle Passivity"
+	name = "toggle_compliance"
+	full_name = "Toggle Compliance"
 	description = "At-will toggle to fail defense rolls, both when getting grabbed/tackled, and when others resist out your grabs."
 
-/datum/keybinding/living/toggle_passivity/down(client/user)
+/datum/keybinding/living/toggle_compliance/down(client/user)
 	var/mob/living/L = user.mob
 	if(!isliving(L))
 		return
-	L.toggle_passivity()
+	L.toggle_compliance()
 	return TRUE
 
 /datum/keybinding/living/resist

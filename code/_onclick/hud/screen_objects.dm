@@ -622,7 +622,7 @@
 		if(modifiers["right"])
 			L.submit()
 		if(modifiers["middle"])
-			L.toggle_passivity()
+			L.toggle_compliance()
 		else
 			L.toggle_cmode()
 			update_icon()
