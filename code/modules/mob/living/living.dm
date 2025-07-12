@@ -1007,10 +1007,15 @@
 
 	SEND_SIGNAL(src, COMSIG_LIVING_RESIST, src)
 	//resisting grabs (as if it helps anyone...)
-	if(!restrained(ignore_grab = 1) && pulledby)
-		log_combat(src, pulledby, "resisted grab")
-		resist_grab()
-		return
+	if(pulledby)
+		if(!restrained(ignore_grab = 1))
+			log_combat(src, pulledby, "resisted grab")
+			resist_grab()
+			return
+		else if(pulledby.compliance) // we ARE handcuffed apart from the grab, but grabber has Compliance Mode on
+			log_combat(src, pulledby, "resisted grab (is restrained, compliance mode bypass)") // if you try baiting prisoners with this, I'll know.
+			resist_grab() // resisting out of his grab (100% success) takes priority here
+			return
 
 	//unbuckling yourself
 	if(buckled && last_special <= world.time)
@@ -1061,14 +1066,20 @@
 	set category = "IC"
 	set hidden = 1
 
+	var/notifyme = TRUE
+	if(client && client.prefs)
+		notifyme = client.prefs.compliance_notifs
+
 	if(has_status_effect(/datum/status_effect/compliance))
 		src.compliance = 0
 		remove_status_effect(/datum/status_effect/compliance)
-		to_chat(src, span_info("I will struggle against grabs as usual."))
+		if(notifyme)
+			to_chat(src, span_info("I will struggle against grabs as usual."))
 	else
 		src.compliance = 1
 		apply_status_effect(/datum/status_effect/compliance)
-		to_chat(src, span_info("I will allow all grabs and resistance attempts by others."))
+		if(notifyme)
+			to_chat(src, span_info("I will allow all grabs and resistance attempts by others."))
 
 
 /mob/proc/stop_attack(message = FALSE)
