@@ -1056,6 +1056,20 @@
 	surrendering = 0
 	update_mobility()
 
+/mob/living/proc/toggle_passivity()
+	set name = "Toggle Passivity"
+	set category = "IC"
+	set hidden = 1
+
+	if(has_status_effect(/datum/status_effect/passivity))
+		src.passivity = 0
+		remove_status_effect(/datum/status_effect/passivity)
+		to_chat(src, span_info("I will struggle against grabs as usual."))
+	else
+		src.passivity = 1
+		apply_status_effect(/datum/status_effect/passivity)
+		to_chat(src, span_info("I will allow all grabs and resistance attempts by others."))
+
 
 /mob/proc/stop_attack(message = FALSE)
 	if(atkswinging)
@@ -1111,6 +1125,9 @@
 	resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAEND)) * 5
 	resist_chance *= combat_modifier
 	resist_chance = clamp(resist_chance, 5, 95)
+
+	if(L.passivity)
+		resist_chance = 100
 
 	if(moving_resist && client) //we resisted by trying to move
 		client.move_delay = world.time + 20

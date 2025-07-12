@@ -621,6 +621,8 @@
 		L.playsound_local(L, 'sound/misc/click.ogg', 100)
 		if(modifiers["right"])
 			L.submit()
+		if(modifiers["middle"])
+			L.toggle_passivity()
 		else
 			L.toggle_cmode()
 			update_icon()
