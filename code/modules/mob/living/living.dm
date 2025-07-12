@@ -1008,11 +1008,14 @@
 	SEND_SIGNAL(src, COMSIG_LIVING_RESIST, src)
 	//resisting grabs (as if it helps anyone...)
 	if(pulledby)
+		var/mob/living/P
+		if(isliving(pulledby))
+			P = pulledby
 		if(!restrained(ignore_grab = 1))
 			log_combat(src, pulledby, "resisted grab")
 			resist_grab()
 			return
-		else if(pulledby.compliance) // we ARE handcuffed apart from the grab, but grabber has Compliance Mode on
+		else if(P.compliance) // we ARE handcuffed apart from the grab, but grabber has Compliance Mode on
 			log_combat(src, pulledby, "resisted grab (is restrained, compliance mode bypass)") // if you try baiting prisoners with this, I'll know.
 			resist_grab() // resisting out of his grab (100% success) takes priority here
 			return
