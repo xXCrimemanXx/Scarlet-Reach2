@@ -8,8 +8,8 @@
 	antag_flag = ROLE_THIEVESGUILD
 	shared_occurence_type = SHARED_MINOR_THREAT
 
-	// Only allow adventurers to be Thieves' Guild members
-	needed_job = list("Adventurer")
+	// Allow adventurers and towners to be Thieves' Guild members
+	needed_job = list("Adventurer", "Towner")
 
 	// Restrict from important roles
 	restricted_roles = list(
