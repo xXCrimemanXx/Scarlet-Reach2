@@ -93,7 +93,6 @@
 	if(!name)
 		return FALSE
 	
-	var/antag_amt = get_antag_amount()
 	var/list/candidates = get_candidates()
 	
 	// Allow the event to run if there's at least 1 candidate, even if fewer than desired
@@ -182,8 +181,6 @@
 		return
 	
 	for(var/datum/mind/antag_mind as anything in setup_minds)
-		var/name = antag_mind.current?.real_name || antag_mind.key || "(no mob)"
-		
 		// Check if the mind already has this antagonist
 		if(antag_mind.has_antag_datum(antag_datum))
 			continue
@@ -196,4 +193,4 @@
 		qdel(test_antag)
 		
 		// Attempt to add the antagonist datum
-		var/datum/antagonist/result = antag_mind.add_antag_datum(antag_datum) 
+		antag_mind.add_antag_datum(antag_datum) 

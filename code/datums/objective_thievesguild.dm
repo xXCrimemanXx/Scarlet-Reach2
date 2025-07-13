@@ -22,7 +22,8 @@
         list("Judgement", /obj/item/rogueweapon/sword/long/judgement),
         list("Holy Book", /obj/item/book/rogue/bookofpriests),
 		list("The Master Key", /obj/item/roguekey/lord),
-        list("Book of Law", /obj/item/book/rogue/law)
+        list("Book of Law", /obj/item/book/rogue/law),
+        list("Garrison houndstone", /obj/item/scomstone/bad/garrison)
     )
     var/selected
     selected = pick(items)
