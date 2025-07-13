@@ -1247,7 +1247,7 @@
 		if(L.cmode && L.mobility_flags & MOBILITY_STAND && !L.restrained())
 			to_chat(src, span_warning("I can't take \the [what] off, they are too tense!"))
 			return
-		if(L.surrendering)
+		if(L.compliance || L.surrendering)
 			surrender_mod = 0.5
 
 	if(!who.Adjacent(src))
@@ -1302,7 +1302,7 @@
 			if(L.cmode && L.mobility_flags & MOBILITY_STAND)
 				to_chat(src, span_warning("I can't put \the [what] on them, they are too tense!"))
 				return
-			if(L.surrendering)
+			if(L.compliance || L.surrendering)
 				surrender_mod = 0.5
 
 		who.visible_message(span_notice("[src] tries to put [what] on [who]."), \
