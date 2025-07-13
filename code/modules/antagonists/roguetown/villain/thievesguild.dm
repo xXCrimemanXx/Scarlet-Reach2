@@ -25,8 +25,9 @@
 		// Grant Thieves' Cant
 		owner.current.grant_language(/datum/language/thievescant)
 		// Grant skill bonuses
-		owner.current.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
+		owner.current.adjust_skillrank(/datum/skill/misc/stealing, 4, TRUE)
 		owner.current.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
+		owner.current.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 		// Only add items to special inventory, do not spawn them directly
 		owner.special_items["Lockpick Ring"] = /obj/item/lockpickring/mundane
 		owner.special_items["Strong Poison"] = /obj/item/reagent_containers/glass/bottle/rogue/strongpoison

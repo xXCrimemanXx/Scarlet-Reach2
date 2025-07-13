@@ -96,8 +96,8 @@
         var/mob/living/target
         target = assassinate_target
         if(target.mind && target.mind.assigned_role)
-            return "Ensure <b>[target.real_name]</b> ([target.mind.assigned_role]) dies at least once this round."
-    return "Ensure your assigned target dies at least once this round."
+            return "Ensure <b>[target.real_name]</b> ([target.mind.assigned_role]) stays dead until the end of the round."
+    return "Ensure your assigned target stays dead until the end of the round."
 
 /datum/objective/thieves_guild_objective/update_explanation_text()
     ..()
