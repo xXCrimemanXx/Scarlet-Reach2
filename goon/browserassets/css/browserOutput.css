@@ -83,6 +83,11 @@ body {
   font-family: "Yuji Boku";
   src: url('kazengunese.ttf');
 }
+
+@font-face {
+  font-family: "Geishta";
+  src: url('kazengunaccent.ttf');
+}
  
 @font-face { 
   font-family: "Notredame"; 
