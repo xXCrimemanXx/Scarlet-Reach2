@@ -1,4 +1,4 @@
-/datum/voicepack/fefemale/tabaxi/get_sound(soundin, modifiers)
+/datum/voicepack/female/tabaxi/get_sound(soundin, modifiers)
 	var/used
 	switch(modifiers)
 		if("old")
