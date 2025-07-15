@@ -17,8 +17,6 @@
 				used = list('sound/vo/male/tabaxi/tabaxi_mrrp1.ogg', 'sound/vo/male/tabaxi/tabaxi_mrrp2.ogg')
 			if("hiss")
 				used = list('sound/vo/male/tabaxi/tabaxi_hiss1.ogg', 'sound/vo/male/tabaxi/tabaxi_hiss2.ogg')
-			if("scream")
-				used = list('sound/vo/male/tabaxi/tabaxi_scream.ogg')
 			else
 				return ..()
 	return used 
