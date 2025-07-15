@@ -101,8 +101,7 @@
 	if(!oral)
 		after_intimate_climax()
 	
-	// Cuckold check only for penetrative sex (cum_into)
-	cuckold_check()
+
 
 /datum/sex_controller/proc/ejaculate()
 	log_combat(user, user, "Ejaculated")
@@ -122,13 +121,7 @@
 	last_ejaculation_time = world.time
 	GLOB.scarlet_round_stats[STATS_PLEASURES]++
 
-/datum/sex_controller/proc/cuckold_check()
-	if(!target || !ishuman(target) || !ishuman(user))
-		return
-	
-	if(!user?.getorganslot(ORGAN_SLOT_PENIS))
-		return
-	
+
 
 
 /datum/sex_controller/proc/after_intimate_climax()

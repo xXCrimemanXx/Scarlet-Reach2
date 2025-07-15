@@ -1148,8 +1148,6 @@
 		if(owner.mind.has_antag_datum(/datum/antagonist/obsessed))
 			return
 	
-	// Cuckold check removed - moved to new sexcon system
-	
 	GLOB.scarlet_round_stats[STATS_PLEASURES]++
 	blueballs = FALSE
 	adjust_horny(-350)
