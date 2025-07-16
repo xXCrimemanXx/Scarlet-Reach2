@@ -29,7 +29,7 @@
 		"goblins": "goburin",
 		"wolf": "okami",
 		"volf": "okami",
-		"bath": "onsen",
+		"bath": "ofuro",
 		"lord": "daimyo",
 		"sorry": "gomen",
 		"hurray": "banzai",
@@ -55,6 +55,7 @@
 
     },
 	"multiword": {
+		"good morning": "ohayo",
 		"good evening": "konbanwa",
 		"good night": "oyasumi",
 		"good bye": "sayonara",
