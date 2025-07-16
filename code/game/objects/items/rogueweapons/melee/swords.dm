@@ -639,6 +639,7 @@
 	desc = "A bronze short sword with a slightly wider end, and no guard. Best used together with a shield, thrusted directly into your enemy's guts."
 	icon_state = "gladius"
 	max_integrity = 200
+	smeltresult = /obj/item/ingot/bronze
 	wdefense = 3
 
 /obj/item/rogueweapon/sword/iron/short/gladius/agladius
