@@ -50,6 +50,8 @@
 	l_sleeve_status = SLEEVE_NORMAL
 	armor_class = ARMOR_CLASS_LIGHT
 	salvage_result = /obj/item/natural/hide/cured
+	grid_height = 64
+	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/armordress/alt
 	icon_state = "armordressalt"
@@ -132,6 +134,8 @@
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
 	armor_class = ARMOR_CLASS_LIGHT
+	grid_height = 64
+	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/light
 	name = "light gambeson"
@@ -336,6 +340,8 @@
 	detail_tag = "_detail"
 	color = CLOTHING_WHITE
 	detail_color = CLOTHING_BLACK
+	grid_height = 64
+	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/leather/vest/winterjacket/update_icon()
 	cut_overlays()
@@ -380,6 +386,8 @@
 	icon_state = "corset"
 	armor_class = ARMOR_CLASS_LIGHT
 	body_parts_covered = CHEST
+	grid_height = 64
+	grid_width = 32
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/lord
 	name = "arming jacket"
@@ -436,6 +444,8 @@
 	sellprice = 20
 	armor_class = ARMOR_CLASS_LIGHT
 	salvage_result = /obj/item/natural/hide/cured
+	grid_height = 64
+	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/leather/cuirass
 	name = "leather cuirass"
@@ -482,6 +492,8 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_STAB, BCLASS_BLUNT, BCLASS_CHOP, BCLASS_SMASH)
 	max_integrity = 300
 	sellprice = 20
+	grid_height = 96 
+	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 	name = "hardened leather coat"
@@ -638,6 +650,8 @@
 	sleeved = null
 	nodismemsleeves = TRUE
 	boobed = TRUE
+	grid_height = 64
+	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/workervest/Initialize()
 	color = pick("#94b4b6", "#ba8f9e", "#bd978c", "#92bd8c", "#c7c981")
@@ -664,6 +678,8 @@
 	armor_class = ARMOR_CLASS_LIGHT
 	allowed_sex = list(MALE, FEMALE)
 	allowed_race = CLOTHED_RACES_TYPES
+	grid_height = 64
+	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/silkcoat/Initialize()
 	. = ..()
@@ -683,6 +699,8 @@
 	color = null
 	r_sleeve_status = SLEEVE_NORMAL
 	l_sleeve_status = SLEEVE_NORMAL
+	grid_height = 64
+	grid_width = 64
 
 //MEDIUM ARMOR//
 
@@ -699,6 +717,8 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_MEDIUM
+	grid_height = 64
+	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/Initialize(mapload)
 	. = ..()
@@ -735,6 +755,8 @@
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
+	grid_height = 96
+	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/aalloy
 	name = "decrepit hauberk"
@@ -787,6 +809,8 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
+	grid_height = 64 /// If it doesn't cover the stomach, then is slightly more compact than other plated medium armors.
+	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/plate/half
 	slot_flags = ITEM_SLOT_ARMOR
