@@ -97,7 +97,8 @@
     },
     "end": {
         "s": "su",
-        "t": "to"
+        "d": "do",
+        "t": "tto"
 
     },
 	"multiword": {
@@ -119,6 +120,7 @@
 
 	},
     "syllable": {
+        "orl": "aru",
         "ll": "rr",
         "l": "r"
     }
