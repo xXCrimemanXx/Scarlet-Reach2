@@ -8490,7 +8490,7 @@
 /obj/structure/mineral_door/wood/fancywood{
 	locked = 1;
 	lockid = "shop";
-	name = "Clerk's Bedroom"
+	name = "Shophand's Bedroom"
 	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/shop)
