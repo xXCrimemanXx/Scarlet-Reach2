@@ -22,6 +22,7 @@
 		"goddesses": "megami",
         "good": "sugoi",
         "hello": "konnichiwa",
+        "hey": "oi",
         "love": "ai",
         "mom": "okasan",
         "my": "watashi no",
@@ -34,7 +35,7 @@
         "moon": "tsuki",
         "sword": "ken",
 		"thank": "kansha suru",
-        "thanks": "arigato",
+        "thanks": ["arigato", "domo"],
         "the": "za",
         "ugly": "busu",
         "unpleasant": "fukai",
@@ -56,6 +57,7 @@
         "prince": "ojisama",
         "dragon": "ryu",
         "wizard": "mahou tsukai",
+        "mage": "mahou tsukai",
         "witch": "majo",
         "beast": "kemono",
         "necromancer": "nekuromansa",
@@ -99,16 +101,14 @@
 		"bandit": "ronin",
 		"brigand": "ronin",
 		"assassin": "ninja",
-		"and": "soshite"
+		"magic": "mahou",
+		"uhm": "etto",
+		"um": "etto"
     },
     "start": {
-        "l": "r"
 
     },
     "end": {
-        "s": "su",
-        "d": "do",
-        "t": "tto"
 
     },
 	"multiword": {
@@ -120,7 +120,7 @@
 		"good night": "oyasumi",
 		"many thanks": "domo arigato",
 		"good bye": "sayonara",
-		"thank you": "arigato",
+		"thank you": ["arigato", "domo"],
 		"good day": "konnichiwa",
 		"good dae": "konnichiwa",
 		"help me": "tasukete",
