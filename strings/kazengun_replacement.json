@@ -27,7 +27,6 @@
         "mom": "okasan",
         "my": "watashi no",
 		"myself": "jibun",
-        "no": "ie",
         "old": "furui",
         "shit": "kuso",
         "small": "chisai",
@@ -54,8 +53,9 @@
 		"queen": "joo heika",
 		"duchess": "shoguness",
         "princess": "ohimesama",
-        "prince": "ojisama",
+        "prince": "oji",
         "dragon": "ryu",
+        "dragons": "ryu",
         "wizard": "mahou tsukai",
         "mage": "mahou tsukai",
         "witch": "majo",
@@ -74,7 +74,6 @@
 		"goblin": "goburin",
 		"goblins": "goburin",
 		"please": "onegaishimasu",
-		"help": "tasukete",
 		"damn": "kuso",
 		"whoreson": "baishunpu",
 		"whore": "baishunpu",
@@ -109,12 +108,14 @@
 		"hells": "jigoku",
 		"huh": "eh",
 		"uhm": "etto",
+		"uh": "etto",
 		"um": "etto"
     },
     "start": {
 
     },
     "end": {
+        "d": "do"
 
     },
 	"multiword": {
@@ -134,6 +135,9 @@
 		"bandit group": "akuto",
 		"bath house": "sento",
 		"holy shit": "nantekotta",
+		"hang on": "chotto matte",
+		"wait a minute": "chotto matte",
+		"no thanks": "kekkodesu",
 		"no one": "daremo"
 
 	},
