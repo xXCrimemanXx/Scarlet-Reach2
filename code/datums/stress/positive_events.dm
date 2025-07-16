@@ -236,3 +236,8 @@
 	stressadd = -2
 	desc = span_info("A Devout Eoran shone their brightness upon me.")
 	timer = 10 MINUTES
+
+/datum/stressevent/guillotinekill
+	stressadd = -5
+	desc = span_green("A nice modern entertainmant.")
+	timer = 10 MINUTES
