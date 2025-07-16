@@ -82,6 +82,11 @@
 		"wonderful": "subarashi",
 		"hurray": "banzai",
 		"huzzah": "banzai",
+		"sellsword": "ronin",
+		"mercenary": "ronin",
+		"bandit": "ronin",
+		"brigand": "ronin",
+		"assassin": "ninja",
 		"and": "soshite"
     },
     "start": {
@@ -107,6 +112,7 @@
 		"good dae": "konnichiwa",
 		"help me": "tasukete",
 		"i love you": "aishiteru",
+		"bandit group": "akuto",
 		"no one": "daremo"
 
 	},
