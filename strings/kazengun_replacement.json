@@ -102,6 +102,12 @@
 		"brigand": "ronin",
 		"assassin": "ninja",
 		"magic": "mahou",
+		"ass": "oshiri",
+		"butt": "oshiri",
+		"kobold": "koboruto",
+		"hell": "jigoku",
+		"hells": "jigoku",
+		"huh": "eh",
 		"uhm": "etto",
 		"um": "etto"
     },
@@ -127,12 +133,12 @@
 		"i love you": "aishiteru",
 		"bandit group": "akuto",
 		"bath house": "sento",
+		"holy shit": "nantekotta",
 		"no one": "daremo"
 
 	},
     "syllable": {
-        "orl": "aru",
-        "ll": "rr",
-        "l": "r"
+        "orl": "aru"
+
     }
 }
