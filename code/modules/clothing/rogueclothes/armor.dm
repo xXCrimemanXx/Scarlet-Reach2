@@ -717,7 +717,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_MEDIUM
-	grid_height = 64
+	grid_height = 32 // Chainmail shirts aren't so rigid, are they?
 	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/Initialize(mapload)
@@ -755,7 +755,7 @@
 	smeltresult = /obj/item/ingot/steel
 	armor_class = ARMOR_CLASS_MEDIUM
 	smelt_bar_num = 2
-	grid_height = 96
+	grid_height = 64 // Same size as gambeson.
 	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/aalloy
@@ -782,9 +782,6 @@
 	item_state = "ornatehauberk"
 	max_integrity = 350
 
-
-
-
 /obj/item/clothing/suit/roguetown/armor/chainmail/bikini
 	name = "chainmail corslet"	// corslet, from the old French 'cors' or bodice, with the diminutive 'let', used to describe lightweight military armor since 1500. Chosen here to replace 'bikini', an extreme anachronism.
 	desc = "For the daring, affording maille's protection with light weight."
@@ -809,7 +806,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	smeltresult = /obj/item/ingot/steel
 	smelt_bar_num = 2
-	grid_height = 64 /// If it doesn't cover the stomach, then is slightly more compact than other plated medium armors.
+	grid_height = 64 // If it doesn't cover the stomach, then is slightly more compact than other plated medium armors.
 	grid_width = 64
 
 /obj/item/clothing/suit/roguetown/armor/plate/half
