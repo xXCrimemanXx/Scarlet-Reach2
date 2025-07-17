@@ -1137,8 +1137,8 @@
 							var/bride_first_name = bride_name_parts[1]
 							thebride.real_name = "[bride_first_name] [surname]"
 							// Private notification to both
-							if(thegroom) to_chat(thegroom, span_notice("Your new shared surname is[surname]."))
-							if(thebride) to_chat(thebride, span_notice("Your new shared surname is[surname]."))
+							if(thegroom) to_chat(thegroom, span_notice("Your new shared surname is [surname]."))
+							if(thebride) to_chat(thebride, span_notice("Your new shared surname is [surname]."))
 							// Set marriedto fields
 							thegroom.marriedto = thebride.real_name
 							thebride.marriedto = thegroom.real_name
@@ -1154,7 +1154,7 @@
 								to_chat(thegroom, span_danger("Eora recoils from this union! You are excommunicated and cannot be wed by the church."))
 							if(thebride)
 								to_chat(thebride, span_danger("Eora recoils from this union! You are excommunicated and cannot be wed by the church."))
-							qdel(A)
+							// Do not qdel(A) here so the rotten apple remains
 							return
 					if(!marriage)
 						if(istype(W, /obj/item/reagent_containers/food/snacks/grown/apple))
