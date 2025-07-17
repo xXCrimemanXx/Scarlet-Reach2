@@ -1144,6 +1144,10 @@
 							thebride.marriedto = thegroom.real_name
 							thegroom.adjust_triumphs(1)
 							thebride.adjust_triumphs(1)
+							// After surname is set, have the priest say the wedding line
+							if(user && surname)
+								var/surname_trimmed = copytext(surname, 2) // Remove leading space if present
+								user.say("I hereby wed you [surname_trimmed]s.")
 							priority_announce("[thegroom.real_name] has married [thebride.real_name]!", title = "Holy Union!", sound = 'sound/misc/bell.ogg')
 							qdel(A)
 							marriage = TRUE
