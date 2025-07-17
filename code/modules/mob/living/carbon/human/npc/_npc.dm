@@ -172,7 +172,7 @@
 
 /mob/living/carbon/human/proc/deaggrodel()
 	if(aggressive)
-		for(var/mob/living/L in view(7)) // scan for enemies
+		for(var/mob/living/L in view(3)) // scan for enemies
 			if( should_target(L) && (L != src))
 				if(L.stat != DEAD)
 					retaliate(L)
