@@ -99,15 +99,9 @@ GLOBAL_LIST_INIT(drowraider_aggro, world.file2list("strings/rt/drowaggrolines.tx
 	if(world.time < next_idle)
 		return
 	next_idle = world.time + rand(30, 70)
-	if((mobility_flags & MOBILITY_MOVE) && isturf(loc) && wander)
-		if(prob(20))
-			var/turf/T = get_step(loc,pick(GLOB.cardinals))
-			if(!istype(T, /turf/open/transparent/openspace))
-				Move(T)
-		else
-			face_atom(get_step(src,pick(GLOB.cardinals)))
-	if(!wander && prob(10))
-		face_atom(get_step(src,pick(GLOB.cardinals)))
+
+	if(prob(10))
+		face_atom(get_step(src, pick(GLOB.cardinals)))
 
 /mob/living/carbon/human/species/elf/dark/drowraider/handle_combat()
 	if(mode == NPC_AI_HUNT)
