@@ -164,10 +164,6 @@
 	set name = "Feel (Desire/Dread)"
 	set category = "Emotes"
 
-	if(!HAS_TRAIT(src, TRAIT_EMPATH))
-		to_chat(src, span_warning("You must be empathic to use this emote."))
-		return
-
 	var/list/options = list("Desire", "Dread")
 	var/choice = input(src, "What feeling do you want to express?", "Feel") as null|anything in options
 	if(!choice) return
@@ -177,24 +173,11 @@
 	if(!degree) return
 
 	if(choice == "Desire")
-		var/target_or_thing = input(src, "Who or what do you desire? (Leave blank for just a thing)", "Target/Thing") as null|text
-		if(isnull(target_or_thing)) return
 		var/desire = input(src, "What is the desire?", "Desire") as null|text
 		if(isnull(desire)) return
-		var/message
-		if(target_or_thing && findtext(target_or_thing, " ")) // If they enter a phrase, treat as thing
-			message = "You [degree == "mild" ? "slightly" : degree == "moderate" ? "moderately" : "strongly"] want to [desire] ([target_or_thing])."
-		else if(target_or_thing)
-			var/mob/living/carbon/human/target = locate(target_or_thing) in viewers(src, null)
-			if(target)
-				message = "You [degree == "mild" ? "slightly" : degree == "moderate" ? "moderately" : "strongly"] want to help [target.real_name] fulfil [target.p_their()] desire to [desire]."
-			else
-				message = "You [degree == "mild" ? "slightly" : degree == "moderate" ? "moderately" : "strongly"] want to [desire] ([target_or_thing])."
-		else
-			message = "You [degree == "mild" ? "slightly" : degree == "moderate" ? "moderately" : "strongly"] want to [desire]."
+		var/message = "You [degree == "mild" ? "slightly" : degree == "moderate" ? "moderately" : "strongly"] want to help [src.real_name] fulfil their wish to [desire]"
 		if(!length(message) || copytext(message, length(message)) != ".")
 			message += "."
-		// Only empaths see this
 		for(var/mob/living/carbon/human/H in viewers(src, null))
 			if(HAS_TRAIT(H, TRAIT_EMPATH))
 				to_chat(H, "<span style='color: white; font-style: italic; text-shadow: 0 0 6px #fff, 0 0 12px #fff;'>[message]</span>")
