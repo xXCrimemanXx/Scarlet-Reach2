@@ -181,6 +181,7 @@
 		for(var/mob/living/carbon/human/H in viewers(src, null))
 			if(HAS_TRAIT(H, TRAIT_EMPATH))
 				to_chat(H, "<span style='color: white; font-style: italic; text-shadow: 0 0 6px #fff, 0 0 12px #fff;'>[message]</span>")
+		to_chat(src, "You desire [desire].")
 		return
 
 	if(choice == "Dread")
@@ -192,4 +193,5 @@
 		for(var/mob/living/carbon/human/H in viewers(src, null))
 			if(HAS_TRAIT(H, TRAIT_EMPATH))
 				to_chat(H, "<span style='color: #ff4444; font-weight: bold;'>[message]</span>")
+		to_chat(src, "You become preoccupied with [dread].")
 		return
