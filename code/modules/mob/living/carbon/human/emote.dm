@@ -158,3 +158,55 @@
 
 /mob/living/carbon/human/proc/CloseWings()
 	return
+
+// FEEL EMOTE VERB
+/mob/living/carbon/human/verb/emote_feel()
+	set name = "Feel (Desire/Dread)"
+	set category = "Emotes"
+
+	if(!HAS_TRAIT(src, TRAIT_EMPATH))
+		to_chat(src, span_warning("You must be empathic to use this emote."))
+		return
+
+	var/list/options = list("Desire", "Dread")
+	var/choice = input(src, "What feeling do you want to express?", "Feel") as null|anything in options
+	if(!choice) return
+
+	var/list/degrees = list("mild", "moderate", "strong")
+	var/degree = input(src, "Select degree:", "Degree") as null|anything in degrees
+	if(!degree) return
+
+	if(choice == "Desire")
+		var/target_or_thing = input(src, "Who or what do you desire? (Leave blank for just a thing)", "Target/Thing") as null|text
+		if(isnull(target_or_thing)) return
+		var/desire = input(src, "What is the desire?", "Desire") as null|text
+		if(isnull(desire)) return
+		var/message
+		if(target_or_thing && findtext(target_or_thing, " ")) // If they enter a phrase, treat as thing
+			message = "You [degree == "mild" ? "slightly" : degree == "moderate" ? "moderately" : "strongly"] want to [desire] ([target_or_thing])."
+		else if(target_or_thing)
+			var/mob/living/carbon/human/target = locate(target_or_thing) in viewers(src, null)
+			if(target)
+				message = "You [degree == "mild" ? "slightly" : degree == "moderate" ? "moderately" : "strongly"] want to help [target.real_name] fulfil [target.p_their()] desire to [desire]."
+			else
+				message = "You [degree == "mild" ? "slightly" : degree == "moderate" ? "moderately" : "strongly"] want to [desire] ([target_or_thing])."
+		else
+			message = "You [degree == "mild" ? "slightly" : degree == "moderate" ? "moderately" : "strongly"] want to [desire]."
+		if(!length(message) || copytext(message, length(message)) != ".")
+			message += "."
+		// Only empaths see this
+		for(var/mob/living/carbon/human/H in viewers(src, null))
+			if(HAS_TRAIT(H, TRAIT_EMPATH))
+				to_chat(H, span_info(message))
+		return
+
+	if(choice == "Dread")
+		var/dread = input(src, "What are you dreading?", "Dread") as null|text
+		if(isnull(dread)) return
+		var/message = "You feel [degree]ly negatively preoccupied with the prospect of [dread]."
+		if(!length(message) || copytext(message, length(message)) != ".")
+			message += "."
+		for(var/mob/living/carbon/human/H in viewers(src, null))
+			if(HAS_TRAIT(H, TRAIT_EMPATH))
+				to_chat(H, span_info(message))
+		return
