@@ -1,6 +1,8 @@
+
 /obj/effect/proc_holder/spell/invoked/projectile/lightningbolt/sacred_flame_rogue
 	name = "Sacred Flame"
 	overlay_state = "sacredflame"
+	sound = 'sound/magic/bless.ogg'
 	req_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	invocation = null
 	invocation_type = "shout"
@@ -9,12 +11,18 @@
 	recharge_time = 25 SECONDS
 	miracle = TRUE
 	devotion_cost = 100
-	projectile_type = /obj/projectile/magic/lightning/astratablast
+	projectile_type = /obj/projectile/magic/astratablast
 
-/obj/projectile/magic/lightning/astratablast
-	damage = 10 
+
+/obj/projectile/magic/astratablast
+	damage = 10
 	name = "ray of holy fire"
+	nodamage = FALSE
 	damage_type = BURN
+	speed = 0.3
+	muzzle_type = null
+	impact_type = null
+	hitscan = TRUE
 	flag = "magic"
 	light_color = "#a98107"
 	light_outer_range = 7
@@ -22,9 +30,8 @@
 	var/fuck_that_guy_multiplier = 2.5
 	var/biotype_we_look_for = MOB_UNDEAD
 
-/obj/projectile/magic/lightning/astratablast/on_hit(target)
+/obj/projectile/magic/astratablast/on_hit(target)
 	. = ..()
-
 	if(ismob(target))
 		var/mob/living/M = target
 		if(M.anti_magic_check())
@@ -36,7 +43,11 @@
 			damage *= fuck_that_guy_multiplier
 			M.adjust_fire_stacks(4)
 			M.IgniteMob()
-			visible_message(span_warning("[src] ignites [target] in holy flame!"))
+			visible_message(span_warning("[target] erupts in flame upon being struck by [src]!"))
+		else
+			M.adjust_fire_stacks(1)//just a little bit of burning for non-undead
+			M.IgniteMob()
+			visible_message(span_warning("[src] ignites [target]!"))
 	return FALSE
 
 /obj/effect/proc_holder/spell/invoked/ignition
@@ -59,7 +70,7 @@
 	miracle = TRUE
 	devotion_cost = 10
 
-/obj/effect/proc_holder/spell/invoked/sacred_flame_rogue/cast(list/targets, mob/user = usr)
+/obj/effect/proc_holder/spell/invoked/ignition/cast(list/targets, mob/user = usr)
 	. = ..()
 	// Spell interaction with ignitable objects (burn wooden things, light torches up)
 	if(isobj(targets[1]))
