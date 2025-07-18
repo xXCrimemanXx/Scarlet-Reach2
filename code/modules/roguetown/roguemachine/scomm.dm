@@ -255,6 +255,8 @@
 	var/usedcolor = H.voice_color
 	if(H.voicecolor_override)
 		usedcolor = H.voicecolor_override
+	if(H.client.patreonlevel() >= GLOB.patreonsaylevel)
+		raw_message = "<span class=\"[SPAN_PATREON_SAY]\">[raw_message]</span>"
 	if(raw_message)
 		if(calling)
 			if(calling.calling == src)
@@ -349,6 +351,8 @@
 	if(user.voicecolor_override)
 		usedcolor = user.voicecolor_override
 	user.whisper(input_text)
+	if(user.client.patreonlevel() >= GLOB.patreonsaylevel)
+		input_text = "<span class=\"[SPAN_PATREON_SAY]\">[input_text]</span>"
 	if(length(input_text) > 100) //When these people talk too much, put that shit in slow motion, yeah
 		input_text = "<small>[input_text]</small>"
 	for(var/obj/structure/roguemachine/scomm/S in SSroguemachine.scomm_machines)
@@ -535,6 +539,8 @@
 		if(user.voicecolor_override)
 			usedcolor = user.voicecolor_override
 		user.whisper(input_text)
+		if(user.client.patreonlevel() >= GLOB.patreonsaylevel)
+			input_text = "<span class=\"[SPAN_PATREON_SAY]\">[input_text]</span>"
 		if(length(input_text) > 100)
 			input_text = "<small>[input_text]</small>"
 		for(var/obj/item/mattcoin/S in SSroguemachine.scomm_machines)
@@ -708,6 +714,8 @@
 	var/usedcolor = H.voice_color
 	if(H.voicecolor_override)
 		usedcolor = H.voicecolor_override
+	if(H.client.patreonlevel() >= GLOB.patreonsaylevel)
+		raw_message = "<span class=\"[SPAN_PATREON_SAY]\">[raw_message]</span>"
 	if(!raw_message)
 		return
 	if(length(raw_message) > 100)
