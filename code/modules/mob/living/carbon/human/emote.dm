@@ -197,7 +197,7 @@
 		// Only empaths see this
 		for(var/mob/living/carbon/human/H in viewers(src, null))
 			if(HAS_TRAIT(H, TRAIT_EMPATH))
-				to_chat(H, span_info(message))
+				to_chat(H, "<span style='color: white; font-style: italic; text-shadow: 0 0 6px #fff, 0 0 12px #fff;'>[message]</span>")
 		return
 
 	if(choice == "Dread")
@@ -208,5 +208,5 @@
 			message += "."
 		for(var/mob/living/carbon/human/H in viewers(src, null))
 			if(HAS_TRAIT(H, TRAIT_EMPATH))
-				to_chat(H, span_info(message))
+				to_chat(H, "<span style='color: #ff4444; font-weight: bold;'>[message]</span>")
 		return
