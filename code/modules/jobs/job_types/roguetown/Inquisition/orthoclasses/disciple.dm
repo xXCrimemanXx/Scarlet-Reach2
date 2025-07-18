@@ -11,7 +11,29 @@
 
 /datum/outfit/job/roguetown/disciple/pre_equip(mob/living/carbon/human/H)
 	..()
-	neck = /obj/item/clothing/neck/roguetown/psicross/silver
+	switch(H.patron?.type)
+		if(/datum/patron/divine/astrata)
+			neck = /obj/item/clothing/neck/roguetown/psicross/astrata
+		if(/datum/patron/divine/abyssor)
+			neck = /obj/item/clothing/neck/roguetown/psicross/abyssor
+		if(/datum/patron/divine/xylix)
+			neck = /obj/item/clothing/neck/roguetown/psicross/silver
+		if(/datum/patron/divine/dendor)
+			neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+		if(/datum/patron/divine/necra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/necra
+		if(/datum/patron/divine/pestra)
+			neck = /obj/item/clothing/neck/roguetown/psicross/pestra
+		if(/datum/patron/divine/eora)
+			neck = /obj/item/clothing/neck/roguetown/psicross/eora
+		if(/datum/patron/divine/noc)
+			neck = /obj/item/clothing/neck/roguetown/psicross/noc
+		if(/datum/patron/divine/ravox)
+			neck = /obj/item/clothing/neck/roguetown/psicross/ravox
+		if(/datum/patron/divine/malum)
+			neck = /obj/item/clothing/neck/roguetown/psicross/malum
+		else
+			neck = /obj/item/clothing/neck/roguetown/psicross/silver
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	gloves = /obj/item/clothing/gloves/roguetown/chain/psydon
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
@@ -59,6 +81,7 @@
 	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC) //You're a foreigner, a guest of the realm.
+	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)//Given they don't have the psyblessed silver cross. Puts them in line with the Inquisitor.
 	H.grant_language(/datum/language/otavan)
 
 /datum/outfit/job/roguetown/disciple/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -116,7 +139,7 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	cloak = /obj/item/clothing/cloak/psydontabard/alt
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE) 
+	H.adjust_skillrank(/datum/skill/misc/athletics, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/swimming, 3, TRUE)
@@ -142,4 +165,5 @@
 		ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_OUTLANDER, TRAIT_GENERIC)		//You're a foreigner, a guest of the realm.
 		ADD_TRAIT(H, TRAIT_ARCYNE_T1, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)//Given they don't have the psyblessed silver. Puts them in line with the Inquisitor.
 		H.grant_language(/datum/language/celestial)
