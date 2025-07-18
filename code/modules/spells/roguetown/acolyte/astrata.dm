@@ -1,4 +1,3 @@
-
 /obj/effect/proc_holder/spell/invoked/projectile/lightningbolt/sacred_flame_rogue
 	name = "Sacred Flame"
 	overlay_state = "sacredflame"
