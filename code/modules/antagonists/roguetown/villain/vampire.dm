@@ -29,6 +29,7 @@
 	var/cache_hair
 	var/obj/effect/proc_holder/spell/targeted/shapeshift/bat/batform //attached to the datum itself to avoid cloning memes, and other duplicates
 	var/wretch_antag = FALSE
+	var/vitae_tick_counter = 0
 
 /datum/antagonist/vampire/examine_friendorfoe(datum/antagonist/examined_datum,mob/examiner,mob/examined)
 	if(istype(examined_datum, /datum/antagonist/vampire/lesser))
@@ -160,34 +161,39 @@
 		if(istype(H.loc, /obj/structure/closet/crate/coffin))
 			H.fully_heal()
 
-	// Only run vitae management when vitae actually changes
+	// Optimized vitae management for wretch vampires
 	if(wretch_antag)
+		// Only check blood volume when it might exceed the cap
 		if(H.blood_volume > 5000)
 			H.blood_volume = 5000
+		// Only check vitae cap when it might exceed
 		if(vitae > 5000)
 			vitae = 5000
-		// Only update vitae every minute
-		if(world.time % 600 == 0)
+		// Only update vitae every minute instead of every tick
+		vitae_tick_counter++
+		if(vitae_tick_counter >= 120)  // Every 120 ticks = 1 minute
 			vitae = max(vitae - 60, 0)  // Lose 60 vitae per minute instead of 1 per tick
+			vitae_tick_counter = 0  // Reset counter
+			to_chat(H, span_notice("Vitae updated: [vitae]"))
 	else
 		vitae = CLAMP(vitae, 0, 1666)
-
-	if(vitae > 0)
-		H.blood_volume = BLOOD_VOLUME_MAXIMUM
-		if(vitae < 200)
-			if(disguised)
-				to_chat(H, "<span class='warning'>My disguise fails!</span>")
-				H.vampire_undisguise(src)
-		// Only decrement vitae every 5 ticks
-		if(world.time % 50 == 0)
-			vitae -= 1
-	else
-		to_chat(H, "<span class='userdanger'>I RAN OUT OF VITAE!</span>")
-		var/obj/shapeshift_holder/SS = locate() in H
-		if(SS)
-			SS.shape.dust()
-		H.dust()
-		return
+		// Non-wretch vampire vitae management
+		if(vitae > 0)
+			H.blood_volume = BLOOD_VOLUME_MAXIMUM
+			if(vitae < 200)
+				if(disguised)
+					to_chat(H, "<span class='warning'>My disguise fails!</span>")
+					H.vampire_undisguise(src)
+			// Only decrement vitae every 5 ticks
+			if(world.time % 50 == 0)
+				vitae -= 1
+		else
+			to_chat(H, "<span class='userdanger'>I RAN OUT OF VITAE!</span>")
+			var/obj/shapeshift_holder/SS = locate() in H
+			if(SS)
+				SS.shape.dust()
+			H.dust()
+			return
 
 /mob/living/carbon/human/proc/disguise_button()
 	set name = "Disguise"
