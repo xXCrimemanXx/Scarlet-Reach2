@@ -174,7 +174,6 @@
 		if(vitae_tick_counter >= 120)  // Every 120 ticks = 1 minute
 			vitae = max(vitae - 60, 0)  // Lose 60 vitae per minute instead of 1 per tick
 			vitae_tick_counter = 0  // Reset counter
-			to_chat(H, span_notice("Vitae updated: [vitae]"))
 	else
 		vitae = CLAMP(vitae, 0, 1666)
 		// Non-wretch vampire vitae management
@@ -490,18 +489,18 @@
 		remove_status_effect(/datum/status_effect/debuff/bleeding)
 		remove_status_effect(/datum/status_effect/debuff/bleedingworse)
 		remove_status_effect(/datum/status_effect/debuff/bleedingworst)
-		// Damage healing
-		adjustBruteLoss(-7, 0)
-		adjustFireLoss(-7, 0)
-		adjustOxyLoss(-5, 0)
-		adjustCloneLoss(-7, 0)
+		// Damage healing - FLAT 50 HEALING
+		adjustBruteLoss(-50, 0)
+		adjustFireLoss(-50, 0)
+		adjustOxyLoss(-50, 0)
+		adjustCloneLoss(-50, 0)
 		for(var/obj/item/organ/organny in internal_organs)
-			adjustOrganLoss(organny.slot, -7)
-		// Heal bodypart damage (including "battered" limbs) 
+			adjustOrganLoss(organny.slot, -50)
+		// Heal bodypart damage (including "battered" limbs) - FLAT 50 HEALING
 		var/healed_bodyparts = FALSE
 		for(var/obj/item/bodypart/BP as anything in bodyparts)
 			if(BP.brute_dam > 0 || BP.burn_dam > 0)
-				BP.heal_damage(7, 7, 0)
+				BP.heal_damage(50, 50, 0)
 				healed_bodyparts = TRUE
 		if(healed_bodyparts)
 			update_damage_overlays()
