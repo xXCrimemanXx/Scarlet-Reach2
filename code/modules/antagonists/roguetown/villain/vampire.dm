@@ -547,3 +547,9 @@
 	V.update_hair()
 	V.update_body_parts(redraw = TRUE)
 	V.mob_biotypes = MOB_UNDEAD
+
+/mob/living/carbon/human/proc/on_hit_by_silver_weapon()
+	var/datum/antagonist/vampire/Vamp = mind?.has_antag_datum(/datum/antagonist/vampire)
+	if(Vamp && Vamp.wretch_antag && !Vamp.disguised)
+		to_chat(src, span_userdanger("The silver weapon burns my flesh! My curse is revealed!"))
+		apply_status_effect(/datum/status_effect/debuff/silver_curse)
