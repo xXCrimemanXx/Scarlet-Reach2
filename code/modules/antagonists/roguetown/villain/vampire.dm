@@ -469,6 +469,14 @@
 			update_damage_overlays()
 			if(prob(10))
 				to_chat(src, span_nicegreen("I feel my wounds mending."))
+		// Stop all bleeding (health potion logic: expire bandages, remove status effects)
+		for(var/obj/item/bodypart/BP as anything in bodyparts)
+			if(BP.bandage)
+				BP.try_bandage_expire()
+		// Remove bleeding status effects
+		remove_status_effect(/datum/status_effect/debuff/bleeding)
+		remove_status_effect(/datum/status_effect/debuff/bleedingworse)
+		remove_status_effect(/datum/status_effect/debuff/bleedingworst)
 		// Damage healing
 		adjustBruteLoss(-7, 0)
 		adjustFireLoss(-7, 0)
