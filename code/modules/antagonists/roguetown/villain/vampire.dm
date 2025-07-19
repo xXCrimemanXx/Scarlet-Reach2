@@ -67,6 +67,7 @@
 	ADD_TRAIT(owner.current, TRAIT_NOPAIN, TRAIT_GENERIC)
 	ADD_TRAIT(owner.current, TRAIT_TOXIMMUNE, TRAIT_GENERIC)
 	ADD_TRAIT(owner.current, TRAIT_STEELHEARTED, TRAIT_GENERIC)
+	ADD_TRAIT(owner.current, TRAIT_NASTY_EATER, TRAIT_GENERIC)
 	owner.current.cmode_music = 'sound/music/combat_vamp2.ogg'
 	var/obj/item/organ/eyes/eyes = owner.current.getorganslot(ORGAN_SLOT_EYES)
 	if(eyes)
@@ -461,11 +462,30 @@
 	
 	if(is_wretch)
 		Vamp.vitae -= vitae_cost
+		// Strong health potion effect:
+		// Blood restoration
+		if(blood_volume < BLOOD_VOLUME_NORMAL)
+			blood_volume = min(blood_volume+100, BLOOD_VOLUME_MAXIMUM)
+		else
+			blood_volume = min(blood_volume+20, BLOOD_VOLUME_MAXIMUM)
+		// Wound healing
+		var/list/wCount = get_wounds()
+		if(wCount.len > 0)
+			heal_wounds(30)
+			update_damage_overlays()
+			if(prob(10))
+				to_chat(src, span_nicegreen("I feel my wounds mending."))
+		// Damage healing
+		adjustBruteLoss(-7, 0)
+		adjustFireLoss(-7, 0)
+		adjustOxyLoss(-5, 0)
+		adjustCloneLoss(-7, 0)
+		for(var/obj/item/organ/organny in internal_organs)
+			adjustOrganLoss(organny.slot, -7)
 	else
 		VDL.handle_vitae(-vitae_cost)
-	
-	fully_heal()
-	regenerate_limbs()
+		fully_heal()
+		regenerate_limbs()
 
 /mob/living/carbon/human/proc/vampire_infect()
 	if(!mind)
