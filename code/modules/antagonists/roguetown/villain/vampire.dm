@@ -139,12 +139,16 @@
 				var/turf/T = H.loc
 				if(T.can_see_sky())
 					if(T.get_lumcount() > 0.15)
+						// Cache antagonist lookup to avoid repeated lookups
+						var/datum/antagonist/vampire/wretch_vamp = H.mind?.has_antag_datum(/datum/antagonist/vampire)
+						var/is_wretch = wretch_vamp && wretch_vamp.wretch_antag
+						
 						if(!disguised)
 							H.fire_act(1,2)
-						// Also check for wretch vampires
-						var/datum/antagonist/vampire/wretch_vamp = H.mind?.has_antag_datum(/datum/antagonist/vampire)
-						if(wretch_vamp && wretch_vamp.wretch_antag && !wretch_vamp.disguised)
-							H.fire_act(1,2)
+						// Only apply additional fire damage if wretch vampire and not already handled
+						if(is_wretch && !disguised)
+							H.fire_act(1,5)
+							wretch_vamp.vitae = max(wretch_vamp.vitae - 10, 0)
 
 	if(H.on_fire)
 		if(disguised)
@@ -156,12 +160,16 @@
 		if(istype(H.loc, /obj/structure/closet/crate/coffin))
 			H.fully_heal()
 
+	// Only run vitae management when vitae actually changes, not every tick
 	if(wretch_antag)
-		if(H.blood_volume > 5000)
-			H.blood_volume = 5000
-		if(vitae > 5000)
-			vitae = 5000
+		var/old_vitae = vitae
 		vitae = max(vitae - 1, 0)
+		// Only check blood volume and vitae caps when vitae changes
+		if(old_vitae != vitae)
+			if(H.blood_volume > 5000)
+				H.blood_volume = 5000
+			if(vitae > 5000)
+				vitae = 5000
 	else
 		vitae = CLAMP(vitae, 0, 1666)
 
@@ -484,6 +492,11 @@
 		adjustCloneLoss(-7, 0)
 		for(var/obj/item/organ/organny in internal_organs)
 			adjustOrganLoss(organny.slot, -7)
+		// Heal bodypart damage (including "battered" limbs)
+		for(var/obj/item/bodypart/BP as anything in bodyparts)
+			if(BP.brute_dam > 0 || BP.burn_dam > 0)
+				BP.heal_damage(7, 7, 0)
+		update_damage_overlays()
 		// Do NOT restore blood for wretch vampires
 	else
 		VDL.handle_vitae(-vitae_cost)

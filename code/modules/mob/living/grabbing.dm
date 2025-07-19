@@ -708,10 +708,9 @@
 	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/vampire))
 		var/datum/antagonist/vampire/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampire)
 		if(VDrinker && VDrinker.wretch_antag)
-			var/vitae_gain = 1200
-			var/blood_loss = 120
+			var/vitae_gain = 600
+			var/blood_loss = 60
 			var/old_vitae = VDrinker.vitae
-			var/old_blood = C.blood_volume
 			VDrinker.vitae = min(VDrinker.vitae + vitae_gain, 5000)
 			C.blood_volume = max(C.blood_volume - blood_loss, 0)
 			C.handle_blood()
