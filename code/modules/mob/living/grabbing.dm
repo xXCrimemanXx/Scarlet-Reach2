@@ -685,9 +685,15 @@
 		else if(HAS_TRAIT(user, TRAIT_HORDE))
 			// Horde trait allows safe blood drinking
 		else
-			// Non-vampires will vomit
-			to_chat(user, "<span class='warning'>I'm going to puke...</span>")
-			addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
+			// Non-vampires will vomit, but skip for wretch vampires
+			var/skip_vomit = FALSE
+			if(user.mind)
+				var/datum/antagonist/vampire/Vamp = user.mind.has_antag_datum(/datum/antagonist/vampire)
+				if(Vamp && Vamp.wretch_antag)
+					skip_vomit = TRUE
+			if(!skip_vomit)
+				to_chat(user, "<span class='warning'>I'm going to puke...</span>")
+				addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
 
 	C.blood_volume = max(C.blood_volume-15, 0)
 	C.handle_blood()
