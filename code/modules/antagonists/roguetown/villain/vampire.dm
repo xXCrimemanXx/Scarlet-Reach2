@@ -166,7 +166,9 @@
 			H.blood_volume = 5000
 		if(vitae > 5000)
 			vitae = 5000
-		vitae = max(vitae - 1, 0)
+		// Only update vitae every minute
+		if(world.time % 600 == 0)
+			vitae = max(vitae - 60, 0)  // Lose 60 vitae per minute instead of 1 per tick
 	else
 		vitae = CLAMP(vitae, 0, 1666)
 
