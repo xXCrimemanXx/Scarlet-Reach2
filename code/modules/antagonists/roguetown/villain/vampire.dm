@@ -462,12 +462,6 @@
 	
 	if(is_wretch)
 		Vamp.vitae -= vitae_cost
-		// Strong health potion effect:
-		// Blood restoration
-		if(blood_volume < BLOOD_VOLUME_NORMAL)
-			blood_volume = min(blood_volume+100, BLOOD_VOLUME_MAXIMUM)
-		else
-			blood_volume = min(blood_volume+20, BLOOD_VOLUME_MAXIMUM)
 		// Wound healing
 		var/list/wCount = get_wounds()
 		if(wCount.len > 0)
@@ -482,6 +476,7 @@
 		adjustCloneLoss(-7, 0)
 		for(var/obj/item/organ/organny in internal_organs)
 			adjustOrganLoss(organny.slot, -7)
+		// Do NOT restore blood for wretch vampires
 	else
 		VDL.handle_vitae(-vitae_cost)
 		fully_heal()
