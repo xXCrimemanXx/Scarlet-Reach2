@@ -546,7 +546,7 @@
 			var/datum/antagonist/vampirelord/V_lord = H.mind.has_antag_datum(/datum/antagonist/vampirelord/)
 			var/datum/antagonist/vampire/V_wretch = H.mind.has_antag_datum(/datum/antagonist/vampire)
 			if(V_wretch && V_wretch.wretch_antag && !V_wretch.disguised)
-				H.visible_message("<font color='white'>The silver weapon burns the wretch vampire's flesh!</font>")
+				H.visible_message("<font color='white'>The silver weapon burns the vampire's flesh!</font>")
 				to_chat(H, span_userdanger("The silver burns you!"))
 				H.apply_status_effect(/datum/status_effect/debuff/silver_curse)
 				src.last_used = world.time
