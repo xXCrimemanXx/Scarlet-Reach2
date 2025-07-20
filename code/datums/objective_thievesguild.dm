@@ -74,7 +74,6 @@
         return TRUE
     else
         is_assassinate = FALSE
-        log_storyteller("Thieves Guild assassination: No valid targets found. Valid roles: [valid_roles.Join(", ")], Strong combat roles: [strong_combat_roles.Join(", ")], Available players: [available_roles.Join(", ")]")
         return FALSE
 
 /datum/objective/thieves_guild_objective/New(owner)
