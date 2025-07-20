@@ -3,7 +3,7 @@
 	greet_text = "The leader of the Zybantynian slave troop. You have came to the mainlands from the western deserts of Zybantine in the hopes of gathering wealth through the training of and trade of unfortunate laborers. The practice can be called despicable by some, but it is without a doubt efficient in filling your pockets before you return to the deserts of the Zybantines"
 	outfit = /datum/outfit/job/roguetown/slaver/master
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_TOLERATED_UP
+	allowed_races = RACES_ALL_KINDS
 
 /datum/outfit/job/roguetown/slaver/master/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -52,7 +52,7 @@
 	greet_text = "A hired arm for the Zybantine Slave troop. You have come from the deserts of Zybantine and are hired under contract by the Zybantynian Master."
 	outfit = /datum/outfit/job/roguetown/slaver/slavemercsword
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_TOLERATED_UP
+	allowed_races = RACES_ALL_KINDS
 	grant_lit_torch = TRUE
 	show_wanderer_examine = TRUE
 
@@ -104,7 +104,7 @@
 	greet_text = "A hired arm for the Zybantine Slave troop. You have come from the deserts of Zybantine and are hired under contract by the Zybantynian Master."
 	outfit = /datum/outfit/job/roguetown/slaver/slavemercwhip
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_TOLERATED_UP
+	allowed_races = RACES_ALL_KINDS
 	grant_lit_torch = TRUE
 
 /datum/outfit/job/roguetown/slaver/slavemercwhip/pre_equip(mob/living/carbon/human/H)
@@ -155,7 +155,7 @@
 	greet_text = "A hired arm for the Zybantine Slave troop, also trained in first aid. You have come from the deserts of Zybantine and are hired under contract by the Zybantynian Master."
 	outfit = /datum/outfit/job/roguetown/slaver/slavemercbow
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_TOLERATED_UP
+	allowed_races = RACES_ALL_KINDS
 	grant_lit_torch = TRUE
 
 /datum/outfit/job/roguetown/slaver/slavemercbow/pre_equip(mob/living/carbon/human/H)

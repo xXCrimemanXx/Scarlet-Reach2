@@ -384,6 +384,8 @@
 			pickring.removefromring(user)
 			to_chat(user, span_warning("You clumsily drop a lockpick off the ring as you try to pick the lock with it."))
 		return
+	if(istype(I, /obj/item/skeleton_key))
+		tryskeletonlock(user)
 	else
 		if(repairable && (user.get_skill_level(repair_skill) > 0) && ((istype(I, repair_cost_first)) || (istype(I, repair_cost_second)))) // At least 1 skill level needed
 			repairdoor(I,user)
@@ -637,6 +639,24 @@
 				continue
 		return
 
+/obj/structure/mineral_door/proc/tryskeletonlock(mob/user)
+	if(door_opened || isSwitchingStates)
+		return
+	if(!keylock)
+		return
+	if(lockbroken)
+		to_chat(user, span_warning("The lock to this door is broken."))
+		return
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		message_admins("[H.real_name]([key_name(user)]) successfully skeletonkey'd [src.name] & [locked ? "unlocked" : "locked"] it. [ADMIN_JMP(src)]")
+		log_admin("[H.real_name]([key_name(user)]) successfully used a skeleton key on [src.name].")
+	do_sparks(3, FALSE, src)
+	playsound(user, 'sound/items/skeleton_key.ogg', 100)
+	lock_toggle(user) //All That It Does.
+	user.changeNext_move(CLICK_CD_INTENTCAP)
+	return
+
 /obj/structure/mineral_door/proc/lock_toggle(mob/user)
 	if(isSwitchingStates || door_opened)
 		return
@@ -850,6 +870,18 @@
 
 /obj/structure/mineral_door/wood/deadbolt/attack_right(mob/user)
 	user.changeNext_move(CLICK_CD_FAST)
+	
+	// If keylock is disabled, implement manual locking behavior
+	if(!keylock)
+		if(get_dir(src,user) == lockdir)
+			if(brokenstate)
+				to_chat(user, span_warning("It's broken, that would be foolish."))
+				return
+			lock_toggle(user)
+		else
+			to_chat(user, span_warning("The deadbolt doesn't toggle from this side."))
+		return
+	
 	var/obj/item = user.get_active_held_item()
 	var/obj/item/roguekey/found_key = null
 	var/obj/item/storage/keyring/found_keyring = null
@@ -892,8 +924,6 @@
 					to_check += S.contents
 
 	if(found_key || found_keyring)
-		if(!keylock)
-			return ..()
 		if(door_opened || isSwitchingStates)
 			return ..()
 		if(lockbroken)

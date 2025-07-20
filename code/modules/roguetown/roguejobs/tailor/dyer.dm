@@ -1,16 +1,17 @@
 var/global/list/colorlist = list(
-	"PURPLE"="#8747b1", 	//RED AND BLACK
-	"RED"="#8b2323", 		//	 I DRESS
-	"BLACK"="#2b292e", 	//	  EAGLE
-	"BROWN"="#61462c", 	// ON MY CHEST
-	"GREEN"="#264d26", 	//IT'S GOOD TO BE
-	"BLUE"="#173266", 		// AN ALBANIAN
-	"YELLOW"="#ffcd43", 	// KEEP MY HEAD
-	"TEAL"="#249589", 		//	 UP HIGH
-	"AZURE"="#007fff", 	// FOR THE FLAG
-	"WHITE"="#ffffff",		//	  I DIE
-	"ORANGE"="#df8405",	//I'M PROUD TO BE
-	"MAGENTA"="#962e5c"	// AN ALBANIAN
+	"PURPLE"="#8747b1", 	
+	"RED"="#8b2323", 		
+	"SCARLET"="#bb0a1e", 	
+	"BLACK"="#2b292e", 
+	"BROWN"="#61462c", 	
+	"GREEN"="#264d26", 	
+	"BLUE"="#173266", 		
+	"YELLOW"="#ffcd43", 	
+	"TEAL"="#249589", 		
+	"AZURE"="#007fff", 	
+	"WHITE"="#ffffff",
+	"ORANGE"="#df8405",	
+	"MAGENTA"="#962e5c"	
 	)
 
 

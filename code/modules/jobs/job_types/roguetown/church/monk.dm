@@ -111,7 +111,7 @@
 			armor = /obj/item/clothing/suit/roguetown/shirt/robe/astrata
 	H.adjust_skillrank(/datum/skill/combat/wrestling, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/medicine, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/alchemy, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/cooking, 2, TRUE)
@@ -151,7 +151,7 @@
 	if(H.patron?.type == /datum/patron/divine/ravox) // Justice and Honor - athletics and probably a bit better at handling the horrors of war
 		H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	if(H.patron?.type == /datum/patron/divine/xylix)  // Trickery and Inspiration - muxic and rogueish skills
+	if(H.patron?.type == /datum/patron/divine/xylix)  // Trickery and Inspiration - music and rogueish skills
 		H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/lockpicking, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/music, 2, TRUE)

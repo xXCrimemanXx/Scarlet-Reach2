@@ -99,7 +99,7 @@
 		return
 
 	var/surrender_mod = 1
-	if(C.surrendering)
+	if(C.compliance || C.surrendering)
 		surrender_mod = 0.5
 
 	C.visible_message(span_warning("[user] is trying to tie [C]'s arms with [src.name]!"), \
@@ -129,7 +129,7 @@
 		return
 
 	var/surrender_mod = 1
-	if(C.surrendering)
+	if(C.compliance || C.surrendering)
 		surrender_mod = 0.5
 
 	C.visible_message(span_warning("[user] is trying to tie [C]'s legs with [src.name]!"), \
@@ -219,8 +219,9 @@
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state = "net"
-	breakouttime = 35//easy to apply, easy to break out of
+	slipouttime = 2 SECONDS //ideally you're using this to catch a dodger, not in the middle of combat
 	gender = NEUTER
+	throw_speed = 2
 	var/knockdown = 0
 
 /obj/item/net/Initialize()

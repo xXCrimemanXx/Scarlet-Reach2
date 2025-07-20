@@ -97,6 +97,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/phobia = "spiders"
 	var/shake = TRUE
 	var/sexable = FALSE
+	var/compliance_notifs = TRUE
 
 	var/list/custom_names = list()
 	var/preferred_ai_core_display = "Blue"
@@ -150,7 +151,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/highlight_color = "#FF0000"
 	var/datum/charflaw/charflaw
 
-	var/family = FAMILY_NONE
+
 
 	var/crt = FALSE
 	var/grain = TRUE
@@ -170,14 +171,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 	var/char_accent = "No accent"
 	
-	// family_changes
-	var/spouse_ckey = null
-	var/family_surname = null
-	var/list/family_genitals = list("Male", "Female", "Futa", "Cuntboy")
-	var/allow_latejoin_family = TRUE
 
-	var/list/family_gender = list()
-	var/list/family_species = list()
 
 	var/datum/loadout_item/loadout
 	var/datum/loadout_item/loadout2
@@ -214,14 +208,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	//Set the race to properly run race setter logic
 	set_new_race(pref_species, null)
 	
-	family_species = list()
-	var/list/available_species = get_selectable_species()
-	for(var/species_name in available_species)
-		var/datum/species/S = GLOB.species_list[species_name]
-		family_species += S.id
+
 	
-	family_gender = list(MALE,FEMALE)
-	family_genitals = list("Male", "Female", "Futa", "Cuntboy")
+
 	
 	if(!charflaw)
 		charflaw = pick(GLOB.character_flaws)
@@ -324,8 +313,9 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			if(SStriumphs.triumph_buys_enabled)
 				dat += "<a style='white-space:nowrap;' href='?_src_=prefs;preference=triumph_buy_menu'>Triumph Buy</a>"
 			dat += "</td>"
-
+			var/agevetted = user.check_agevet()
 			dat += "<td style='width:33%;text-align:right'>"
+			dat += "<a href='?_src_=prefs;preference=agevet'><b>Age Vetted:</b></a> [agevetted ? "<font color='#1cb308'>Yes!</font>" : "<font color='#aa0202'>No.</font>"]"
 			dat += "</td>"
 
 			dat += "</table>"
@@ -357,7 +347,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<BR>"
 			dat += "<b>Nickname:</b> "
 			dat += "<a href='?_src_=prefs;preference=nickname;task=input'>[nickname]</a><BR>"
-			dat += "<b>Surname/Title:</b> <a href='?_src_=prefs;preference=familypref;res=surname'>[family_surname ? family_surname : "(None)"]</a><BR>"
+	
 			// LETHALSTONE EDIT BEGIN: add pronoun prefs
 			dat += "<b>Pronouns:</b> <a href='?_src_=prefs;preference=pronouns;task=input'>[pronouns]</a><BR>"
 			// LETHALSTONE EDIT END
@@ -402,18 +392,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			var/datum/faith/selected_faith = GLOB.faithlist[selected_patron?.associated_faith]
 			dat += "<b>Faith:</b> <a href='?_src_=prefs;preference=faith;task=input'>[selected_faith?.name || "FUCK!"]</a><BR>"
 			dat += "<b>Patron:</b> <a href='?_src_=prefs;preference=patron;task=input'>[selected_patron?.name || "FUCK!"]</a><BR>"
-			dat += "<b>Family:</b> <a href='?_src_=prefs;preference=family'>[family != FAMILY_NONE ? "Yes!" : "No"]</a><BR>"
-			if(family != FAMILY_NONE)
-				dat += "<B>Family Preferences:<br></B>"
-				if(gender == MALE)
-					family_gender = list(FEMALE)
-				else
-					family_gender = list(MALE)
-				dat += " <small><a href='?_src_=prefs;preference=familypref;res=race'><b>Race</b></a></small>"
-				dat += "<BR>"
-				dat += " <small><a href='?_src_=prefs;preference=familypref;res=ckey'><b>Spouse soul: [spouse_ckey ? spouse_ckey : "(Random)"]</b></a></small><BR>"
-				dat += " <small><a href='?_src_=prefs;preference=familypref;res=genitals'><b>Partner's beginning</b></a></small><BR>"
-				dat += " <small><a href='?_src_=prefs;preference=familypref;res=latejoin'><b>Latejoin: [allow_latejoin_family ? "Allowed" : "No"]</b></a></small><BR>"
+
+
 			dat += "<b>Dominance:</b> <a href='?_src_=prefs;preference=domhand'>[domhand == 1 ? "Left-handed" : "Right-handed"]</a><BR>"
 
 /*
@@ -476,12 +456,15 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			dat += "<br><b>Markings:</b> <a href='?_src_=prefs;preference=markings;task=menu'>Change</a>"
 			dat += "<br><b>Descriptors:</b> <a href='?_src_=prefs;preference=descriptors;task=menu'>Change</a>"
 
-			dat += "<br><b>Headshot:</b> <a href='?_src_=prefs;preference=headshot;task=input'>Change</a>"
-			if(headshot_link != null)
-				dat += "<br><img src='[headshot_link]' width='150px' height='175px'>"
-			dat += "<br><b>NSFW Headshot:</b> <a href='?_src_=prefs;preference=nsfw_headshot;task=input'>Change</a>"
-			if(nsfw_headshot_link != null)
-				dat += "<br><img src='[nsfw_headshot_link]' width='125px' height='175px'>"
+			if(agevetted)
+				dat += "<br><b>Headshot:</b> <a href='?_src_=prefs;preference=headshot;task=input'>Change</a>"
+				if(headshot_link != null)
+					dat += "<br><img src='[headshot_link]' width='150px' height='175px'>"
+				dat += "<br><b>NSFW Headshot:</b> <a href='?_src_=prefs;preference=nsfw_headshot;task=input'>Change</a>"
+				if(nsfw_headshot_link != null)
+					dat += "<br><img src='[nsfw_headshot_link]' width='125px' height='175px'>"
+			else
+				dat += "<br><b>You need to be <font color='#aa0202'>Age Vetted</font> to use the Headshot feature.</b>"
 			if(is_legacy)
 				dat += "<br><i><font size = 1>(Legacy)<a href='?_src_=prefs;preference=legacyhelp;task=input'>(?)</a></font></i>"
 
@@ -489,7 +472,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 			dat += "<br><b>[(length(ooc_notes) < MINIMUM_OOC_NOTES) ? "<font color = '#802929'>" : ""]OOC Notes:[(length(ooc_notes) < MINIMUM_OOC_NOTES) ? "</font>" : ""]</b><a href='?_src_=prefs;preference=formathelp;task=input'>(?)</a><a href='?_src_=prefs;preference=ooc_notes;task=input'>Change</a>"
 
-			dat += "<br><b>OOC Extra:</b> <a href='?_src_=prefs;preference=ooc_extra;task=input'>Change</a>"
+			if(agevetted)
+				dat += "<br><b>OOC Extra:</b> <a href='?_src_=prefs;preference=ooc_extra;task=input'>Change</a>"
 			dat += "<br><a href='?_src_=prefs;preference=ooc_preview;task=input'><b>Preview Examine</b></a>"
 
 			dat += "<br><b>Loadout Item I:</b> <a href='?_src_=prefs;preference=loadout_item;task=input'>[loadout ? loadout.name : "None"]</a>"
@@ -1297,6 +1281,12 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	else if(href_list["preference"] == "playerquality")
 		check_pq_menu(user.ckey)
 
+	else if(href_list["preference"] == "agevet")
+		if(!user.check_agevet())
+			to_chat(usr, span_warning("You are not Age Verified. To access features like Headshots, OOC Extras, and more, please go into our Discord and make a ticket to verify your age. <b>ID is a requirement.</b>"))
+		else
+			to_chat(usr, span_nicegreen("You are already Age Verified. <b>Yippee!</b>"))
+
 	else if(href_list["preference"] == "markings")
 		ShowMarkings(user)
 		return
@@ -1310,61 +1300,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	else if(href_list["preference"] == "triumph_buy_menu")
 		SStriumphs.startup_triumphs_menu(user.client)
 
-	else if(href_list["preference"] == "familypref")
-		switch(href_list["res"])
-			if("race")
-				var/choice
-				while(choice != "(DONE)")
-					var/list/choices = list()
-					for(var/A in GLOB.roundstart_races)
-						var/datum/species/S = GLOB.species_list[A]
-						var/index = "[(S.id in family_species) ? "(+)" : ""][S.name]"
-						choices[index] = S.id
-					choices += "(DONE)"
-					choice = input(usr,"Out of all the many races, none catch my fancy quite like... (+) = ON","RACE") as anything in choices
-					if(choice != "(CANCEL)")
-						if(choices[choice] in family_species)
-							family_species -= choices[choice]
-						else
-							family_species += choices[choice]
-			// family_changes - возможность выставить CKEY игрока, с которым хочется создать семью
-			if("ckey")
-				var/msg = "Add PLAYER CKEY of your spouse! Check it twice! Leave the field clear to have random spouse with other parameters."
-				var/potential_spouse_ckey = input(usr, msg, "Bloodbinding", null) as text
-				if(!potential_spouse_ckey)
-					spouse_ckey = null
-				spouse_ckey = potential_spouse_ckey
-			// family_changes - возможность выставить название семьи
-			if("surname")
-				var/msg = "Add surname your family will be known as. You can join after roundstart to form a family if you set up your spouse soul."
-				var/potential_family_surname = input(usr, msg, "Family History", null) as text
-				if(!potential_family_surname)
-					family_surname = null
-				else
-					family_surname = potential_family_surname
-			// family_changes - выставление допустимых гениталий у партнёра
-			if("genitals")
-				to_chat(usr, span_warning("<hr>\
-				The marriage shall not supported by Eora if the mates cannot produce a new life."))
-				var/choice
-				while(choice != "(DONE)")
-					var/list/choices = list()
-					for(var/A in list("Male", "Female", "Futa", "Cuntboy"))
-						var/index = "[(A in family_genitals) ? "(+)" : ""][A]"
-						choices[index] = A
-					choices += "(DONE)"
-					var/msg = "I would prefer... (+) = CONSENT"
-					choice = input(usr, msg, "In the church...") as anything in choices
-					if(choice != "(CANCEL)")
-						if(choices[choice] in family_genitals)
-							family_genitals -= choices[choice]
-						else
-							family_genitals += choices[choice]
-			// family_changes - возможнось формирования семьи после начала раунда
-			if("latejoin")
-				to_chat(usr, span_warning("<hr>\
-				If set as \"Allowed\", then in case of joining after start of the week you will try to form up a family with anyone who seeks for it. Otherwise, you will seek only at the start of week."))	
-				allow_latejoin_family = !allow_latejoin_family
+
 
 	else if(href_list["preference"] == "keybinds")
 		switch(href_list["task"])
@@ -1681,8 +1617,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					var/new_color = input(user, "Choose your character's nickname highlight color:", "Character Preference","#"+highlight_color) as color|null
 					if(new_color)
 						highlight_color = sanitize_hexcolor(new_color)
-
 				if("headshot")
+					if(!user.check_agevet()) return
 					to_chat(user, "<span class='notice'>Please use a relatively SFW image of the head and shoulder area to maintain immersion level. Lastly, ["<span class='bold'>do not use a real life photo or use any image that is less than serious.</span>"]</span>")
 					to_chat(user, "<span class='notice'>If the photo doesn't show up properly in-game, ensure that it's a direct image link that opens properly in a browser.</span>")
 					to_chat(user, "<span class='notice'>Keep in mind that the photo will be downsized to 325x325 pixels, so the more square the photo, the better it will look.</span>")
@@ -1769,6 +1705,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					to_chat(user, "<span class='notice'>Successfully updated OOC notes.</span>")
 					log_game("[user] has set their OOC notes'.")
 				if("nsfw_headshot")
+					if(!user.check_agevet()) return
 					to_chat(user, "<span class='notice'>Finally a place to show it all.</span>")
 					var/new_nsfw_headshot_link = input(user, "Input the nsfw headshot link (https, hosts: gyazo, lensdump, imgbox, catbox):", "NSFW Headshot", nsfw_headshot_link) as text|null
 					if(new_nsfw_headshot_link == null)
@@ -1785,6 +1722,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					to_chat(user, "<span class='notice'>Successfully updated NSFW Headshot picture</span>")
 					log_game("[user] has set their NSFW Headshot image to '[nsfw_headshot_link]'.")
 				if("ooc_preview")	//Unashamedly copy pasted from human_topic.dm L:7. Sorry!
+					var/agevetted = user.check_agevet()
 					var/list/dat = list()
 					dat += "<div align='center'><font size = 5; font color = '#dddddd'><b>[real_name]</b></font></div>"
 					var/legacy_check = FALSE
@@ -1802,7 +1740,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						return
 					if(is_legacy)
 						dat += "<center><i><font color = '#b9b9b9'; font size = 1>This is a LEGACY Profile from naive days of Psydon.</font></i></center>"
-					if(valid_headshot_link(null, headshot_link, TRUE))
+					if(valid_headshot_link(null, headshot_link, TRUE) && agevetted)
 						dat += ("<div align='center'><img src='[headshot_link]' width='350px' height='350px'></div>")
 					if(flavortext && flavortext_display)
 						dat += "<div align='left'>[flavortext_display]</div>"
@@ -1810,15 +1748,16 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						dat += "<br>"
 						dat += "<div align='center'><b>OOC notes</b></div>"
 						dat += "<div align='left'>[ooc_notes_display]</div>"
-					if(ooc_extra)
+					if(ooc_extra && agevetted)
 						dat += "[ooc_extra]"
-					if(nsfw_headshot_link)
+					if(nsfw_headshot_link && agevetted)
 						dat += "<br><div align='center'><b>NSFW</b></div>"
-						dat += ("<br><div align='center'><img src='[nsfw_headshot_link]' width='600px' height='725px'></div>")
+						dat += ("<br><div align='center'><img src='[nsfw_headshot_link]' width='600px'></div>")
 					var/datum/browser/popup = new(user, "[real_name]", nwidth = 700, nheight = 800)
 					popup.set_content(dat.Join())
 					popup.open(FALSE)
 				if("ooc_extra")
+					if(!user.check_agevet()) return
 					to_chat(user, "<span class='notice'>Add a link from a suitable host (catbox, etc) to an mp3, mp4, or jpg / png file to have it embed at the bottom of your OOC notes.</span>")
 					to_chat(user, "<span class='notice'>If the link doesn't show up properly in-game, ensure that it's a direct link that opens properly in a browser.</span>")
 					to_chat(user, "<span class='notice'>Videos will be shrunk to a ~300x300 square. Keep this in mind.</span>")
@@ -2168,11 +2107,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						domhand = 2
 					else
 						domhand = 1
-				if("family")
-					if(family == FAMILY_NONE)
-						family = FAMILY_FULL
-					else
-						family = FAMILY_NONE
+				
 				if("hotkeys")
 					hotkeys = !hotkeys
 					if(hotkeys)
@@ -2564,12 +2499,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 	character.char_accent = char_accent
 	
-	// family_changes
-	character.spouse_ckey = spouse_ckey
-	character.family_surname = family_surname
-	character.family_genitals = family_genitals
-	character.allow_latejoin_family = allow_latejoin_family
-	character.old_real_name = character.real_name
+
+
 
 /datum/preferences/proc/get_default_name(name_id)
 	switch(name_id)

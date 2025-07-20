@@ -29,7 +29,7 @@
 	job_reopens_slots_on_death = FALSE //no endless stream of bandits, unless the migration waves deem it so
 	same_job_respawn_delay = 1 MINUTES
 	cmode_music = 'sound/music/combat_bandit2.ogg'
-	family_blacklisted = TRUE
+
 
 /datum/job/roguetown/bandit/after_spawn(mob/living/L, mob/M, latejoin = TRUE)
 	..()
@@ -59,15 +59,15 @@
 
 // Changed up proc from Wretch to suit bandits bit more
 /proc/bandit_select_bounty(mob/living/carbon/human/H)
-	var/bounty_poster = input(H, "Who placed a bounty on you?", "Bounty Poster") as anything in list("The Justiciary of Azuria", "The Grenzelhoftian Holy See")
-	var/bounty_severity = input(H, "How notorious are you?", "Bounty Amount") as anything in list("Small Fish", "Bay Butcher", "Azurean Boogeyman")
+	var/bounty_poster = input(H, "Who placed a bounty on you?", "Bounty Poster") as anything in list("The Justiciary of Scarlet", "The Grenzelhoftian Holy See")
+	var/bounty_severity = input(H, "How notorious are you?", "Bounty Amount") as anything in list("Small Fish", "Bay Butcher", "Scarlet Boogeyman")
 	var/bounty_total = rand(300, 600) // Just in case
 	switch(bounty_severity)
 		if("Small Fish")
 			bounty_total = rand(300, 400)
 		if("Bay Butcher")
 			bounty_total = rand(400, 500)
-		if("Azurean Boogeyman")
+		if("Scarlet Boogeyman")
 			bounty_total = rand(500, 600)
 	var/my_crime = input(H, "What is your crime?", "Crime") as text|null
 	if (!my_crime)

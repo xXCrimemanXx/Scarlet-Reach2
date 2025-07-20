@@ -28,7 +28,7 @@
 	domain = "Twinned God of the Moon, Night, and Knowledge"
 	desc = "The he-form of the Twinned Gods, the combined amalgam of single-bodied Noc and Astrata that opens his eyes during pondorous Night. He gifted man knowledge of divinity and magicks. A single form begets two Gods that shift at Dusk and Dawn but always endures, even at dae."
 	worshippers = "Wizards and Scholars"
-	mob_traits = list(TRAIT_NIGHT_OWL)
+	mob_traits = list(TRAIT_NIGHT_OWL, TRAIT_DARKVISION)
 	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
 					/obj/effect/proc_holder/spell/invoked/noc_sight				= CLERIC_T0,
 					/obj/effect/proc_holder/spell/targeted/touch/darkvision/miracle	= CLERIC_T0,
@@ -42,7 +42,6 @@
 		"NOC SEES ALL!",
 		"I SEEK THE MYSTERIES OF THE MOON!",
 	)
-	traits_tier = list(TRAIT_DARKVISION = CLERIC_T1)
 	storyteller = /datum/storyteller/noc
 
 /datum/patron/divine/dendor
@@ -56,6 +55,7 @@
 					/obj/effect/proc_holder/spell/targeted/blesscrop			= CLERIC_T0,
 					/obj/effect/proc_holder/spell/invoked/lesser_heal 			= CLERIC_T1,
 					/obj/effect/proc_holder/spell/targeted/wildshape			= CLERIC_T2,
+					/obj/effect/proc_holder/spell/targeted/beasttame			= CLERIC_T2,
 					/obj/effect/proc_holder/spell/targeted/conjure_glowshroom	= CLERIC_T3,
 					/obj/effect/proc_holder/spell/self/howl/call_of_the_moon	= CLERIC_T4,
 	)

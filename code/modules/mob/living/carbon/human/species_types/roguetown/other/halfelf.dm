@@ -37,7 +37,7 @@
 		OFFSET_ID = list(0,1), OFFSET_GLOVES = list(0,1), OFFSET_WRISTS = list(0,1),\
 		OFFSET_CLOAK = list(0,1), OFFSET_FACEMASK = list(0,1), OFFSET_HEAD = list(0,1), \
 		OFFSET_FACE = list(0,1), OFFSET_BELT = list(0,1), OFFSET_BACK = list(0,1), \
-		OFFSET_NECK = list(0,1), OFFSET_MOUTH = list(0,1), OFFSET_PANTS = list(0,1), \
+		OFFSET_NECK = list(0,1), OFFSET_MOUTH = list(0,1), OFFSET_PANTS = list(0,0), \
 		OFFSET_SHIRT = list(0,1), OFFSET_ARMOR = list(0,1), OFFSET_HANDS = list(0,1), OFFSET_UNDIES = list(0,1), \
 		OFFSET_ID_F = list(0,-1), OFFSET_GLOVES_F = list(0,0), OFFSET_WRISTS_F = list(0,0), OFFSET_HANDS_F = list(0,0), \
 		OFFSET_CLOAK_F = list(0,0), OFFSET_FACEMASK_F = list(0,-1), OFFSET_HEAD_F = list(0,-1), \
@@ -52,7 +52,7 @@
 		ORGAN_SLOT_HEART = /obj/item/organ/heart,
 		ORGAN_SLOT_LUNGS = /obj/item/organ/lungs,
 		ORGAN_SLOT_EYES = /obj/item/organ/eyes/halfelf,
-		ORGAN_SLOT_EARS = /obj/item/organ/ears/elf,
+		ORGAN_SLOT_EARS = /obj/item/organ/ears,
 		ORGAN_SLOT_TONGUE = /obj/item/organ/tongue,
 		ORGAN_SLOT_LIVER = /obj/item/organ/liver,
 		ORGAN_SLOT_STOMACH = /obj/item/organ/stomach,
@@ -69,6 +69,7 @@
 		/datum/customizer/organ/penis/anthro,
 		/datum/customizer/organ/breasts/human,
 		/datum/customizer/organ/vagina/human_anthro,
+		/datum/customizer/organ/ears/elf,
 		)
 	body_marking_sets = list(
 		/datum/body_marking_set/none,
@@ -96,16 +97,16 @@
 /datum/species/human/halfelf/get_skin_list()
 	return list(
 		"Timber-Gronn" = SKIN_COLOR_TIMBER_GRONN,
-		"Giza-Azure" = SKIN_COLOR_GIZA_AZURE,
+		"Giza-Scarlet" = SKIN_COLOR_GIZA_SCARLET,
 		"Walnut-Stine" = SKIN_COLOR_WALNUT_STINE,
 		"Etrustcan-Dandelion" = SKIN_COLOR_ETRUSTCAN_DANDELION,
 		"Ebon-Born" = SKIN_COLOR_EBON_BORN,
 		"Kaze-Lotus" = SKIN_COLOR_KAZE_LOTUS,
-		"Grenzel-Azuria" = SKIN_COLOR_GRENZEL_WOODS,
+		"Grenzel-Scarlet" = SKIN_COLOR_GRENZEL_WOODS,
 		"Etrusca-Lirvas" = SKIN_COLOR_ETRUSCA_LIRVAS,
 		"Free Roamers" = SKIN_COLOR_FREE_FOLK,
 		"Avar Borne"	= SKIN_COLOR_AVAR_BORNE,
-		"Shalvine Roamer" = SKIN_COLOR_SHALVINE_AZURE,
+		"Shalvine Roamer" = SKIN_COLOR_SHALVINE_SCARLET,
 		"Lalve-Steppes" = SKIN_COLOR_LALVE_NALEDI,
 		"Ebon-Otava" = SKIN_COLOR_EBON_OTAVA,
 		"Grezel-Avar" = SKIN_COLOR_GRENZEL_AVAR,

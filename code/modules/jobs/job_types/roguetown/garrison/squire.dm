@@ -5,15 +5,14 @@
 	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
-	allowed_races = RACES_TOLERATED_UP
-	allowed_patrons = NON_PSYDON_PATRONS
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_ages = list(AGE_ADULT)
 	advclass_cat_rolls = list(CTAG_SQUIRE = 20)
 
 	tutorial = "Your folks said you were going to be something, they had better aspirations for you than the life of a peasant. You practiced the basics \
 		in the field alongside your friends, swordfighting with sticks, chasing rabbits with grain flail, and helping around the house lifting heavy \
-		bags of grain. The Knight took notice of your potential and brought you on as his personal ward. You're going to be something someday."
+		bags of grain. The Knight took notice of your potential and brought you on as his personal ward. You're going to be something someday. \
+		At least— if you're one of the respectable races. If not? You know you'll never reach REAL knighthood. "
 	outfit = /datum/outfit/job/roguetown/squire
 	display_order = JDO_SQUIRE
 	give_bank_account = TRUE
