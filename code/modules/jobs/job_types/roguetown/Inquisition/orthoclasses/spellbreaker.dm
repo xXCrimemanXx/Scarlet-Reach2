@@ -46,7 +46,7 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
 
 	backpack_contents = list(
-		/obj/item/roguekey/inquisition = 1,
+		/obj/item/storage/keyring/orthodoxist = 1,
 		/obj/item/rope/chain = 1,
 	)
 	if(H.mind)
@@ -77,5 +77,8 @@
 		ADD_TRAIT(H, TRAIT_MAGEARMOR, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
 		ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
+<<<<<<< Updated upstream
 		ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)//Given they don't have the psyblessed silver cross. Puts them in line with the Inquisitor.
+=======
+>>>>>>> Stashed changes
 		H.cmode_music = 'sound/music/inquisitorcombat.ogg'
