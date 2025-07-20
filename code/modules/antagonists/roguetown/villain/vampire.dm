@@ -459,7 +459,7 @@
 		to_chat(src, span_warning("My BANE is not letting me REGEN!."))
 		return
 	
-	var/vitae_cost = 300
+	var/vitae_cost = 500
 	if(is_wretch)
 		if(Vamp.vitae < vitae_cost)
 			to_chat(src, span_warning("Not enough vitae."))
