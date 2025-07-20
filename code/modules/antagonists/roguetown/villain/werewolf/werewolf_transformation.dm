@@ -118,10 +118,10 @@
 	W.emote("rage")
 
 
-	W.mind.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
-	W.mind.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
-	W.mind.adjust_skillrank(/datum/skill/misc/climbing, 6, TRUE)
- 	W.mind.adjust_skillrank(/datum/skill/misc/swimming, 5, TRUE)
+	W.adjust_skillrank(/datum/skill/combat/wrestling, 5, TRUE)
+	W.adjust_skillrank(/datum/skill/combat/unarmed, 5, TRUE)
+	W.adjust_skillrank(/datum/skill/misc/climbing, 6, TRUE)
+	W.adjust_skillrank(/datum/skill/misc/swimming, 5, TRUE)
 	
 	W.STASTR = src.STASTR +5
 	W.STACON = src.STACON +5
