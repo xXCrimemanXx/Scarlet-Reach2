@@ -117,37 +117,45 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Tabard"
 	path = /obj/item/clothing/cloak/tabard
 
+/datum/loadout_item/tabard/astrata
+	name = "Astrata Tabard"
+	path = /obj/item/clothing/templar/astrata
+
 /datum/loadout_item/tabard/noc
 	name = "Noc Tabard"
-	path = /obj/item/clothing/cloak/noc
+	path = /obj/item/clothing/templar/noc
 
 /datum/loadout_item/tabard/dendor
 	name = "Dendor Tabard"
-	path = /obj/item/clothing/cloak/tabard/dendor
+	path = /obj/item/clothing/cloak/templar/dendor
 
 /datum/loadout_item/tabard/malum
 	name = "Malum Tabard"
-	path = /obj/item/clothing/cloak/tabard/malum
+	path = /obj/item/clothing/cloak/templar/malum
 
 /datum/loadout_item/tabard/eora
 	name = "Eora Tabard"
-	path = /obj/item/clothing/cloak/tabard/eora
+	path = /obj/item/clothing/cloak/templar/eora
 
 /datum/loadout_item/tabard/pestra
 	name = "Pestra Tabard"
-	path = /obj/item/clothing/cloak/tabard/pestra
+	path = /obj/item/clothing/cloak/templar/pestra
 
 /datum/loadout_item/tabard/ravox
 	name = "Ravox Tabard"
-	path = /obj/item/clothing/cloak/tabard/ravox
+	path = /obj/item/clothing/cloak/cleric/ravox
 
 /datum/loadout_item/tabard/abyssor
 	name = "Abyssor Tabard"
-	path = /obj/item/clothing/cloak/tabard/abyssor
+	path = /obj/item/clothing/cloak/templar/abyssor
+
+/datum/loadout_item/tabard/necra
+	name = "Abyssor Tabard"
+	path = /obj/item/clothing/cloak/templar/necra
 
 /datum/loadout_item/tabard/psydon
 	name = "Psydon Tabard"
-	path = /obj/item/clothing/cloak/tabard/psydon
+	path = /obj/item/clothing/cloak/templar/psydon
 
 /datum/loadout_item/surcoat
 	name = "Surcoat"
