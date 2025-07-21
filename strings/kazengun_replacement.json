@@ -2,8 +2,10 @@
     "full": {
 		"duke": "shogun",
 		"duchess": "shoguness",
-		"mercenaries": "shoguness",
-		"mercenary": "shoguness",
+		"knight": "kouken",
+		"knights": "kouken",
+		"mercenaries": "hangyaku",
+		"mercenary": "hangyaku",
 		"bandit": "hangyaku",
 		"bandits": "hangyaku",
 		"lord": "daimyo",
