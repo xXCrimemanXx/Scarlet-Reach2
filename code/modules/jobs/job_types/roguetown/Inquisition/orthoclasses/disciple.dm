@@ -54,7 +54,7 @@
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = FALSE, devotion_limit = CLERIC_REQ_1)	//Capped to T2 miracles. It's just a self-heal.
 
 /datum/outfit/job/roguetown/disciple/proc/brute_equip(mob/living/carbon/human/H)
-	backpack_contents = list(/obj/item/roguekey/inquisition = 1)
+	backpack_contents = list(/obj/item/storage/keyring/orthodoxist = 1)
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
