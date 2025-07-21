@@ -20,7 +20,7 @@
 	created_item = /obj/item/roguestatue/iron
 
 /datum/anvil_recipe/valuables/aalloy
-	name = "Decrepit Statue"
+	name = "Statue"
 	req_bar = /obj/item/ingot/aalloy
 	created_item = /obj/item/roguestatue/aalloy
 
@@ -53,7 +53,7 @@
 	createditem_num = 3
 
 /datum/anvil_recipe/valuables/ringa
-	name = "Decrepit Rings 3x"
+	name = "Rings 3x"
 	req_bar = /obj/item/ingot/aalloy
 	created_item = /obj/item/clothing/ring/aalloy
 	createditem_num = 3
