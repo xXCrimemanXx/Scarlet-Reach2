@@ -117,35 +117,35 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Tabard"
 	path = /obj/item/clothing/cloak/tabard
 
-/datum/crafting_recipe/roguetown/sewing/noc
+/datum/loadout_item/tabard/noc
 	name = "Noc Tabard"
 	path = /obj/item/clothing/cloak/noc
 
-/datum/crafting_recipe/roguetown/sewing/dendor
+/datum/loadout_item/tabard/dendor
 	name = "Dendor Tabard"
 	path = /obj/item/clothing/cloak/tabard/dendor
 
-/datum/crafting_recipe/roguetown/sewing/malum
+/datum/loadout_item/tabard/malum
 	name = "Malum Tabard"
 	path = /obj/item/clothing/cloak/tabard/malum
 
-/datum/crafting_recipe/roguetown/sewing/eora
+/datum/loadout_item/tabard/eora
 	name = "Eora Tabard"
 	path = /obj/item/clothing/cloak/tabard/eora
 
-/datum/crafting_recipe/roguetown/sewing/pestra
+/datum/loadout_item/tabard/pestra
 	name = "Pestra Tabard"
 	path = /obj/item/clothing/cloak/tabard/pestra
 
-/datum/crafting_recipe/roguetown/sewing/ravox
+/datum/loadout_item/tabard/ravox
 	name = "Ravox Tabard"
 	path = /obj/item/clothing/cloak/tabard/ravox
 
-/datum/crafting_recipe/roguetown/sewing/abyssor
+/datum/loadout_item/tabard/abyssor
 	name = "Abyssor Tabard"
 	path = /obj/item/clothing/cloak/tabard/abyssor
 
-/datum/crafting_recipe/roguetown/sewing/psydon
+/datum/loadout_item/tabard/psydon
 	name = "Psydon Tabard"
 	path = /obj/item/clothing/cloak/tabard/psydon
 
