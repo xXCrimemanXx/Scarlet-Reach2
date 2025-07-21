@@ -119,11 +119,11 @@ GLOBAL_LIST_EMPTY(loadout_items)
 
 /datum/loadout_item/tabard/astrata
 	name = "Astrata Tabard"
-	path = /obj/item/clothing/templar/astrata
+	path = /obj/item/clothing/cloak/templar/astrata
 
 /datum/loadout_item/tabard/noc
 	name = "Noc Tabard"
-	path = /obj/item/clothing/templar/noc
+	path = /obj/item/clothing/cloak/templar/noc
 
 /datum/loadout_item/tabard/dendor
 	name = "Dendor Tabard"
