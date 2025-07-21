@@ -117,6 +117,38 @@ GLOBAL_LIST_EMPTY(loadout_items)
 	name = "Tabard"
 	path = /obj/item/clothing/cloak/tabard
 
+/datum/crafting_recipe/roguetown/sewing/noc
+	name = "Noc Tabard"
+	path = /obj/item/clothing/cloak/noc
+
+/datum/crafting_recipe/roguetown/sewing/dendor
+	name = "Dendor Tabard"
+	path = /obj/item/clothing/cloak/tabard/dendor
+
+/datum/crafting_recipe/roguetown/sewing/malum
+	name = "Malum Tabard"
+	path = /obj/item/clothing/cloak/tabard/malum
+
+/datum/crafting_recipe/roguetown/sewing/eora
+	name = "Eora Tabard"
+	path = /obj/item/clothing/cloak/tabard/eora
+
+/datum/crafting_recipe/roguetown/sewing/pestra
+	name = "Pestra Tabard"
+	path = /obj/item/clothing/cloak/tabard/pestra
+
+/datum/crafting_recipe/roguetown/sewing/ravox
+	name = "Ravox Tabard"
+	path = /obj/item/clothing/cloak/tabard/ravox
+
+/datum/crafting_recipe/roguetown/sewing/abyssor
+	name = "Abyssor Tabard"
+	path = /obj/item/clothing/cloak/tabard/abyssor
+
+/datum/crafting_recipe/roguetown/sewing/psydon
+	name = "Psydon Tabard"
+	path = /obj/item/clothing/cloak/tabard/psydon
+
 /datum/loadout_item/surcoat
 	name = "Surcoat"
 	path = /obj/item/clothing/cloak/stabard
