@@ -61,7 +61,7 @@
 
 /datum/supply_pack/rogue/Brigand/blksteelcuirass
 	name = "Blacksteel Cuirass"
-	cost = 50
+	cost = 300
 	contains = list(/obj/item/clothing/suit/roguetown/armor/plate/blacksteel_half_plate)
 
 /datum/supply_pack/rogue/Brigand/Bevor
