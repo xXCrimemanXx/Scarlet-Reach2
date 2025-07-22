@@ -1,5 +1,5 @@
-/mob/living/carbon/human/species/construct/metal
-	race = /datum/species/construct/metal
+/mob/living/carbon/human/species/golem/metal
+	race = /datum/species/golem/metal
 	construct = 1
 
 /datum/species/golem/metal
@@ -76,10 +76,10 @@
 		/datum/body_marking/nose,
 	)
 
-/datum/species/construct/metal/check_roundstart_eligible()
+/datum/species/golem/metal/check_roundstart_eligible()
 	return TRUE
 	
-/datum/species/construct/metal/get_skin_list()
+/datum/species/golem/metal/get_skin_list()
 	return list(
 		"BRASS" = "dfbd6c",
 		"IRON" = "525352",
@@ -87,7 +87,7 @@
 		"BRONZE" = "e2a670"
 	)
 
-/datum/species/construct/metal/get_hairc_list()
+/datum/species/golem/metal/get_hairc_list()
 	return sortList(list(
 
 	"black - midnight" = "1d1b2b",

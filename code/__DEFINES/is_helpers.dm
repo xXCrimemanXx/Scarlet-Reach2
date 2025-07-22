@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(our_forest_sex, typecacheof(list(
 #define isaasimar(A) (is_species(A, /datum/species/aasimar))
 #define ishalfkin(A) (is_species(A, /datum/species/demihuman))
 #define iswildkin(A) (is_species(A, /datum/species/anthromorph))
-#define isconstruct(A) (is_species(A, /datum/species/construct/metal))	//Specified 'M' due to redefine lower
+#define isgolemp(A) (is_species(A, /datum/species/golem/metal))	//Specified 'M' due to redefine lower
 #define isvermin(A) (is_species(A, /datum/species/anthromorphsmall))
 #define isaxian(A) (is_species(A, /datum/species/akula))
 #define isdracon(A) (is_species(A, /datum/species/dracon))
