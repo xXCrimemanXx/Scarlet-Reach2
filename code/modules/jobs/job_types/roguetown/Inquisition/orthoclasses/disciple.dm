@@ -61,7 +61,7 @@
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
-	beltl = /obj/item/roguekey/inquisition
+	beltl = /obj/item/storage/keyring/orthodoxist
 	cloak = /obj/item/clothing/cloak/psydontabard/alt
 	H.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/unarmed, 3, TRUE)
