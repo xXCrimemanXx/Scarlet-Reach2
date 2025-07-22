@@ -7,10 +7,8 @@
 			return
 		if("Dwarf accent")
 			return strings("dwarfcleaner_replacement.json", type, convert_HTML = TRUE)
-		if("Dark Elf accent")
+		if("Otavan accent")
 			return strings("french_replacement.json", type, convert_HTML = TRUE)
-		if("Snow Elf accent")
-			return strings("russian_replacement.json", type, convert_HTML = TRUE)
 		if("Grenzelhoft accent")
 			return strings("german_replacement.json", type, convert_HTML = TRUE)
 		if("Hammerhold accent")
@@ -22,7 +20,7 @@
 		if("Lupian accent")
 			return strings("polish_replacement.json", type, convert_HTML = TRUE)
 		if("Tiefling accent")
-			return strings("spanish_replacement.json", type, convert_HTML = TRUE)
+			return strings("tiefling_replacement.json", type, convert_HTML = TRUE)
 		if("Half Orc accent")
 			return strings("middlespeak.json", type, convert_HTML = TRUE)
 		if("Urban Orc accent")
@@ -39,6 +37,8 @@
 			return
 		if("Valley accent")
 			return strings("valley_replacement.json", type, convert_HTML = TRUE)
+		if("Kazengun accent")
+			return strings("kazengun_replacement.json", type, convert_HTML = TRUE)
 
 /datum/species/proc/get_accent(mob/living/carbon/human/H)
 	return get_accent_list(H,"full")

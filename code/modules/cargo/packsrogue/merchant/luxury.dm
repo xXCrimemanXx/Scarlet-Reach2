@@ -8,6 +8,11 @@
 	cost = 3
 	contains = list(/obj/item/clothing/mask/cigarette/rollie/nicotine)
 
+/datum/supply_pack/rogue/luxury/msigs
+	name = "Mentha Zig"
+	cost = 4
+	contains = list(/obj/item/clothing/mask/cigarette/rollie/mentha)
+
 /datum/supply_pack/rogue/luxury/ozium
 	name = "Ozium"
 	cost = 5
@@ -88,3 +93,8 @@
 	name = "Love Potion"
 	cost = 300
 	contains = list(/obj/item/lovepotion)
+
+datum/supply_pack/rogue/luxury/swatchbook
+	name = "Tailor's Swatchbook"
+	cost = 20
+	contains = list(/obj/item/book/rogue/swatchbook)

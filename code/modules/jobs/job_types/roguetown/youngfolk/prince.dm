@@ -7,7 +7,7 @@
 	total_positions = 2
 	spawn_positions = 2
 	f_title = "Princess"
-	allowed_races = RACES_TOLERATED_UP //Maybe a system to force-pick lineage based on king and queen should be implemented. (No it shouldn't.)
+	allowed_races = RACES_NOBILITY_ELIGIBLE_UP //Maybe a system to force-pick lineage based on king and queen should be implemented. (No it shouldn't.)
 	allowed_patrons = NON_PSYDON_PATRONS
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_ages = list(AGE_ADULT)
@@ -23,8 +23,7 @@
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_noble.ogg'
 	allowed_patrons = NON_PSYDON_PATRONS		//Same reason as lord. See Lord.
-	ruler_family = TRUE
-	lord_rel_type = REL_TYPE_OFFSPRING
+
 
 
 /datum/job/roguetown/prince/after_spawn(mob/living/H, mob/M, latejoin)
@@ -35,8 +34,6 @@
 		Q.invisibility = INVISIBILITY_MAXIMUM
 		Q.become_blind("advsetup")
 
-
-
 /datum/advclass/heir/daring
 	name = "Daring Twit"
 	tutorial = "You're a somebody, someone important. It only makes sense you want to make a name for yourself, to gain your own glory so people see how great you really are beyond your bloodline. Plus, if you're beloved by the people for your exploits you'll be chosen! Probably. Shame you're as useful and talented as a squire, despite your delusions to the contrary."
@@ -45,34 +42,69 @@
 
 /datum/outfit/job/roguetown/heir/daring/pre_equip(mob/living/carbon/human/H)
 	..()
-	head = /obj/item/clothing/head/roguetown/circlet
-	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
-	pants = /obj/item/clothing/under/roguetown/tights
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
-	shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
-	belt = /obj/item/storage/belt/rogue/leather
-	beltl = /obj/item/rogueweapon/sword/sabre
-	beltr = /obj/item/storage/keyring/heir
-	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
-	backr = /obj/item/storage/backpack/rogue/satchel
-	H.adjust_skillrank(/datum/skill/combat/maces, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/combat/knives, 1, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
-	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
-	H.change_stat("strength", 1)
-	H.change_stat("perception", 1)
-	H.change_stat("constitution", 1)
-	H.change_stat("speed", 1)
-	H.change_stat("fortune", 1)
-	ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
+
+	// Equipment choice - only affects clothing/gear, not skills
+	var/equipment_choice = input(H, "Choose your equipment style", "Equipment Choice") as anything in list("Wartime Outfit", "Traditional Dress")
+
+	if(equipment_choice == "Wartime Outfit")
+		// Original daring twit equipment
+		head = /obj/item/clothing/head/roguetown/circlet
+		armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/royal
+		pants = /obj/item/clothing/under/roguetown/tights
+		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
+		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
+		belt = /obj/item/storage/belt/rogue/leather
+		beltl = /obj/item/rogueweapon/sword/sabre
+		beltr = /obj/item/storage/keyring/heir
+		neck = /obj/item/storage/belt/rogue/pouch/coins/rich
+		backr = /obj/item/storage/backpack/rogue/satchel
+	else
+		// Bookworm clothing/equipment only
+		if(should_wear_masc_clothes(H))
+			pants = /obj/item/clothing/under/roguetown/tights/random
+			armor = /obj/item/clothing/suit/roguetown/armor/longcoat
+			shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/prince
+		if(should_wear_femme_clothes(H))
+			pants = /obj/item/clothing/under/roguetown/tights/stockings/silk/random
+			shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/princess
+		head = /obj/item/clothing/head/roguetown/circlet
+		belt = /obj/item/storage/belt/rogue/leather/cloth/lady
+		beltr = /obj/item/storage/keyring/heir
+		beltl = /obj/item/rogueweapon/huntingknife/idagger/steel/special
+		backr = /obj/item/storage/backpack/rogue/satchel
+		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
+		mask = /obj/item/clothing/mask/rogue/spectacles
+		neck = /obj/item/storage/belt/rogue/pouch/coins/rich
+
+	if(H.mind)
+		// Give 2 in every weapon skill regardless of equipment choice
+		H.adjust_skillrank(/datum/skill/combat/knives, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/swords, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/polearms, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/maces, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/axes, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/whipsflails, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/bows, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/crossbows, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/shields, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/combat/slings, 2, TRUE)
+
+		// Keep original non-weapon skills
+		H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/climbing, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/athletics, 2, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/riding, 3, TRUE)
+		H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
+
+		H.change_stat("strength", 1)
+		H.change_stat("perception", 1)
+		H.change_stat("constitution", 1)
+		H.change_stat("speed", 1)
+		H.change_stat("fortune", 1)
+		ADD_TRAIT(H, TRAIT_NOBLE, TRAIT_GENERIC)
+		ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 
 /datum/advclass/heir/bookworm
 	name = "Introverted Bookworm"

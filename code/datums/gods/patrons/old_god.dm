@@ -1,14 +1,15 @@
 /datum/patron/old_god
-	name = "Psydon"
+	name = "Psydon (Known)"
 	domain = "God of Ontological Reality"
-	desc = "The true God of everything, Psydon is maximally good - He created humen in his image to live in Psydonia, and defended the Black Basin by sending the COMET SYON to defeat the rampaging archdemon."
+	desc = "Those who openly worship Psydon in defiance of the Holy See are seen as heretics, but most are regarded as harmless relics of a bygone age. Tolerated but scorned, they endure quietly, holding to the hope that PSYDON YET LIVES. PSYDON YET ENDURES."
 	worshippers = "Fanatics and Nostalgists"
 	associated_faith = /datum/faith/old_god
 	mob_traits = list(TRAIT_PSYDONITE)
-	miracles = list(/obj/effect/proc_holder/spell/targeted/touch/orison			= CLERIC_ORI,
-					/obj/effect/proc_holder/spell/self/check_boot				= CLERIC_T0,
-					/obj/effect/proc_holder/spell/invoked/psydonendure			= CLERIC_T1,
-					/obj/effect/proc_holder/spell/self/psydonrespite			= CLERIC_T2,
+	miracles = list(
+		/obj/effect/proc_holder/spell/targeted/touch/orison = CLERIC_ORI,
+		/obj/effect/proc_holder/spell/self/check_boot = CLERIC_T0,
+		/obj/effect/proc_holder/spell/invoked/psydonendure = CLERIC_T1,
+		/obj/effect/proc_holder/spell/self/psydonrespite = CLERIC_T2,
 	)
 	confess_lines = list(
 		"THERE IS ONLY ONE TRUE GOD!",
@@ -72,7 +73,7 @@
 	/obj/item/natural/glass,
 	/obj/item/clothing/shoes/roguetown/sandals,
 	/obj/item/alch/transisdust)
-	
+
 /obj/effect/proc_holder/spell/self/check_boot/cast(list/targets, mob/user = usr)
 	. = ..()
 	if(!ishuman(user))
@@ -160,7 +161,7 @@
 		var/zcross_trigger = FALSE
 		if(user.patron?.undead_hater && (target.mob_biotypes & MOB_UNDEAD)) // YOU ARE NO LONGER MORTAL. NO LONGER OF HIM. PSYDON WEEPS.
 			target.visible_message(span_danger("[target] shudders with a strange stirring feeling!"), span_userdanger("It hurts. You feel like weeping."))
-			target.adjustBruteLoss(40)			
+			target.adjustBruteLoss(40)
 			return TRUE
 
 		// Bonuses! Flavour! SOVL!
@@ -182,27 +183,27 @@
 					sleep(10)
 					user.gib()
 					return FALSE
-				
+
 				switch(current_item.type) // Target-based worn Psicross Piety bonus. For fun.
 					if(/obj/item/clothing/neck/roguetown/psicross/wood)
-						psicross_bonus = 0.1				
+						psicross_bonus = 0.1
 					if(/obj/item/clothing/neck/roguetown/psicross/aalloy)
-						psicross_bonus = 0.2	
+						psicross_bonus = 0.2
 					if(/obj/item/clothing/neck/roguetown/psicross)
 						psicross_bonus = 0.3
 					if(/obj/item/clothing/neck/roguetown/psicross/silver)
-						psicross_bonus = 0.4	
+						psicross_bonus = 0.4
 					if(/obj/item/clothing/neck/roguetown/psicross/g) // PURITY AFLOAT.
 						psicross_bonus = 0.4
 					if(/obj/item/clothing/neck/roguetown/zcross/aalloy)
-						zcross_trigger = TRUE	
+						zcross_trigger = TRUE
 
 		if(damtotal >= 300) // ARE THEY ENDURING MUCH, IN ONE WAY OR ANOTHER?
 			situational_bonus += 0.3
 
-		if(wAmount.len > 5)	
-			situational_bonus += 0.3		
-	
+		if(wAmount.len > 5)
+			situational_bonus += 0.3
+
 		if (situational_bonus > 0)
 			conditional_buff = TRUE
 
@@ -212,11 +213,11 @@
 		if (conditional_buff & !zcross_trigger)
 			to_chat(user, "In <b>ENDURING</b> so much, become <b>EMBOLDENED</b>!")
 			psyhealing += situational_bonus
-	
+
 		if (zcross_trigger)
 			user.visible_message(span_warning("[user] shuddered. Something's very wrong."), span_userdanger("Cold shoots through my spine. Something laughs at me for trying."))
 			user.playsound_local(user, 'sound/misc/zizo.ogg', 25, FALSE)
-			user.adjustBruteLoss(25)		
+			user.adjustBruteLoss(25)
 			return FALSE
 
 		target.apply_status_effect(/datum/status_effect/buff/psyhealing, psyhealing)
@@ -224,3 +225,22 @@
 
 	revert_cast()
 	return FALSE
+
+/datum/patron/old_god/psydonite_hidden
+	name = "Psydon (Hidden)"
+	domain = "God of Ontological Reality"
+	desc = "These followers hide their worship of Psydon, blending into society and sometimes gaining privilege or status. But discovery risks being hunted, for only worshippers of the Ten can be nobility."
+	worshippers = "Secret cults, double agents, those who must hide their faith to survive."
+	associated_faith = /datum/faith/old_god
+	mob_traits = list(TRAIT_PSYDONITE)
+	miracles = list(
+		/obj/effect/proc_holder/spell/targeted/touch/orison = CLERIC_ORI,
+		/obj/effect/proc_holder/spell/self/check_boot = CLERIC_T0,
+		/obj/effect/proc_holder/spell/invoked/psydonendure = CLERIC_T1,
+		/obj/effect/proc_holder/spell/self/psydonrespite = CLERIC_T2,
+	)
+	confess_lines = list(
+		"THERE IS ONLY ONE TRUE GOD!",
+		"PSYDON YET LYVES! PSYDON YET ENDURES!",
+		"REBUKE THE HERETICAL- PSYDON ENDURES!",
+	)

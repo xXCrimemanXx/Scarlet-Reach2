@@ -97,6 +97,15 @@
 	if(!user.can_do_sex())
 		to_chat(user, "<span class='warning'>I can't do this.</span>")
 		return
+	if(!target.client || !target.client.prefs)
+		to_chat(user, span_warning("[target] is simply not there. I can't do this."))
+		log_combat(user, target, "tried ERP menu against d/ced")
+		return
+	if(!target.client.prefs.sexable) // Don't bang someone that dosn't want it.
+		to_chat(user, "<span class='warning'>[target] doesn't want to be touched. (Their ERP preference, in the options)</span>")
+		to_chat(target, "<span class='warning'>[user] failed to touch you. (Your ERP preference, in the options)</span>")
+		log_combat(user, target, "tried unwanted ERP menu against")
+		return
 	if(!can_do_sex())
 //		to_chat(user, "<span class='warning'>I can't do this.</span>")
 		return
@@ -1139,8 +1148,6 @@
 		if(owner.mind.has_antag_datum(/datum/antagonist/obsessed))
 			return
 	
-	// Cuckold check removed - moved to new sexcon system
-	
 	GLOB.scarlet_round_stats[STATS_PLEASURES]++
 	blueballs = FALSE
 	adjust_horny(-350)
@@ -1236,12 +1243,6 @@
 				if(ishuman(owner) && ishuman(fucking))
 					var/mob/living/carbon/human/H = owner
 					var/mob/living/carbon/human/F = fucking
-					// Check for family-based cuckolding
-					if(H.isFamily(F))
-						yee = 1
-						husbando = 1
-						owner.add_stress(/datum/stressevent/cumlove)
-					else
 				if(!yee)
 					owner.add_stress(/datum/stressevent/cummax)
 			else
@@ -1305,10 +1306,6 @@
 					if(ishuman(owner) && ishuman(inpussy))
 						var/mob/living/carbon/human/H = inpussy
 						var/mob/living/carbon/human/F = owner
-						if(H.isFamily(F))
-							yee = 1
-							owner.add_stress(/datum/stressevent/cumlove)
-						else
 					if(!yee)
 						owner.add_stress(/datum/stressevent/cummax)
 				else

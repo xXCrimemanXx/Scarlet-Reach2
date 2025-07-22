@@ -6,7 +6,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = RACES_TOLERATED_UP		//Not been around long enough to be inquisitor, brand new race to the world.
+	allowed_races = RACES_SECOND_CLASS_NO_GOLEM		//Not been around long enough to be inquisitor, brand new race to the world.
 	allowed_patrons = ALL_DIVINE_PATRONS //psydon is dead confirmed
 	tutorial = "You have been sent here as an envoy from the Sovereignty of Holy see of the Ten : a silver-tipped olive branch, unmatched in aptitude and unshakable in faith to the Ten. Though you might be ostracized due to your overzealous beliefs, neither the Church nor Crown can deny your value, whenever matters of inhumenity arise to threaten this fief."
 	whitelist_req = TRUE
@@ -39,7 +39,7 @@
 
 
 
-////Classic Inquisitor with a much more underground twist. Use listening devices, sneak into places to gather evidence, track down suspicious individuals. Has relatively the same utility stats as Confessor, but fulfills a different niche in terms of their combative job as the head honcho. 
+////Classic Inquisitor with a much more underground twist. Use listening devices, sneak into places to gather evidence, track down suspicious individuals. Has relatively the same utility stats as Confessor, but fulfills a different niche in terms of their combative job as the head honcho.
 
 /datum/advclass/puritan/inspector
 	name = "Inquisitor"
@@ -91,10 +91,10 @@
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/inqgloves
 	beltl = /obj/item/rogueweapon/sword/rapier
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
-	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/lockpickring/mundane = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger, /obj/item/grapplinghook = 1, /obj/item/storage/belt/rogue/pouch/coins/rich = 1, /obj/item/clothing/neck/roguetown/psicross/silver = 1) //these will be renamed to show that Psydon is dead after the next knife update
+	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/lockpickring/mundane = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger/preblessed, /obj/item/grapplinghook = 1, /obj/item/storage/belt/rogue/pouch/coins/rich = 1, /obj/item/clothing/neck/roguetown/psicross/silver = 1) //these will be renamed to show that Psydon is dead after the next knife update
 
 
-///The dirty, violent side of the Inquisition. Meant for confrontational, conflict-driven situations as opposed to simply sneaking around and asking questions. Templar with none of the miracles, but with all the muscles and more. 
+///The dirty, violent side of the Inquisition. Meant for confrontational, conflict-driven situations as opposed to simply sneaking around and asking questions. Templar with none of the miracles, but with all the muscles and more.
 
 /datum/advclass/puritan/ordinator
 	name = "Ordinator"
@@ -130,7 +130,7 @@
 	H.verbs |= /mob/living/carbon/human/proc/faith_test
 	H.verbs |= /mob/living/carbon/human/proc/torture_victim
 	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)
-	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_SILVER_BLESSED, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_INQUISITION, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_PERFECT_TRACKER, TRAIT_GENERIC)
@@ -143,12 +143,29 @@
 	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt
 	cloak = /obj/item/clothing/cloak/cape/puritan
 	backr = /obj/item/storage/backpack/rogue/satchel/black
-	backl = /obj/item/rogueweapon/shield/tower/metal
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/inqgloves
-	beltl = /obj/item/rogueweapon/sword/long/psysword
-	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/lockpickring/mundane = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger, /obj/item/grapplinghook = 1, /obj/item/storage/belt/rogue/pouch/coins/rich = 1)
+	beltl = /obj/item/rogueweapon/sword/long/psysword/preblessed
+	backpack_contents = list(/obj/item/storage/keyring/puritan = 1, /obj/item/lockpickring/mundane = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger/preblessed, /obj/item/grapplinghook = 1, /obj/item/storage/belt/rogue/pouch/coins/rich = 1)
+
+	var/helmets = list(
+	"Ornate Barbute" 	= /obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute,
+	"Ornate Armet" 		= /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm,
+	"None"
+	)
+	var/helmchoice = input("Choose your Helm.", "TAKE UP HELMS") as anything in helmets
+	if(helmchoice != "None")
+		head = helmets[helmchoice]
+
+	var/shields = list(
+	"Holy Shield (Light)" 	= /obj/item/rogueweapon/shield/tower/metal/holysee,
+	"Holy Shield (Dark)" 	= /obj/item/rogueweapon/shield/tower/metal/holysee/dark,
+	"Weapon Strap" 			=/obj/item/gwstrap,
+	"None"
+	)
+	var/shieldchoice = input("Choose your Auxiliary.", "TAKE UP SHIELD") as anything in shields
+	if(shieldchoice != "None")
+		backr = shields[shieldchoice]
 
 /obj/item/clothing/gloves/roguetown/chain/blk
 		color = CLOTHING_GREY
@@ -334,7 +351,7 @@
 						interrogator.add_stress(/datum/stressevent/tortured)
 					else if(victim_patron.type == /datum/patron/inhumen)
 						interrogator.add_stress(/datum/stressevent/tortured)
-						
+
 
 		if(length(confessions))
 			if(torture) // Only scream your confession if it's due to torture.

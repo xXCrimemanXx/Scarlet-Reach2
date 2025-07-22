@@ -285,11 +285,12 @@
 
 /atom/movable/screen/alert/status_effect/buff/darkvision
 	name = "Darkvision"
-	desc = "I can see in the dark somewhat."
+	desc = "The darkness no longer hinders me."
 	icon_state = "buff"
 
 /datum/status_effect/buff/darkvision
 	id = "darkvision"
+	effectedstats = list("perception" = 1)
 	alert_type = /atom/movable/screen/alert/status_effect/buff/darkvision
 	duration = 15 MINUTES
 
@@ -297,12 +298,12 @@
 	if(assocskill)
 		duration += 5 MINUTES * assocskill
 	. = ..()
-	to_chat(owner, span_warning("The darkness fades somewhat."))
+	to_chat(owner, span_warning("My senses sharpen. The darkness fades."))
 	ADD_TRAIT(owner, TRAIT_DARKVISION, MAGIC_TRAIT)
 
 /datum/status_effect/buff/darkvision/on_remove()
 	. = ..()
-	to_chat(owner, span_warning("The darkness returns to normal."))
+	to_chat(owner, span_warning("My senses dull. Darkness grasps me again."))
 	REMOVE_TRAIT(owner, TRAIT_DARKVISION, MAGIC_TRAIT)
 
 /atom/movable/screen/alert/status_effect/buff/longstrider
@@ -998,7 +999,7 @@
 	name = "Ready to Clash"
 	desc = span_notice("I am on guard, and ready to clash. If I am hit, I will successfully defend. Attacking will make me lose my focus.")
 	icon_state = "clash"
-
+  
 #define BLOODRAGE_FILTER "bloodrage"
 
 /atom/movable/screen/alert/status_effect/buff/graggar_bloodrage
@@ -1060,3 +1061,25 @@
 	icon_state = "buff"
 
 #undef BLOODRAGE_FILTER
+
+/datum/status_effect/buff/sermon
+	id = "sermon"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/sermon
+	effectedstats = list("fortune" = 1, "constitution" = 1, "endurance" = 1, "intelligence" = 2)
+	duration = 20 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/sermon
+	name = "sermon"
+	desc = "I feel inspired by the sermon!"
+	icon_state = "buff"
+
+/datum/status_effect/buff/gazeuponme
+	id = "gazeuponme"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/gazeuponme
+	effectedstats = list("speed" = 1, "intelligence" = 1)
+	duration = 999 MINUTES
+
+/atom/movable/screen/alert/status_effect/buff/gazeuponme
+	name = "Excommunicated heretic"
+	desc = "My PATRON is proud of ME!"
+	icon_state = "buff"

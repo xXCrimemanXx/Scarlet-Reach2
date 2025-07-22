@@ -1,8 +1,8 @@
 /obj/structure/roguemachine/noticeboard
 	name = "Notice Board"
-	desc = "A large wooden notice board, carrying postings from all across Azurea. A ZAD perch sits atop it."
+	desc = "A large wooden notice board, carrying postings from all across Scarlet Reach. A ZAD perch sits atop it."
 	icon = 'icons/roguetown/misc/64x64.dmi'
-	icon_state = "noticeboard"
+	icon_state = "noticeboard0"
 	density = TRUE
 	anchored = TRUE
 	max_integrity = 0
@@ -14,7 +14,7 @@
 
 /obj/structure/roguemachine/boardbarrier //Blocks sprite locations
 	name = ""
-	desc = "A large wooden notice board, carrying postings from all across Azurea. A ZAD perch sits atop it."
+	desc = "A large wooden notice board, carrying postings from all across Scarlet Reach. A ZAD perch sits atop it."
 	icon = 'icons/roguetown/underworld/underworld.dmi'
 	icon_state = "spiritpart"
 	density = TRUE
@@ -41,6 +41,19 @@
 	else
 		GLOB.board_viewers += user
 		to_chat(user, span_smallred("A new posting has been made since I last checked!"))
+
+/obj/structure/roguemachine/noticeboard/update_icon()
+	. = ..()
+	var/total_length = length(GLOB.noticeboard_posts) + length(GLOB.premium_noticeboardposts)
+	switch(total_length)
+		if(0)
+			icon_state = "noticeboard0"
+		if(1 to 3)
+			icon_state = "noticeboard1"
+		if(4 to 6)
+			icon_state = "noticeboard2"
+		else
+			icon_state = "noticeboard3"
 
 /obj/structure/roguemachine/noticeboard/Topic(href, href_list)
 	. = ..()
@@ -133,8 +146,7 @@
 		if(board != src)
 			playsound(board, 'sound/ambience/noises/birds (7).ogg', 50, FALSE, -1)
 			board.visible_message(span_smallred("A ZAD lands, delivering a new posting!"))
-
-
+			board.update_icon()
 
 /obj/structure/roguemachine/noticeboard/proc/make_post(mob/living/carbon/human/guy)
 	if(guy.has_status_effect(/datum/status_effect/debuff/postcooldown))
@@ -167,10 +179,10 @@
 	guy.apply_status_effect(/datum/status_effect/debuff/postcooldown)
 	message_admins("[ADMIN_LOOKUPFLW(guy)] has made a notice board post. The message was: [inputmessage]")
 	for(var/obj/structure/roguemachine/noticeboard/board in SSroguemachine.noticeboards)
+		board.update_icon()
 		if(board != src)
 			playsound(board, 'sound/ambience/noises/birds (7).ogg', 50, FALSE, -1)
 			board.visible_message(span_smallred("A ZAD lands, delivering a new posting!"))
-
 
 /obj/structure/roguemachine/noticeboard/proc/remove_post(mob/living/carbon/human/guy)
 	var/list/myposts_list = list()
@@ -196,6 +208,11 @@
 		if(post2remove == removing_post.title && removing_post.truepostername == guy.real_name)
 			GLOB.premium_noticeboardposts -= removing_post
 			message_admins("[ADMIN_LOOKUPFLW(guy)] has removed their post, the message was [removing_post.message]")
+	for(var/obj/structure/roguemachine/noticeboard/board in SSroguemachine.noticeboards)
+		board.update_icon()
+		if(board != src)
+			playsound(board, 'sound/ambience/noises/birds (7).ogg', 50, FALSE, -1)
+			board.visible_message(span_smallred("A ZAD lands, removing an old posting!"))
 
 /obj/structure/roguemachine/noticeboard/proc/authority_removepost(mob/living/carbon/human/guy)
 	var/list/posts_list = list()

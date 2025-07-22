@@ -66,7 +66,7 @@
 /obj/structure/roguemachine/goldface/public/examine()
 	. = ..()
 	. += "<span class='info'>A public version of the GOLDFACE. The guild charges a hefty fee for its usage. When locked, can be used to browse the inventory a merchant has.</span>"
-	. += "<span class='info'>An agreement between the Azurean Guild of Crafts and the Merchant's Guild mandates 100% extra profits on certain protected categories such as gems and steel gears when automated. And 50% on potions.</span>"
+	. += "<span class='info'>An agreement between the Scarlet Guild of Crafts and the Merchant's Guild mandates 100% extra profits on certain protected categories such as gems and steel gears when automated. And 50% on potions.</span>"
 
 /obj/structure/roguemachine/goldface/Initialize()
 	. = ..()

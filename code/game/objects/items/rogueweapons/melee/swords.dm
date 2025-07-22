@@ -379,13 +379,13 @@
 	. = ..()
 	if(tag)
 		switch(tag)
-			if("gen") 
+			if("gen")
 				return list("shrink" = 0.5,"sx" = -14,"sy" = -8,"nx" = 15,"ny" = -7,"wx" = -10,"wy" = -5,"ex" = 7,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -13,"sturn" = 110,"wturn" = -60,"eturn" = -30,"nflip" = 1,"sflip" = 1,"wflip" = 8,"eflip" = 1)
-			if("onback") 
+			if("onback")
 				return list("shrink" = 0.5,"sx" = -1,"sy" = 2,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
-			if("wielded") 
+			if("wielded")
 				return list("shrink" = 0.4,"sx" = 3,"sy" = 4,"nx" = -1,"ny" = 4,"wx" = -8,"wy" = 3,"ex" = 7,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 15,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
-			if("onbelt") 
+			if("onbelt")
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/sword/long/judgement/ascendant //meant to be insanely OP; solo antag wep
@@ -455,13 +455,13 @@
 	. = ..()
 	if(tag)
 		switch(tag)
-			if("gen") 
+			if("gen")
 				return list("shrink" = 0.5,"sx" = -14,"sy" = -8,"nx" = 15,"ny" = -7,"wx" = -10,"wy" = -5,"ex" = 7,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -13,"sturn" = 110,"wturn" = -60,"eturn" = -30,"nflip" = 1,"sflip" = 1,"wflip" = 8,"eflip" = 1)
-			if("onback") 
+			if("onback")
 				return list("shrink" = 0.5,"sx" = -1,"sy" = 2,"nx" = 0,"ny" = 2,"wx" = 2,"wy" = 1,"ex" = 0,"ey" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 70,"eturn" = 15,"nflip" = 1,"sflip" = 1,"wflip" = 1,"eflip" = 1,"northabove" = 1,"southabove" = 0,"eastabove" = 0,"westabove" = 0)
-			if("wielded") 
+			if("wielded")
 				return list("shrink" = 0.4,"sx" = 3,"sy" = 4,"nx" = -1,"ny" = 4,"wx" = -8,"wy" = 3,"ex" = 7,"ey" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 15,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
-			if("onbelt") 
+			if("onbelt")
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/sword/sabre/shamshir
@@ -485,7 +485,7 @@
 	inhand_y_dimension = 64
 	dropshrink = 0.75
 	smeltresult = /obj/item/ingot/steel
-	
+
 /obj/item/rogueweapon/sword/sabre/shamshir/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -592,7 +592,7 @@
 	icon_state = "psysword"
 
 /obj/item/rogueweapon/sword/long/psysword
-	name = "ornate silver longsword"
+	name = "ornate longsword"
 	desc = "A finely made longsword, plated in a ceremonial veneer of ornate silver - made for felling men and monsters alike.\
 		 \"The Ten will deliver those who were mindful of them to their place of ultimate triumph. No evil will touch them, nor will they grieve.\""
 	icon_state = "psysword"
@@ -600,7 +600,10 @@
 /obj/item/rogueweapon/sword/long/psysword/ComponentInitialize()
 	. = ..()							//+3 force, +100 blade int, +50 int, +1 def, make silver
 	AddComponent(/datum/component/psyblessed, FALSE, 3, 100, 50, 1, TRUE)
-	
+
+/obj/item/rogueweapon/sword/long/psysword/preblessed/ComponentInitialize()
+	. = ..()							//Pre-blessed, +3 force, +100 blade int, +50 int, +1 def, make silver
+	AddComponent(/datum/component/psyblessed, TRUE, 3, 100, 50, 1, TRUE)
 
 /obj/item/rogueweapon/sword/iron
 	name = "iron arming sword"
@@ -639,6 +642,7 @@
 	desc = "A bronze short sword with a slightly wider end, and no guard. Best used together with a shield, thrusted directly into your enemy's guts."
 	icon_state = "gladius"
 	max_integrity = 200
+	smeltresult = /obj/item/ingot/bronze
 	wdefense = 3
 
 /obj/item/rogueweapon/sword/iron/short/gladius/agladius
@@ -685,7 +689,7 @@
 	wdefense = 2
 
 // This typepath is so buggered bruh but I am not repeating code and not dropping a massive merge conflict for now
-/obj/item/rogueweapon/sword/iron/messer/copper 
+/obj/item/rogueweapon/sword/iron/messer/copper
 	name = "copper messer"
 	desc = "A copper hunting sword. Less durable than its iron counterpart."
 	force = 20 // Slightly worse
@@ -928,7 +932,7 @@
 	gripped_intents = null
 	wdefense = 6.5
 	wbalance = WBALANCE_SWIFT
-	
+
 
 /obj/item/rogueweapon/sword/silver
 	force = 24
@@ -1175,9 +1179,9 @@
 	. = ..()
 	if(tag)
 		switch(tag)
-			if("gen") 
+			if("gen")
 				return list("shrink" = 0.5,"sx" = -14,"sy" = -8,"nx" = 15,"ny" = -7,"wx" = -10,"wy" = -5,"ex" = 7,"ey" = -6,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -13,"sturn" = 110,"wturn" = -60,"eturn" = -30,"nflip" = 1,"sflip" = 1,"wflip" = 8,"eflip" = 1)
-			if("onbelt") 
+			if("onbelt")
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/sword/long/holysee
@@ -1297,7 +1301,7 @@
 	icon = 'icons/roguetown/weapons/swords64.dmi'
 	icon_state = "kriegmesser"
 	max_integrity = 190
-	
+
 	possible_item_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/chop/falx, /datum/intent/rend/krieg, /datum/intent/sword/strike)
 	gripped_intents = list(/datum/intent/sword/cut/krieg, /datum/intent/sword/thrust/krieg, /datum/intent/rend/krieg, /datum/intent/sword/strike)
 	alt_intents = null // Can't mordhau this
@@ -1332,3 +1336,33 @@
 	icon_state = "eastsword3"
 	max_integrity = 180
 	wdefense = 4
+
+/obj/item/rogueweapon/sword/attack(mob/living/M, mob/living/user)
+	if(user == M && user.used_intent && user.used_intent.blade_class == BCLASS_STAB && istype(user.rmb_intent, /datum/rmb_intent/weak))
+		if(user.zone_selected == BODY_ZONE_PRECISE_STOMACH || user.zone_selected == BODY_ZONE_CHEST)
+			if(user.doing)
+				to_chat(user, span_warning("You're already in the process of disemboweling yourself!"))
+				return
+			user.visible_message(span_danger("[user] presses [src] to their stomach, preparing to disembowel themselves!"), span_notice("You press the blade to your stomach and begin to push..."))
+			if(!do_after(user, 40, 1, user, 1)) // 4 seconds, hand required, target self, show progress
+				to_chat(user, span_warning("You stop before you can disembowel yourself!"))
+				return
+			// Disembowelment success: drop organs
+			var/list/spilled_organs = list()
+			var/obj/item/organ/stomach/stomach = user.getorganslot(ORGAN_SLOT_STOMACH)
+			if(stomach)
+				spilled_organs += stomach
+			var/obj/item/organ/liver/liver = user.getorganslot(ORGAN_SLOT_LIVER)
+			if(liver)
+				spilled_organs += liver
+			var/obj/item/organ/heart/heart = user.getorganslot(ORGAN_SLOT_HEART)
+			if(heart)
+				spilled_organs += heart
+			for(var/obj/item/organ/spilled as anything in spilled_organs)
+				spilled.Remove(user)
+				spilled.forceMove(user.drop_location())
+			user.visible_message(span_danger("[user] disembowels themselves, their organs spilling out!"), span_notice("You feel a horrible pain as your organs spill out!"))
+			user.emote("scream", null, null, TRUE, TRUE) // forced scream
+			user.overlay_fullscreen("painflash", /atom/movable/screen/fullscreen/painflash)
+			return
+	..()

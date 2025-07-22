@@ -47,7 +47,7 @@
 			H.change_stat("constitution", 3)
 			H.change_stat("perception", 1)
 			H.change_stat("speed", -1)
-
+			
 		if("Ishu")
 			H.set_blindness(0)
 			to_chat(H, span_warning("You are an archer. Pretty good in the art of \"pelting until enemy death.\" - You would gladly take up most jobs for money, or a chance to shoot loose."))
@@ -79,7 +79,7 @@
 			H.change_stat("perception", 2)
 			H.change_stat("speed", 4)
 			H.change_stat("strength", -1)
-
+			
 	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC) //i swear this isn't as good as it sounds
 	H.grant_language(/datum/language/kazengunese)

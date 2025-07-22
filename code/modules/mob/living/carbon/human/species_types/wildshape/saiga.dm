@@ -14,17 +14,18 @@
 	. = ..()
 	if(src.mind)
 		src.adjust_skillrank(/datum/skill/combat/wrestling, 2, TRUE)
-		src.adjust_skillrank(/datum/skill/combat/unarmed, 1, TRUE)
+		src.adjust_skillrank(/datum/skill/combat/unarmed, 2, TRUE)
 		src.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)
 		src.adjust_skillrank(/datum/skill/misc/athletics, 5, TRUE)
 
 		src.STASTR = 10
 		src.STACON = 13
-		src.STAEND = 18 //Because I don't want to give it TRAIT_INFINITE_STAMINA
-		src.STASPD = 13
+		src.STAEND = 16 //Because I don't want to give it TRAIT_INFINITE_STAMINA
+		src.STASPD = 15
 
 		AddSpell(new /obj/effect/proc_holder/spell/self/saigahoofs)
 		real_name = "Saiga ([stored_mob.real_name])" //So we don't get a random name
+		faction += "saiga" // It IS a saiga
 
 // SAIGA SPECIES DATUM //
 /datum/species/shapesaiga
@@ -42,7 +43,7 @@
 	)
 	inherent_biotypes = MOB_HUMANOID
 	armor = 5
-	no_equip = list(SLOT_SHIRT, SLOT_HEAD, SLOT_WEAR_MASK, SLOT_ARMOR, SLOT_GLOVES, SLOT_SHOES, SLOT_PANTS, SLOT_CLOAK, SLOT_BELT, SLOT_BACK_R, SLOT_BACK_L, SLOT_S_STORE)
+	no_equip = list(SLOT_SHIRT, SLOT_HEAD, SLOT_WEAR_MASK, SLOT_ARMOR, SLOT_GLOVES, SLOT_SHOES, SLOT_PANTS, SLOT_CLOAK, SLOT_BELT, SLOT_S_STORE)
 	nojumpsuit = 1
 	sexes = 1
 	offset_features = list(OFFSET_HANDS = list(0,2), OFFSET_HANDS_F = list(0,2))

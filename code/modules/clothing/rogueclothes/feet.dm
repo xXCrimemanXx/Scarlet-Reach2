@@ -55,7 +55,7 @@
 	icon_state = "ancientboots"
 
 /obj/item/clothing/shoes/roguetown/boots/psydonboots
-	name = "Holy Blacksteel boots"
+	name = "holy blacksteel boots"
 	desc = "Blacksteel-heeled boots. The leather refuses to be worn down, no matter how far you march through these lands."
 	icon_state = "psydonboots"
 	item_state = "psydonboots"
@@ -314,8 +314,8 @@
 	detail_tag = "_detail"
 	resistance_flags = null
 	sewrepair = TRUE
-	detail_color = CLOTHING_WHITE
-	color = CLOTHING_AZURE
+	detail_color = CLOTHING_BLACK
+	color = CLOTHING_SCARLET
 
 /obj/item/clothing/shoes/roguetown/jester/update_icon()
 	cut_overlays()

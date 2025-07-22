@@ -53,11 +53,12 @@
 	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT, BCLASS_TWIST)
 	armor = ARMOR_SPELLSINGER
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	sewrepair = TRUE
 
-/obj/item/clothing/head/roguetown/roguehood/MiddleClick(mob/user) 
+/obj/item/clothing/head/roguetown/roguehood/MiddleClick(mob/user)
 	overarmor = !overarmor
 	to_chat(user, span_info("I [overarmor ? "wear \the [src] under my hair" : "wear \the [src] over my hair"]."))
 	if(overarmor)
@@ -113,20 +114,20 @@
 	max_integrity = 100
 	sewrepair = TRUE
 
+
 /obj/item/clothing/head/roguetown/roguehood/shalal
 	name = "keffiyeh"
 	desc = "A protective covering worn by those native to the desert."
 	color = "#b8252c"
 	icon_state = "shalal"
 	item_state = "shalal"
-	flags_inv = HIDEHAIR|HIDEFACIALHAIR
-	flags_inv = HIDEHAIR
+	flags_inv = HIDEHAIR|HIDEFACIALHAIR|HIDEFACE|HIDESNOUT
 	sleevetype = null
 	sleeved = null
 	icon = 'icons/roguetown/clothing/head.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi' //Overrides slot icon behavior
 	alternate_worn_layer  = 8.9 //On top of helmet
-	body_parts_covered = HEAD|HAIR|EARS|NECK
+	body_parts_covered = HEAD|HAIR|EARS|NECK|MOUTH|NOSE
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	armor = list("blunt" = 20, "slash" = 20, "stab" = 15, "piercing" = 1, "fire" = 0, "acid" = 0)
 	dynamic_hair_suffix = ""
@@ -137,20 +138,23 @@
 	max_integrity = 100
 	sewrepair = TRUE
 
-/obj/item/clothing/head/roguetown/roguehood/shalal/AdjustClothes(mob/user)
-	if(loc == user)
-		if(adjustable == CAN_CADJUST)
-			adjustable = CADJUSTED
-			icon_state = "shalal_t"
-			body_parts_covered = HEAD|EARS|HAIR|NECK|NOSE|MOUTH
-			flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
-			flags_cover = null
-			if(ishuman(user))
-				var/mob/living/carbon/H = user
-				H.update_inv_head()
-			block2add = null
-		else if(adjustable == CADJUSTED)
-			ResetAdjust(user)
+/obj/item/clothing/neck/roguetown/roguehood/shalal/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, HEAD|EARS|NECK|HAIR, HIDEHAIR|HIDEFACE, null, null, null, (UPD_HEAD|UPD_MASK|UPD_NECK))
+
+///obj/item/clothing/head/roguetown/roguehood/shalal/AdjustClothes(mob/user)
+//	if(loc == user)
+//		if(adjustable == CAN_CADJUST)
+//			adjustable = CADJUSTED
+//			icon_state = "shalal_t"
+//			body_parts_covered = HEAD|EARS|HAIR|NECK|NOSE|MOUTH
+//			flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR
+//			flags_cover = null
+//			if(ishuman(user))
+//				var/mob/living/carbon/H = user
+//				H.update_inv_head()
+//			block2add = null
+//		else if(adjustable == CADJUSTED)
+//			ResetAdjust(user)
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/black
 	color = CLOTHING_BLACK
@@ -164,8 +168,11 @@
 	item_state = "hijab"
 	icon_state = "deserthood"
 	hidesnoutADJ = FALSE
-	flags_inv = HIDEEARS|HIDEHAIR|HIDEFACIALHAIR	//Does not hide face.
+	flags_inv = HIDEHAIR	//Does not hide face.
 	block2add = null
+
+/obj/item/clothing/neck/roguetown/roguehood/shalal/hijab/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, null, null, (UPD_HEAD|UPD_MASK|UPD_NECK))
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/raneshen
 	name = "padded headscarf"
@@ -177,13 +184,18 @@
 	icon_state = "deserthood"
 	naledicolor = TRUE
 
+
 /obj/item/clothing/head/roguetown/roguehood/shalal/heavyhood
 	name = "heavy hood"
 	desc = "This thick lump of burlap completely shrouds your head, protecting it from harsh weather and nosey protagonists alike."
 	color = CLOTHING_BROWN
+	body_parts_covered = HEAD|HAIR|EARS|NECK
 	item_state = "heavyhood"
 	icon_state = "heavyhood"
 	hidesnoutADJ = FALSE
+
+/obj/item/clothing/neck/roguetown/roguehood/shalal/heavyhood/ComponentInitialize()
+	AddComponent(/datum/component/adjustable_clothing, NECK, null, null, null, null, (UPD_HEAD|UPD_MASK|UPD_NECK))
 
 /obj/item/clothing/head/roguetown/roguehood/astrata
 	name = "sun hood"
@@ -258,7 +270,7 @@
 	icon_state = "dendormask"
 	item_state = "dendormask"
 	icon = 'icons/roguetown/clothing/head.dmi'
-	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi' 
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi'
 	body_parts_covered = MOUTH
 	slot_flags = ITEM_SLOT_HEAD|ITEM_SLOT_MASK
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
@@ -347,9 +359,9 @@
 	dynamic_hair_suffix = "+generic"
 	sewrepair = TRUE
 	flags_inv = HIDEEARS
-	detail_color = CLOTHING_WHITE
-	color = CLOTHING_AZURE
-	altdetail_color = CLOTHING_WHITE
+	detail_color = CLOTHING_BLACK
+	color = CLOTHING_SCARLET
+	altdetail_color = CLOTHING_BLACK
 
 /obj/item/clothing/head/roguetown/jester/update_icon()
 	cut_overlays()
@@ -623,6 +635,7 @@
 	icon_state = "priest"
 	//dropshrink = 0
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
 	dynamic_hair_suffix = "+generic"
 	sellprice = 77
 	worn_x_dimension = 64
@@ -672,7 +685,7 @@
 	body_parts_covered = HEAD|HAIR|EARS
 	slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_NECK|ITEM_SLOT_HEAD
 	armor = ARMOR_HEAD_BAD
-	prevent_crits = list(BCLASS_CUT)
+	prevent_crits = list(BCLASS_CUT, BCLASS_BLUNT)
 	blocksound = SOFTHIT
 	max_integrity = 75
 	color = "#463C2B"
@@ -750,6 +763,7 @@
 	icon_state = "wingedcap"
 	max_integrity = 225
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
 	body_parts_covered = HEAD|HAIR
@@ -1026,7 +1040,7 @@
 		icon_state = "zizofrogmouth"
 		name = "darksteel froggemund"
 		desc = "A darksteel froggemund. Called forth from the edge of what should be known. In Her name."
-		flags_inv = HIDEFACE|HIDESNOUT|HIDEEARS 
+		flags_inv = HIDEFACE|HIDESNOUT|HIDEEARS
 		body_parts_covered = HEAD|EARS|HAIR
 		adjustable = CANT_CADJUST
 	else
@@ -1275,8 +1289,8 @@
 	smelt_bar_num = 2
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonbarbute
-	name = "Silver barbute"
-	desc = "A ceremonial barbute, masterfully forged to represent Tens' divine authority. The Order of Saint Malum's artisans have chiseled this pronged visage into more statues than you could possibly imagine."
+	name = "ornate barbute"
+	desc = "A ceremonial barbute, masterfully forged to represent the Ten's divine authority. The Order of Saint Malum's artisans have chiseled this pronged visage into more statues than you could possibly imagine."
 	icon_state = "psydonbarbute"
 	item_state = "psydonbarbute"
 	flags_inv = HIDEEARS|HIDEFACE|HIDEHAIR|HIDESNOUT
@@ -1290,7 +1304,7 @@
 				return list("shrink" = 0.32,"sx" = -3,"sy" = -8,"nx" = 6,"ny" = -8,"wx" = -1,"wy" = -8,"ex" = 3,"ey" = -8,"nturn" = 180,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 1,"sflip" = 0,"wflip" = 0,"eflip" = 8,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/clothing/head/roguetown/helmet/heavy/psydonhelm
-	name = "Ornate armet"
+	name = "ornate armet"
 	desc = "An ornate helmet, whose visor has been bound shut with blacksteel chains. The Order of Saint Eora often decorates these armets with flowers - not only as a lucky charm gifted to them by fair maidens and family, but also as a vibrant reminder that 'happiness has to be fought for.'"
 	icon_state = "psydonarmet"
 	item_state = "psydonarmet"
@@ -1642,6 +1656,7 @@
 	desc = "Used to distinguish dangerous wizards from senile old men."
 	icon_state = "wizardhat"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
+	bloody_icon = 'icons/effects/blood64.dmi'
 	dynamic_hair_suffix = "+generic"
 	worn_x_dimension = 64
 	worn_y_dimension = 64
@@ -1821,6 +1836,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/64x64/head.dmi'
 	worn_x_dimension = 64
 	worn_y_dimension = 64
+	bloody_icon = 'icons/effects/blood64.dmi'
 	flags_inv = HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
 	dynamic_hair_suffix = ""
 	resistance_flags = FIRE_PROOF // Made of metal
@@ -1965,7 +1981,7 @@
 	desc = "A feathered leather hat, to show them all your superiority."
 	icon_state = "duelhat"
 	sewrepair = TRUE
-	color = COLOR_ALMOST_BLACK	
+	color = COLOR_ALMOST_BLACK
 	detail_tag = "_detail"
 	detail_color = COLOR_SILVER
 	salvage_result = /obj/item/natural/hide/cured

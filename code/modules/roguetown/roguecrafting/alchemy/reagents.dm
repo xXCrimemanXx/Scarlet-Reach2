@@ -383,7 +383,7 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 	reagent_state = LIQUID
 	color = "#c8c9e9"
 	taste_description = "cold needles"
-	toxpwr = 10
+	toxpwr = 20
 
 //Potion reactions
 /datum/chemical_reaction/alch/stronghealth

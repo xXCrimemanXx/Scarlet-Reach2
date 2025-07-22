@@ -170,7 +170,7 @@
 	if(M.mind)
 		skill_diff -= (M.get_skill_level(/datum/skill/combat/wrestling))
 
-	if(M.surrendering)
+	if(M.compliance || M.surrendering)
 		combat_modifier = 2
 
 	if(M.restrained())
@@ -309,7 +309,7 @@
 							span_userdanger("[user] pins me to the ground!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
 			else
 				user.stamina_add(rand(5,15))
-				if(prob(clamp((((4 + (((user.STASTR - M.STASTR)/2) + skill_diff)) * 10 + rand(-5, 5)) * combat_modifier), 5, 95)))
+				if(M.compliance || prob(clamp((((4 + (((user.STASTR - M.STASTR)/2) + skill_diff)) * 10 + rand(-5, 5)) * combat_modifier), 5, 95)))
 					M.visible_message(span_danger("[user] shoves [M] to the ground!"), \
 									span_userdanger("[user] shoves me to the ground!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
 					M.Knockdown(max(10 + (skill_diff * 2), 1))
@@ -685,14 +685,18 @@
 		else if(HAS_TRAIT(user, TRAIT_HORDE))
 			// Horde trait allows safe blood drinking
 		else
-			// Non-vampires will vomit
-			to_chat(user, "<span class='warning'>I'm going to puke...</span>")
-			addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
+			// Non-vampires will vomit, but skip for wretch vampires
+			var/skip_vomit = FALSE
+			if(user.mind)
+				var/datum/antagonist/vampire/Vamp = user.mind.has_antag_datum(/datum/antagonist/vampire)
+				if(Vamp && Vamp.wretch_antag)
+					skip_vomit = TRUE
+			if(!skip_vomit)
+				to_chat(user, "<span class='warning'>I'm going to puke...</span>")
+				addtimer(CALLBACK(user, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
 
 	C.blood_volume = max(C.blood_volume-15, 0)
 	C.handle_blood()
-	if(HAS_TRAIT(user, TRAIT_HORDE))
-		user.adjust_hydration(8)
 
 	playsound(user.loc, 'sound/misc/drink_blood.ogg', 100, FALSE, -4)
 
@@ -701,7 +705,22 @@
 	to_chat(user, span_warning("I drink from [C]'s [parse_zone(sublimb_grabbed)]."))
 	log_combat(user, C, "drank blood from ")
 
-	if(ishuman(C) && C.mind)
+	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/vampire))
+		var/datum/antagonist/vampire/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampire)
+		if(VDrinker && VDrinker.wretch_antag)
+			var/vitae_gain = 600
+			var/blood_loss = 60
+			var/old_vitae = VDrinker.vitae
+			VDrinker.vitae = min(VDrinker.vitae + vitae_gain, 5000)
+			C.blood_volume = max(C.blood_volume - blood_loss, 0)
+			C.handle_blood()
+			to_chat(user, span_notice("You gain [VDrinker.vitae - old_vitae] vitae from drinking blood. Current vitae: [VDrinker.vitae]"))
+			to_chat(C, span_warning("You feel a massive amount of blood being drained from you!"))
+		else if(VDrinker && !C.mind)
+			to_chat(user, span_warning("This blood is not pure enough to nourish me properly!"))
+		
+
+	if(C.mind && user.mind.has_antag_datum(/datum/antagonist/vampirelord))
 		var/datum/antagonist/vampirelord/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampirelord)
 		if(C.blood_volume <= BLOOD_VOLUME_SURVIVE)
 			if(!VDrinker.isspawn)

@@ -6,7 +6,7 @@
 	faction = "Station"
 	total_positions = 3
 	spawn_positions = 3
-	allowed_races = RACES_TOLERATED_UP
+	allowed_races = RACES_NOBILITY_ELIGIBLE_UP
 	allowed_patrons = NON_PSYDON_PATRONS
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED)
@@ -96,6 +96,7 @@
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()	
 	H.verbs |= /mob/proc/haltyell
@@ -184,6 +185,7 @@
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.verbs |= /mob/proc/haltyell
@@ -262,6 +264,7 @@
 	H.adjust_skillrank(/datum/skill/misc/athletics, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/tracking, 3, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_HEAVYARMOR, TRAIT_GENERIC)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.verbs |= /mob/proc/haltyell
@@ -360,6 +363,7 @@
 	H.adjust_skillrank(/datum/skill/misc/sneaking, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/tracking, 2, TRUE)
+	H.adjust_skillrank(/datum/skill/misc/swimming, 2, TRUE)
 	ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
