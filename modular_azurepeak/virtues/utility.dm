@@ -23,6 +23,19 @@
 		REMOVE_TRAIT(recipient, TRAIT_BEAUTIFUL, TRAIT_VIRTUE)
 		REMOVE_TRAIT(recipient, TRAIT_UNSEEMLY, TRAIT_VIRTUE)
 
+/datum/virtue/utility/beautiful
+	name = "Beautiful"
+	desc = "Wherever I go, I turn heads, such is my natural beauty. I am also rather good in bed, though they always say that."
+	custom_text = "Incompatible with Ugly virtue."
+	added_traits = list(TRAIT_BEAUTIFUL, TRAIT_GOODLOVER)
+
+/datum/virtue/utility/beautiful/handle_traits(mob/living/carbon/human/recipient)
+	..()
+	if(HAS_TRAIT(recipient, TRAIT_UNSEEMLY))
+		to_chat(recipient, "Your social grace is cancelled out! You become normal.")
+		REMOVE_TRAIT(recipient, TRAIT_BEAUTIFUL, TRAIT_VIRTUE)
+		REMOVE_TRAIT(recipient, TRAIT_UNSEEMLY, TRAIT_VIRTUE)
+
 /datum/virtue/utility/deadened
 	name = "Deadened"
 	desc = "Some terrible incident colours my past, and now, I feel nothing."
