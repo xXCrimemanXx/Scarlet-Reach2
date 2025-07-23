@@ -165,7 +165,7 @@
 	)
 	var/shieldchoice = input("Choose your Auxiliary.", "TAKE UP SHIELD") as anything in shields
 	if(shieldchoice != "None")
-		backr = shields[shieldchoice]
+		backl = shields[shieldchoice]
 
 /obj/item/clothing/gloves/roguetown/chain/blk
 		color = CLOTHING_GREY
