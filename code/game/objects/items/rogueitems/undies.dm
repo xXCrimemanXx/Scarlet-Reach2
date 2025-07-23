@@ -3,6 +3,7 @@
 	desc = "An absolute necessity."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "briefs"
+	w_class = WEIGHT_CLASS_TINY
 	resistance_flags = FLAMMABLE
 	obj_flags = CAN_BE_HIT
 	break_sound = 'sound/foley/cloth_rip.ogg'
