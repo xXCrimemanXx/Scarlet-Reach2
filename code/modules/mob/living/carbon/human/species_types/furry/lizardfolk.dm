@@ -2,14 +2,14 @@
 	race = /datum/species/lizardfolk
 
 /datum/species/lizardfolk
-	name = "Saurian"
+	name = "Zardman"
 	id = "lizardfolk"
-	desc = "<b>Saurian</b><br>\
-	Saurians are a reptilian people originating from various morasses across the world. They are resilient and enduring \
-	creachures who flourish environments such as swamps and bogs. Saurians are considered to be fearsome predators on \
+	desc = "<b>Zardman</b><br>\
+	Zardmen are a reptilian people originating from various morasses across the world. They are resilient and enduring \
+	creachures who flourish environments such as swamps and bogs. Zardmen are considered to be fearsome predators on \
 	account of their hardened scales, razor-sharp talons and teeth, but owe much of their survival to close-knit tribal \
 	communities. To the civilized, they are considered little more than savages, for much of the history between them has \
-	been painted with blood and strife. In recent years, many Saurians born outside of tribes have integrated into Humen \
+	been painted with blood and strife. In recent years, many Zardmen born outside of tribes have integrated into Humen \
 	societies -- often as laborers or mercenaries.<br> \
 	(+1 Constitution, +1 Endurance)"
 	skin_tone_wording = "Skin Colors"
@@ -71,7 +71,7 @@
 		/datum/customizer/organ/snout/lizard,
 		/datum/customizer/organ/ears/lizard,
 		/datum/customizer/organ/frills/lizard,
-		/datum/customizer/organ/horns/humanoid/saurian,
+		/datum/customizer/organ/horns/humanoid/zardman,
 		/datum/customizer/organ/testicles/anthro,
 		/datum/customizer/organ/penis/anthro,
 		/datum/customizer/organ/breasts/animal,
