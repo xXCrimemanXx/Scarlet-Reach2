@@ -199,7 +199,7 @@
 	cost = 10
 	contains = list(/obj/item/rogueweapon/shield/heater)
 
-/datum/supply_pack/rogue/Brigand/heatshield
+/datum/supply_pack/rogue/Brigand/ironshield
 	name = "Iron Shield"
 	cost = 10
 	contains = list(/obj/item/rogueweapon/shield/iron)
