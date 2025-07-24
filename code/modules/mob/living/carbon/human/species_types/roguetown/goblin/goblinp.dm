@@ -109,7 +109,7 @@
 		"Abyss" = SKIN_COLOR_ABYSS,
 		"Teal" = SKIN_COLOR_TEAL,
 		"Hadal" = SKIN_COLOR_HADAL,
-		"Bone" = SKIN_COLOR_BONE,
+		"Bone" = SKIN_COLOR_BONE
 	)
 
 /datum/species/goblinp/on_species_gain(mob/living/carbon/C, datum/species/old_species)
