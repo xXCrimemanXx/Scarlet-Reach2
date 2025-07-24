@@ -7,7 +7,7 @@
 	invocation_type = "shout"
 	associated_skill = /datum/skill/magic/holy
 	antimagic_allowed = TRUE
-	recharge_time = 25 SECONDS
+	recharge_time = 15 SECONDS
 	miracle = TRUE
 	devotion_cost = 100
 	projectile_type = /obj/projectile/magic/astratablast
