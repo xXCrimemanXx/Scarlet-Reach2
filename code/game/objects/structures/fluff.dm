@@ -959,6 +959,8 @@
 		/obj/item/scomstone,
 		/obj/item/cooking/platter/silver,
 		/obj/item/cooking/platter/gold,
+		/obj/item/reagent_containers/glass/bowl/silver,
+		/obj/item/reagent_containers/glass/bowl/gold,
 		/obj/item/kitchen/spoon/gold,
 		/obj/item/kitchen/spoon/silver,
 		/obj/item/candle/candlestick/gold,
