@@ -956,7 +956,18 @@
 		/obj/item/clothing/head/roguetown/crown/serpcrown,
 		/obj/item/clothing/head/roguetown/vampire,
 		/obj/item/scomstone,
-		/obj/item/reagent_containers/lux
+		/obj/item/cooking/platter/silver,
+		/obj/item/cooking/platter/gold,
+		/obj/item/kitchen/spoon/gold,
+		/obj/item/kitchen/spoon/silver,
+		/obj/item/candle/candlestick/gold,
+		/obj/item/candle/candlestick/silver,
+		/obj/item/reagent_containers/lux,
+		/obj/sword/long/judgement, // various unique weapons around from many roles follows. Don't lose your fancy toys.... 
+		/obj/item/rogueweapon/sword/long/oathkeeper,
+		/obj/item/rogueweapon/woodstaff/riddle_of_steel/magos, //bit dumb for a bandit mage to toss this toy away but whatever
+		/obj/item/rogueweapon/halberd/psyhalberd, // relic weapons but not standard Inquisition stuff 
+		/obj/item/rogueweapon/greatsword/psygsword,
 	)
 
 /obj/structure/fluff/statue/evil/attackby(obj/item/W, mob/user, params)
