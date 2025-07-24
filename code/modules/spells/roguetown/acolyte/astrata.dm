@@ -40,13 +40,13 @@
 			return BULLET_ACT_BLOCK
 		if(M.mob_biotypes & biotype_we_look_for || istype(M, /mob/living/simple_animal/hostile/rogue/skeleton))
 			damage *= fuck_that_guy_multiplier
-			M.adjust_fire_stacks(4)
-			M.IgniteMob()
+			M.adjust_fire_stacks(10) //4 pats to put it out
 			visible_message(span_warning("[target] erupts in flame upon being struck by [src]!"))
-		else
-			M.adjust_fire_stacks(1)//just a little bit of burning for non-undead
 			M.IgniteMob()
+		else
+			M.adjust_fire_stacks(4) //2 pats to put it out
 			visible_message(span_warning("[src] ignites [target]!"))
+			M.IgniteMob()
 	return FALSE
 
 /obj/effect/proc_holder/spell/invoked/ignition
