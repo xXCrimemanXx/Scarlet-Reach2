@@ -944,6 +944,7 @@
 		/obj/item/clothing/ring,
 		/obj/item/ingot/gold,
 		/obj/item/ingot/silver,
+		/obj/item/ingot/silverblessed,
 		/obj/item/ingot/blacksteel,
 		/obj/item/clothing/neck/roguetown/psicross,
 		/obj/item/reagent_containers/glass/cup,
