@@ -16,7 +16,7 @@
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
 	possible_ages = ALL_AGES_LIST
 	default_features = MANDATORY_FEATURE_LIST
-	inherent_traits = list(TRAIT_NOMOBSWAP, TRAIT_NOFALLDAMAGE2, TRAIT_TINY, TRAIT_CRITICAL_WEAKNESS)
+	inherent_traits = list(TRAIT_NOMOBSWAP, TRAIT_NOFALLDAMAGE2, TRAIT_TINY, TRAIT_CRITICAL_WEAKNESS, TRAIT_ZOMBIE_IMMUNE)
 	use_skintones = TRUE
 	skin_tone_wording = "Attunement"
 	soundpack_m = /datum/voicepack/male/goblin //seems fitting
