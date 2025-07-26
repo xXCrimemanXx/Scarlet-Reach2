@@ -159,6 +159,10 @@
     /datum/species/kobold,\
     /datum/species/goblinp,\
 
+//Fae need to be restricted pretty specifically
+#define RACES_TINY \
+	/datum/species/faekin,\
+
 #define RACES_NOBILITY_ELIGIBLE_UP list(RACES_NOBILITY_ELIGIBLE)
 
 #define RACES_CHURCH_FAVORED_UP list(RACES_NOBILITY_ELIGIBLE, RACES_CHURCH_FAVORED)
@@ -222,6 +226,7 @@
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
 	/datum/species/golem/metal,\
+	/datum/species/faekin,\
 )
 // Non-dwarf non-kobold non-goblin mostly
 #define NON_DWARVEN_RACE_TYPES list(\

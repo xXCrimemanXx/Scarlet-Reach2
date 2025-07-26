@@ -72,7 +72,7 @@
 		return
 	if(world.time >= src.drug_cd + 25 SECONDS)
 		var/mob/living/targetted = target
-		targetted.apply_status_effect(/datum/status_effect/buff/seelie_drugs)
+		targetted.apply_status_effect(/datum/status_effect/buff/faekin_drugs)
 		targetted.visible_message(span_danger("[src] dusts [target] with some kind of powder!"))
 		targetted.adjustToxLoss(15)
 		src.drug_cd = world.time

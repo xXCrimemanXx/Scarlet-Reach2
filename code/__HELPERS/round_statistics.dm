@@ -20,6 +20,7 @@
 #define STATS_ALIVE_VULPS "alive_vulps"
 #define STATS_ALIVE_LUPIANS "alive_lupians"
 #define STATS_ALIVE_MOTHS "alive_moths"
+#define STATS_ALIVE_FAEKIN "alive_faekin"
 
 #define STATS_VAMPIRES "vampires"
 

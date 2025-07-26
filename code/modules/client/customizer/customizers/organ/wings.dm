@@ -102,3 +102,9 @@
 		/datum/sprite_accessory/wings/wide/spider,
 		/datum/sprite_accessory/wings/large/harpyswept,
 	)
+
+/datum/customizer/organ/wings/faekin
+	name = "Faerie Wings"
+	customizer_choices = list(/datum/customizer_choice/organ/wings/anthro)
+	allows_disabling = FALSE
+	default_disabled = FALSE

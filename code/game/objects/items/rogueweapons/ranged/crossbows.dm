@@ -100,6 +100,9 @@
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/attack_self(mob/living/user)
 	if(chambered)
 		..()
+	if(HAS_TRAIT(user, TRAIT_TINY))
+		to_chat(user, span_warning("I can't cock this!"))
+		return FALSE
 	else
 		if(!cocked)
 			to_chat(user, span_info("I step on the stirrup and use all my might..."))
@@ -140,6 +143,8 @@
 		BB.bonus_accuracy += (user.STAPER - 8) // 8+ PER gives +1 per level. Does not decrease over range.
 		BB.bonus_accuracy += (user.get_skill_level(/datum/skill/combat/crossbows) * 5) // +5 per XBow level.
 		BB.damage *= damfactor
+		if(HAS_TRAIT(user, TRAIT_TINY)) //faes get bad damage
+			BB.damage = (BB.damage * 0.1)
 	cocked = FALSE
 	if(user.has_status_effect(/datum/status_effect/buff/clash) && ishuman(user))
 		var/mob/living/carbon/human/H = user

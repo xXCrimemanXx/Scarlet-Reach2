@@ -377,6 +377,9 @@
 		return FALSE
 	if(throwing || !(mobility_flags & MOBILITY_PULL))
 		return FALSE
+	if(!HAS_TRAIT(AM, TRAIT_TINY) && HAS_TRAIT(src, TRAIT_TINY))	//Fae can't pull big shit
+		to_chat(src, span_warning("Too big!"))
+		return FALSE
 
 	AM.add_fingerprint(src)
 
@@ -1652,6 +1655,7 @@
 			add_movespeed_modifier(MOVESPEED_ID_LIVING_LIMBLESS, update=TRUE, priority=100, override=TRUE, multiplicative_slowdown=limbless_slowdown, movetypes=GROUND)
 		else
 			remove_movespeed_modifier(MOVESPEED_ID_LIVING_LIMBLESS, update=TRUE)
+	SEND_SIGNAL(src, COMSIG_LIVING_MOBILITY_UPDATED, src)
 
 /mob/living/proc/fall(forced)
 	if(!(mobility_flags & MOBILITY_USE))

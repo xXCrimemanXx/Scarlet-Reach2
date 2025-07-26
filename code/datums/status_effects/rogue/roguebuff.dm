@@ -958,8 +958,8 @@
 	. = ..()
 	to_chat(owner, span_warning("The surge of energy inside me fades..."))
 
-/datum/status_effect/buff/seelie_drugs
-	id = "seelie drugs"
+/datum/status_effect/buff/faekin_drugs
+	id = "faekin drugs"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/druqks
 	effectedstats = list("intelligence" = 2, "endurance" = 4, "speed" = -3)
 	duration = 20 SECONDS
