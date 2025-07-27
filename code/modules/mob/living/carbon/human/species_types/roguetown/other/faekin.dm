@@ -11,12 +11,12 @@
     They do not reproduce in the fashion of other races, instead sprouting naturally from sources of wild and chaotic magick. \
     The understanding of the Faekin race is rife with myth, rumor, and legend.  \
     Those who cross paths with Faekin should tread with care, as they bring misery and fortune in equal measure.<br>\
-	(-8 Strength, -2 Endurance, -6 Constitution, +2 Perception, +4 Intelligence, +4 Speed)"
+	(-8 Strength, -2 Endurance, -6 Constitution, +2 Perception, +2 Intelligence)"
 
 	species_traits = list(EYECOLOR,HAIR,FACEHAIR,LIPS,STUBBLE,OLDGREY)
 	possible_ages = ALL_AGES_LIST
 	default_features = MANDATORY_FEATURE_LIST
-	inherent_traits = list(TRAIT_NOMOBSWAP, TRAIT_NOFALLDAMAGE2, TRAIT_TINY, TRAIT_CRITICAL_WEAKNESS, TRAIT_ZOMBIE_IMMUNE)
+	inherent_traits = list(TRAIT_NOMOBSWAP, TRAIT_NOFALLDAMAGE2, TRAIT_TINY, TRAIT_CRITICAL_WEAKNESS, TRAIT_ZOMBIE_IMMUNE, TRAIT_CHAOTIC_MIND)
 	use_skintones = TRUE
 	skin_tone_wording = "Attunement"
 	soundpack_m = /datum/voicepack/male/goblin //seems fitting
@@ -38,7 +38,7 @@
 		OFFSET_NECK_F = list(0,-1), OFFSET_MOUTH_F = list(0,-1), OFFSET_PANTS_F = list(0,0), \
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES_F = list(0,0), \
 		)
-	race_bonus = list(STAT_STRENGTH = -8, STAT_ENDURANCE = -2, STAT_CONSTITUTION = -6, STAT_PERCEPTION = 2, STAT_INTELLIGENCE = 4, STAT_SPEED = 4) 
+	race_bonus = list(STAT_STRENGTH = -8, STAT_ENDURANCE = -2, STAT_CONSTITUTION = -6, STAT_PERCEPTION = 2, STAT_INTELLIGENCE = 2) 
 	enflamed_icon = "widefire"
 	organs = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain,
@@ -124,7 +124,6 @@
 
 /datum/species/faekin/after_creation(mob/living/carbon/C)
 	..()
-	//C.verbs |= (/mob/living/carbon/human/proc/Turnlight)
 	C.verbs += list(/mob/living/carbon/human/proc/fly_up,
 	/mob/living/carbon/human/proc/fly_down) 
 	C.voice_pitch = 2
@@ -187,7 +186,7 @@
 		to_chat(src, span_notice("I can't fly away while being grabbed!"))
 		return
 	src.visible_message(span_notice("[src] begins to ascend!"), span_notice("You take flight..."))
-	if(do_after(src, 3, target))
+	if(do_after(src, 5, target))
 		if(src.pulledby == null)
 			src.zMove(UP, TRUE)
 			to_chat(src, span_notice("I fly up."))
@@ -202,7 +201,7 @@
 		to_chat(src, span_notice("I can't fly away while being grabbed!"))
 		return
 	src.visible_message(span_notice("[src] begins to descend!"), span_notice("You take flight..."))
-	if(do_after(src, 3, target))
+	if(do_after(src, 5, target))
 		if(src.pulledby == null)
 			src.zMove(DOWN, TRUE)
 			to_chat(src, span_notice("I fly down."))

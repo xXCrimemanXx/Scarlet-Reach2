@@ -2,7 +2,7 @@
 	name = "Trader"
 	tutorial = "A traveling salesman, a peddler of goods - commerce is your expertise, and you've come to this land to make a fortune."
 	allowed_sexes = list(MALE, FEMALE)
-	allowed_races = list(RACES_ALL_KINDS, RACES_TINY)
+	allowed_races = RACES_ALL_PLUS_FAE
 	outfit = /datum/outfit/job/roguetown/adventurer/trader
 	category_tags = list(CTAG_ADVENTURER, CTAG_COURTAGENT)
 	traits_applied = list(TRAIT_OUTLANDER, TRAIT_SEEPRICES)

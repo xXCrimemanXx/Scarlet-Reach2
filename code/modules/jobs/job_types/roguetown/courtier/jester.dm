@@ -5,7 +5,7 @@
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	allowed_races = list(RACES_ALL_KINDS, RACES_TINY)
+	allowed_races = RACES_ALL_PLUS_FAE
 	allowed_patrons = NON_PSYDON_PATRONS
 	allowed_ages = ALL_AGES_LIST
 	tutorial = "The Grenzelhofts were known for their Jesters, wisemen with a tongue just as sharp as their wit. \

@@ -26,7 +26,12 @@
 	. = ..()
 	if(!istype(user))
 		return
-	
+
+	if(HAS_TRAIT(user, TRAIT_CHAOTIC_MIND))
+		to_chat(user, span_warning("My mind is too scattered to link!"))
+		revert_cast()
+		return FALSE
+
 	var/list/possible_targets = list()
 	if(user.mind.known_people.len)
 		for(var/people in user.mind.known_people)
@@ -70,6 +75,12 @@
 	// Check if either target is a zad
 	if(istype(first_target, /mob/living/simple_animal/hostile/retaliate/bat/crow) || istype(second_target, /mob/living/simple_animal/hostile/retaliate/bat/crow))
 		to_chat(user, span_warning("Zads are immune to mindlinks!"))
+		revert_cast()
+		return FALSE
+
+	// Check if either target is a schizo
+	if(HAS_TRAIT(first_target, TRAIT_CHAOTIC_MIND) || HAS_TRAIT(second_target, TRAIT_CHAOTIC_MIND))
+		to_chat(user, span_warning("The minds clash! The thoughtforms don't link."))
 		revert_cast()
 		return FALSE
 

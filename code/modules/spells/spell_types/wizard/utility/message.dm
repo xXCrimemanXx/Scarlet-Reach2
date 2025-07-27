@@ -14,6 +14,11 @@
 /obj/effect/proc_holder/spell/self/message/cast(list/targets, mob/user)
 	. = ..()
 
+	if(HAS_TRAIT(user, TRAIT_CHAOTIC_MIND))
+		to_chat(user, span_warning("My mind is too scattered to project!"))
+		revert_cast()
+		return FALSE
+
 	var/list/eligible_players = list()
 
 	if(user.mind.known_people.len)
@@ -35,6 +40,10 @@
 			if(!message)
 				revert_cast()
 				return
+			if(HAS_TRAIT(HL, TRAIT_CHAOTIC_MIND))
+				to_chat(user, span_warning("Their mind is too scattered!"))
+				revert_cast()
+				return FALSE
 			if(alert(user, "Send anonymously?", "", "Yes", "No") == "No") //yes or no popup, if you say No run this code
 				identify_difficulty = 0 //anyone can clear this
 

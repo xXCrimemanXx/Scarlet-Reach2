@@ -47,7 +47,8 @@
 /mob/living/simple_animal/hostile/retaliate/bat/Initialize()
 	. = ..()
 	verbs += list(/mob/living/simple_animal/hostile/retaliate/bat/proc/fly_up,
-	/mob/living/simple_animal/hostile/retaliate/bat/proc/fly_down) 
+	/mob/living/simple_animal/hostile/retaliate/bat/proc/fly_down)
+	ADD_TRAIT(src, TRAIT_CHAOTIC_MIND, INNATE_TRAIT)
 
 /mob/living/simple_animal/hostile/retaliate/bat/proc/fly_up()
 	set category = "Winged Form"
