@@ -124,10 +124,9 @@
 
 /datum/species/faekin/after_creation(mob/living/carbon/C)
 	..()
-	C.verbs += list(/mob/living/carbon/human/proc/fly_up,
-	/mob/living/carbon/human/proc/fly_down) 
 	C.voice_pitch = 2
-
+	C.mind.AddSpell(new /obj/effect/proc_holder/spell/self/fly_up)
+	C.mind.AddSpell(new /obj/effect/proc_holder/spell/self/fly_down)
 
 /datum/species/faekin/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
@@ -178,32 +177,38 @@
 	else
 		faekin.reset_offsets("pixie_hover")
 
-/mob/living/carbon/human/proc/fly_up()
-	set category = "Fae"
-	set name = "Fly Up"
+/obj/effect/proc_holder/spell/self/fly_up
+	name = "Fly Up"
+	desc = "Take flight."
+	overlay_state = "rune5"
+	recharge_time = 0
 
-	if(src.pulledby != null)
-		to_chat(src, span_notice("I can't fly away while being grabbed!"))
+/obj/effect/proc_holder/spell/self/fly_up/cast(mob/living/user)
+	if(user.pulledby != null)
+		to_chat(user, span_notice("I can't fly away while being grabbed!"))
 		return
-	src.visible_message(span_notice("[src] begins to ascend!"), span_notice("You take flight..."))
-	if(do_after(src, 5, target))
-		if(src.pulledby == null)
-			src.zMove(UP, TRUE)
-			to_chat(src, span_notice("I fly up."))
+	user.visible_message(span_notice("[user] begins to ascend!"), span_notice("You take flight..."))
+	if(do_after(user, 5))
+		if(user.pulledby == null)
+			user.zMove(UP, TRUE)
+			to_chat(user, span_notice("I fly up."))
 		else
-			to_chat(src, span_notice("I can't fly away while being grabbed!"))
+			to_chat(user, span_notice("I can't fly away while being grabbed!"))
 
-/mob/living/carbon/human/proc/fly_down()
-	set category = "Fae"
-	set name = "Fly Down"
+/obj/effect/proc_holder/spell/self/fly_down
+	name = "Fly Down"
+	desc = "Take flight."
+	overlay_state = "rune3"
+	recharge_time = 0
 
-	if(src.pulledby != null)
-		to_chat(src, span_notice("I can't fly away while being grabbed!"))
+/obj/effect/proc_holder/spell/self/fly_down/cast(mob/living/user)
+	if(user.pulledby != null)
+		to_chat(user, span_notice("I can't fly away while being grabbed!"))
 		return
-	src.visible_message(span_notice("[src] begins to descend!"), span_notice("You take flight..."))
-	if(do_after(src, 5, target))
-		if(src.pulledby == null)
-			src.zMove(DOWN, TRUE)
-			to_chat(src, span_notice("I fly down."))
+	user.visible_message(span_notice("[user] begins to descend!"), span_notice("You take flight..."))
+	if(do_after(user, 5))
+		if(user.pulledby == null)
+			user.zMove(DOWN, TRUE)
+			to_chat(user, span_notice("I fly down."))
 		else
-			to_chat(src, span_notice("I can't fly away while being grabbed!"))
+			to_chat(user, span_notice("I can't fly away while being grabbed!"))
