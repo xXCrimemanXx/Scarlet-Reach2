@@ -122,6 +122,7 @@
 	/datum/species/halforc,\
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
+	/datum/species/faekin,\
 )
 
 #define RACES_NOBILITY_ELIGIBLE \

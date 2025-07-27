@@ -5,7 +5,7 @@
 	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
-	allowed_races = RACES_ALL_KINDS
+	allowed_races = RACES_ALL_PLUS_FAE
 	allowed_patrons = NON_PSYDON_PATRONS
 	spells = list(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	advclass_cat_rolls = list(CTAG_WAPPRENTICE = 20)
@@ -44,7 +44,7 @@
 	name = "Magician's Associate"
 	tutorial = "You were once an apprentice, though through your studies and practice you've mastered the basics of the arcyne. You now spend your days working under your master, honing your skills so that you might one day be considered a true master yourself."
 	outfit = /datum/outfit/job/roguetown/wapprentice/associate
-
+	allowed_races = RACES_ALL_PLUS_FAE
 	category_tags = list(CTAG_WAPPRENTICE)
 
 /datum/outfit/job/roguetown/wapprentice/associate/pre_equip(mob/living/carbon/human/H)
@@ -87,7 +87,7 @@
 	name = "Alchemist Associate"
 	tutorial = "During your studies, you became less focused on the arcyne and instead turned yourself to your true passion, alchemy. Through the art of transmutation, you have learned that the elements (much like the arcyne) can be maniupulated and bent to your will."
 	outfit = /datum/outfit/job/roguetown/wapprentice/alchemist
-
+	allowed_races = RACES_ALL_PLUS_FAE
 	category_tags = list(CTAG_WAPPRENTICE)
 
 /datum/outfit/job/roguetown/wapprentice/alchemist/pre_equip(mob/living/carbon/human/H)
@@ -131,7 +131,7 @@
 	name = "Magician's Apprentice"
 	tutorial = "Your master once saw potential in you, although you are uncertain if they still do, given how rigorous and difficult your studies have been. The path to using magic is a treacherous and untamed one, and you are still decades away from calling yourself even a journeyman in the field. Listen and serve, and someday you will earn your hat."
 	outfit = /datum/outfit/job/roguetown/wapprentice/apprentice
-
+	allowed_races = RACES_ALL_PLUS_FAE
 	category_tags = list(CTAG_WAPPRENTICE)
 
 /datum/outfit/job/roguetown/wapprentice/apprentice/pre_equip(mob/living/carbon/human/H)
