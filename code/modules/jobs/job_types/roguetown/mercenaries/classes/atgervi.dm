@@ -126,6 +126,7 @@
 	desc = "A furred protective coat, Often made by hand it embodies the second trial of the Iskarn Shamans. To honor the leopard is too desire for more."
 	icon_state = "atgervi_shaman_coat"
 	item_state = "atgervi_shaman_coat"
+	boobed = FALSE
 
 /obj/item/clothing/under/roguetown/trou/leather/atgervi
 	name = "fur pants"
