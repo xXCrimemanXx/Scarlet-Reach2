@@ -155,9 +155,9 @@
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(
 		/datum/crafting_recipe/roguetown/survival/heatershield,
-		/datum/crafting_recipe/roguetown/survival/collar,
-		/datum/crafting_recipe/roguetown/survival/bell_collar,
-		)
+		/obj/item/clothing/neck/roguetown/collar/leather,
+		/obj/item/clothing/neck/roguetown/collar/cowbell,
+	)
 
 /obj/item/natural/bundle/curred_hide
 	name = "bundle of cured leather"
