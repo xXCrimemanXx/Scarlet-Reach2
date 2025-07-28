@@ -66,7 +66,6 @@
 				ADD_TRAIT(H, TRAIT_NOBREATH, TRAIT_GENERIC)
 				ADD_TRAIT(H, TRAIT_NOPAIN, TRAIT_GENERIC)
 				ADD_TRAIT(H, TRAIT_INFINITE_STAMINA, TRAIT_GENERIC)
-				ADD_TRAIT(H, TRAIT_VAMP_DREAMS, TRAIT_GENERIC)
 				// Apply -1 to all stats
 				H.change_stat("strength", -1)
 				H.change_stat("perception", -1)
