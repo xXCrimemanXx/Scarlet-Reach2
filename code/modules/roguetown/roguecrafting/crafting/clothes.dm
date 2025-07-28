@@ -42,20 +42,30 @@
 	verbage = "sews"
 	craftdiff = 0
 
-/datum/crafting_recipe/roguetown/survival/collar
-	name = "collar"
+/datum/crafting_recipe/roguetown/leather/neck/leather_collar
+	name = "leather collar (1 cured hide)"
 	category = "Clothes"
 	result = /obj/item/clothing/neck/roguetown/collar/leather
 	reqs = list(/obj/item/natural/hide/cured = 1)
 	craftdiff = 0
 
-/datum/crafting_recipe/roguetown/survival/bell_collar
-	name = "bell collar"
+/datum/crafting_recipe/roguetown/leather/neck/cowbell_collar
+	name = "cowbell collar (1 cured hide, 1 cowbell)"
 	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/collar/bell_collar
+	result = /obj/item/clothing/neck/roguetown/collar/cowbell
 	reqs = list(
 		/obj/item/natural/hide/cured = 1,
-		/obj/item/jingle_bells = 1,
+		/obj/item/catbell/cow = 1,
+		)
+	craftdiff = 0
+
+/datum/crafting_recipe/roguetown/leather/neck/catbell_collar
+	name = "catbell collar (1 cured hide, 1 catbell)"
+	category = "Clothes"
+	result = /obj/item/clothing/neck/roguetown/collar/catbell
+	reqs = list(
+		/obj/item/natural/hide/cured = 1,
+		/obj/item/catbell = 1,
 		)
 	craftdiff = 0
 

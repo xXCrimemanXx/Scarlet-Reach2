@@ -626,26 +626,6 @@
 	icon_state = "psybracelet"
 	item_state = null
 
-/obj/item/clothing/neck/roguetown/collar
-	name = "collar"
-	icon = 'modular/icons/obj/leashes_collars.dmi'
-	mob_overlay_icon = 'modular/icons/mob/collars_leashes.dmi'
-	desc = "A band of leather which signifies bondage to another."
-	icon_state = "collar"
-	item_state = "collar"
-	resistance_flags = FIRE_PROOF
-	dropshrink = 0.5
-	leashable = TRUE
-
-/obj/item/clothing/neck/roguetown/collar/bell_collar
-	name = "bell collar"
-	icon = 'modular/icons/obj/leashes_collars.dmi'
-	mob_overlay_icon = 'modular/icons/mob/collars_leashes.dmi'
-	desc = "A band of leather with a bell that protects the local zads from the local catfolk."
-	icon_state = "bell_collar"
-
-	leashable = TRUE
-
 /obj/item/clothing/neck/roguetown/collar/feldcollar
 	name = "feldcollar"
 	icon = 'icons/roguetown/clothing/neck.dmi'
@@ -691,46 +671,3 @@
 		user.change_stat("fortune", -1) //how much luck stat taken away when unequipped
 		goodluckactivated = FALSE
 	return
-
-// Crafting recipes for collars and leashes
-
-/datum/crafting_recipe/roguetown/leather/neck/leather_collar
-	name = "leather collar (1 cured leather)"
-	result = /obj/item/clothing/neck/roguetown/collar/leather
-	reqs = list(/obj/item/natural/hide/cured = 1)
-	tools = list(/obj/item/needle)
-	time = 8 SECONDS
-	category = "Leatherwork"
-	subcategory = CAT_NONE
-	always_availible = TRUE
-
-/datum/crafting_recipe/roguetown/leather/neck/catbell_collar
-	name = "catbell collar (1 cured leather, catbell)"
-	result = /obj/item/clothing/neck/roguetown/collar/catbell
-	reqs = list(/obj/item/natural/hide/cured = 1, /obj/item/catbell = 1)
-	tools = list(/obj/item/needle)
-	time = 10 SECONDS
-	category = "Leatherwork"
-	subcategory = CAT_NONE
-	always_availible = TRUE
-
-/datum/crafting_recipe/roguetown/leather/neck/cowbell_collar
-	name = "cowbell collar (1 curedleather, cowbell)"
-	result = /obj/item/clothing/neck/roguetown/collar/cowbell
-	reqs = list(/obj/item/natural/hide/cured = 1, /obj/item/catbell/cow = 1)
-	tools = list(/obj/item/needle)
-	time = 10 SECONDS
-	category = "Leatherwork"
-	subcategory = CAT_NONE
-	always_availible = TRUE
-
-
-/datum/crafting_recipe/roguetown/leather/neck/leather_leash
-	name = "leather leash (1 leather)"
-	result = /obj/item/leash/leather
-	reqs = list(/obj/item/natural/hide/cured = 1)
-	tools = list(/obj/item/needle)
-	time = 10 SECONDS
-	category = "Leatherwork"
-	subcategory = CAT_NONE
-	always_availible = TRUE
