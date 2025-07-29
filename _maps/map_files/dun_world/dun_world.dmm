@@ -14710,12 +14710,6 @@
 /mob/living/simple_animal/hostile/retaliate/rogue/fox,
 /turf/open/floor/rogue/grassyel,
 /area/rogue/outdoors/beach/forest)
-"eWU" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/turf/open/floor/rogue/cobble,
-/area/rogue/indoors/town)
 "eWV" = (
 /obj/structure/mineral_door/bars,
 /turf/open/floor/rogue/dirt,
@@ -24504,14 +24498,6 @@
 	icon_state = "vertw"
 	},
 /area/rogue/indoors/town/garrison)
-"icF" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "weird1"
-	},
-/area/rogue/indoors/town)
 "icG" = (
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/floor/rogue/cobble,
@@ -27069,12 +27055,6 @@
 "iSm" = (
 /turf/closed/wall/mineral/rogue/stonebrick,
 /area/rogue/indoors/town/magician)
-"iSp" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/turf/open/floor/rogue/twig,
-/area/rogue/indoors/shelter/woods)
 "iSu" = (
 /obj/structure/fluff/railing/border{
 	dir = 4
@@ -42866,13 +42846,6 @@
 /obj/structure/fermentation_keg/random/beer,
 /turf/open/floor/rogue/ruinedwood/herringbone,
 /area/rogue/indoors/town/tavern)
-"ogQ" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/obj/item/reagent_containers/glass/cup/wooden,
-/turf/open/floor/carpet/red,
-/area/rogue/indoors/town)
 "ogR" = (
 /obj/structure/fluff/clock,
 /obj/structure/fluff/walldeco/customflag{
@@ -49548,12 +49521,6 @@
 /obj/item/natural/stone,
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town)
-"quQ" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/turf/open/floor/rogue/dirt/road,
-/area/rogue/indoors/shelter/woods)
 "quT" = (
 /obj/structure/fluff/railing/fence{
 	dir = 4
@@ -50628,12 +50595,6 @@
 "qLt" = (
 /turf/open/floor/carpet/royalblack,
 /area/rogue/outdoors/mountains/decap/gunduzirak)
-"qLM" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/turf/open/floor/rogue/blocks,
-/area/rogue/outdoors/town)
 "qLO" = (
 /obj/machinery/light/rogue/wallfire,
 /turf/closed/wall/mineral/rogue/pipe,
@@ -52564,12 +52525,6 @@
 /obj/item/book/rogue/sword,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town)
-"rvm" = (
-/obj/structure/table/wood{
-	icon_state = "tablewood1"
-	},
-/turf/open/floor/rogue/grass,
-/area/rogue/outdoors/town)
 "rvn" = (
 /obj/structure/bed/rogue/inn/double,
 /obj/item/bedsheet/rogue/fabric_double,
@@ -230794,8 +230749,8 @@ tlX
 kbo
 pTF
 oZa
-quQ
-quQ
+gKS
+gKS
 pfw
 kbo
 ktX
@@ -231246,8 +231201,8 @@ tlX
 kbo
 kbo
 pfw
-quQ
-quQ
+gKS
+gKS
 oZa
 kbo
 jWF
@@ -231698,8 +231653,8 @@ tlX
 kbo
 kbo
 pfw
-quQ
-quQ
+gKS
+gKS
 kbo
 kbo
 ktX
@@ -240626,7 +240581,7 @@ uBc
 rUf
 sYZ
 jKv
-icF
+gGV
 naO
 uBc
 sNZ
@@ -259080,7 +259035,7 @@ uTJ
 aIu
 uBc
 mJt
-ogQ
+xUM
 hek
 cDX
 uBc
@@ -260885,7 +260840,7 @@ fpx
 exD
 exD
 exD
-qLM
+xQL
 uBc
 iLW
 xWU
@@ -261352,7 +261307,7 @@ uBc
 sYZ
 rRQ
 cDX
-eWU
+cZH
 ggq
 phl
 sns
@@ -269473,7 +269428,7 @@ pWT
 njB
 daQ
 pAl
-rvm
+ujN
 pWT
 uBc
 xol
@@ -370948,7 +370903,7 @@ aBB
 aBB
 aBB
 jWF
-iSp
+mve
 kbo
 tlX
 tlX
