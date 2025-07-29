@@ -727,5 +727,3 @@
 		user.change_stat("fortune", -1) //how much luck stat taken away when unequipped
 		goodluckactivated = FALSE
 	return
-
-

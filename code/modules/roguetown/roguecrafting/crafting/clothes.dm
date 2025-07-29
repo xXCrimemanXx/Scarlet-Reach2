@@ -43,7 +43,8 @@
 	craftdiff = 0
 
 /datum/crafting_recipe/roguetown/leather/neck/leather_collar
-	name = "leather collar (1 cured leather)"
+	name = "leather collar (1 cured hide)"
+	category = "Clothes"
 	result = /obj/item/clothing/neck/roguetown/collar/leather
 	reqs = list(/obj/item/natural/hide/cured = 1)
 	tools = list(/obj/item/needle)
@@ -72,9 +73,8 @@
 	subcategory = CAT_NONE
 	always_availible = TRUE
 
-
 /datum/crafting_recipe/roguetown/leather/neck/leather_leash
-	name = "leather leash (1 leather)"
+	name = "leather leash (1 cured hide)"
 	result = /obj/item/leash/leather
 	reqs = list(/obj/item/natural/hide/cured = 1)
 	tools = list(/obj/item/needle)
