@@ -1458,3 +1458,6 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			str += "<b>Sewing</b> and a needle."
 		str = span_info(str)
 		. += str
+
+/obj/item/proc/step_action() //this was made to rewrite clown shoes squeaking, moved here to avoid throwing runtimes with non-/clothing wearables
+	SEND_SIGNAL(src, COMSIG_CLOTHING_STEP_ACTION)
