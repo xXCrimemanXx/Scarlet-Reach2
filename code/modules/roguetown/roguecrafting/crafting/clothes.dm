@@ -47,27 +47,41 @@
 	category = "Clothes"
 	result = /obj/item/clothing/neck/roguetown/collar/leather
 	reqs = list(/obj/item/natural/hide/cured = 1)
-	craftdiff = 0
-
-/datum/crafting_recipe/roguetown/leather/neck/cowbell_collar
-	name = "cowbell collar (1 cured hide, 1 cowbell)"
-	category = "Clothes"
-	result = /obj/item/clothing/neck/roguetown/collar/cowbell
-	reqs = list(
-		/obj/item/natural/hide/cured = 1,
-		/obj/item/catbell/cow = 1,
-		)
-	craftdiff = 0
+	tools = list(/obj/item/needle)
+	time = 8 SECONDS
+	category = "Leatherwork"
+	subcategory = CAT_NONE
+	always_availible = TRUE
 
 /datum/crafting_recipe/roguetown/leather/neck/catbell_collar
-	name = "catbell collar (1 cured hide, 1 catbell)"
-	category = "Clothes"
+	name = "catbell collar (1 cured leather, catbell)"
 	result = /obj/item/clothing/neck/roguetown/collar/catbell
-	reqs = list(
-		/obj/item/natural/hide/cured = 1,
-		/obj/item/catbell = 1,
-		)
-	craftdiff = 0
+	reqs = list(/obj/item/natural/hide/cured = 1, /obj/item/catbell = 1)
+	tools = list(/obj/item/needle)
+	time = 10 SECONDS
+	category = "Leatherwork"
+	subcategory = CAT_NONE
+	always_availible = TRUE
+
+/datum/crafting_recipe/roguetown/leather/neck/cowbell_collar
+	name = "cowbell collar (1 curedleather, cowbell)"
+	result = /obj/item/clothing/neck/roguetown/collar/cowbell
+	reqs = list(/obj/item/natural/hide/cured = 1, /obj/item/catbell/cow = 1)
+	tools = list(/obj/item/needle)
+	time = 10 SECONDS
+	category = "Leatherwork"
+	subcategory = CAT_NONE
+	always_availible = TRUE
+
+/datum/crafting_recipe/roguetown/leather/neck/leather_leash
+	name = "leather leash (1 cured hide)"
+	result = /obj/item/leash/leather
+	reqs = list(/obj/item/natural/hide/cured = 1)
+	tools = list(/obj/item/needle)
+	time = 10 SECONDS
+	category = "Leatherwork"
+	subcategory = CAT_NONE
+	always_availible = TRUE
 
 /datum/crafting_recipe/roguetown/survival/goodluckcharm
 	name = "cabbit's foot luck charm"
