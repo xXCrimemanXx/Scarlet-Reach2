@@ -72,7 +72,8 @@
 		playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
 		playsound(src, 'sound/misc/letsgogambling.ogg', 100, FALSE, -1)
 		var/base_prob = 50
-		var/modifier = (user.STALUC - 10) * 5 //50% by default, 5% increase depending on how much fortune you have
+		var/total_luck = user.STALUC + user.BUFLUC 
+		var/modifier = (total_luck - 10) * 5 //50% by default, 5% increase depending on how much fortune you have
 		src.gamblingprob = clamp(base_prob + modifier, 5, 95) //as low as 5, as high as 95
 		src.stopgambling = 1
 		src.checkchatter -= 1
