@@ -336,18 +336,10 @@
 	name = "trumpet"
 	desc = "A long brass tube twisted around with a flared end. It has a few valves to press on the top."
 	icon_state = "trumpet"
-	song_list = list("Harpy's Call (Feminine)" = 'sound/music/instruments/vocalsf (1).ogg',
-	"Necra's Lullaby (Feminine)" = 'sound/music/instruments/vocalsf (2).ogg',
-	"Death Touched Aasimar (Feminine)" = 'sound/music/instruments/vocalsf (3).ogg',
-	"Our Mother, Our Divine (Feminine)" = 'sound/music/instruments/vocalsf (4).ogg',
-	"Wed, Forever More (Feminine)" = 'sound/music/instruments/vocalsf (5).ogg',
-	"Paper Boats (Feminine + Vocals)" = 'sound/music/instruments/vocalsf (6).ogg',
-	"The Dragon's Blood Surges (Masculine)" = 'sound/music/instruments/vocalsm (1).ogg',
-	"Timeless Temple (Masculine)" = 'sound/music/instruments/vocalsm (2).ogg',
-	"Angel's Earnt Halo (Masculine)" = 'sound/music/instruments/vocalsm (3).ogg',
-	"A Fabled Choir (Masculine)" = 'sound/music/instruments/vocalsm (4).ogg',
-	"A Pained Farewell (Masculine + Feminine)" = 'sound/music/instruments/vocalsx (1).ogg',
-	"The Power (Whistling)" = 'sound/music/instruments/vocalsx (2).ogg',
-	"Bard Dance (Whistling)" = 'sound/music/instruments/vocalsx (3).ogg',
-	"Old Time Battles (Whistling)" = 'sound/music/instruments/vocalsx (4).ogg')
+	song_list = list("Royal Entrance" = 'sound/music/instruments/trumpet (1).ogg',
+	"Royal Exit" = 'sound/music/instruments/trumpet (2).ogg',
+	"Royal News" = 'sound/music/instruments/trumpet (3).ogg',
+	"Royal Fanfare" = 'sound/music/instruments/trumpet (4).ogg',
+	"Royal Fanfare 2" = 'sound/music/instruments/vocalsf (5).ogg',
+	"Royal Wedding" = 'sound/music/instruments/vocalsf (6).ogg')
 
