@@ -19,7 +19,7 @@
 	var/maxtithing = 100
 	var/mintithing = 5
 	var/stopgambling = 0
-	var/probpenalty = 2
+//	var/probpenalty = 2 //previously used as penalty, now unused
 	var/oldtithe = 0
 
 
