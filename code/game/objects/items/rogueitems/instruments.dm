@@ -340,6 +340,6 @@
 	"Royal Exit" = 'sound/music/instruments/trumpet (2).ogg',
 	"Royal News" = 'sound/music/instruments/trumpet (3).ogg',
 	"Royal Fanfare" = 'sound/music/instruments/trumpet (4).ogg',
-	"Royal Fanfare 2" = 'sound/music/instruments/vocalsf (5).ogg',
-	"Royal Wedding" = 'sound/music/instruments/vocalsf (6).ogg')
+	"Royal Fanfare 2" = 'sound/music/instruments/trumpet (5).ogg',
+	"Royal Wedding" = 'sound/music/instruments/trumpet (6).ogg')
 
