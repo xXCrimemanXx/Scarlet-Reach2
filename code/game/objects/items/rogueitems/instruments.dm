@@ -341,5 +341,6 @@
 	"Royal News" = 'sound/music/instruments/trumpet (3).ogg',
 	"Royal Fanfare" = 'sound/music/instruments/trumpet (4).ogg',
 	"Royal Fanfare 2" = 'sound/music/instruments/trumpet (5).ogg',
-	"Royal Wedding" = 'sound/music/instruments/trumpet (6).ogg') //It has a little bit of organ in the background that I couldn't completely remove
+	"Royal Wedding" = 'sound/music/instruments/trumpet (6).ogg', //It has a little bit of organ in the background that I couldn't completely remove
+	"Honoring the Fallen" = 'sound/music/instruments/trumpet (7).ogg')
 
