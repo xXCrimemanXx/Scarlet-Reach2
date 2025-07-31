@@ -69,10 +69,10 @@
 	. = ..()
 	var/mob/living/target = owner
 	target.update_vision_cone()
-	target.add_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, update=TRUE, priority=100, multiplicative_slowdown=4, movetypes=GROUND)
+	target.add_movespeed_modifier(MOVESPEED_ID_LIGHTNINGSTRUCK, update=TRUE, priority=100, multiplicative_slowdown=4, movetypes=GROUND)
 
 /datum/status_effect/buff/lightningstruck/on_remove()
 	. = ..()
 	var/mob/living/target = owner
 	target.update_vision_cone()
-	target.remove_movespeed_modifier(MOVESPEED_ID_ADMIN_VAREDIT, TRUE)
+	target.remove_movespeed_modifier(MOVESPEED_ID_LIGHTNINGSTRUCK, TRUE)
