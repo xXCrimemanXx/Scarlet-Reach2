@@ -164,7 +164,7 @@
 	. = ..()
 	set_light(2, 2, 1, l_color = "#ff0d0d")
 
-	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/quartz_staff,)
+	var/static/list/slapcraft_recipe_list = list(/datum/crafting_recipe/gemstaff/quartz_staff,)
 
 	AddElement(
 		/datum/element/slapcrafting,\
