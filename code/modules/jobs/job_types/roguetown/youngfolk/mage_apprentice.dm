@@ -51,7 +51,7 @@
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/mage
 	head = /obj/item/clothing/head/roguetown/roguehood/mage
 	backpack_contents = list(
-		/obj/item/roguegem/amethyst = 1, 
+		/obj/item/roguegem/amethyst = 1,
 		/obj/item/spellbook_unfinished/pre_arcyne = 1,
 		/obj/item/recipe_book/alchemy = 1,
 		/obj/item/recipe_book/magic = 1,
@@ -94,13 +94,13 @@
 
 /datum/outfit/job/roguetown/wapprentice/alchemist/pre_equip(mob/living/carbon/human/H)
 	backpack_contents = list(
-		/obj/item/roguegem/amethyst = 1, 
-		/obj/item/seeds/swampweed = 1, 
+		/obj/item/roguegem/amethyst = 1,
+		/obj/item/seeds/swampweed = 1,
 		/obj/item/seeds/pipeweed = 1,
 		/obj/item/recipe_book/alchemy = 1,
-		/obj/item/spellbook_unfinished/pre_arcyne = 1
 		/obj/item/recipe_book/magic = 1,
 		/obj/item/chalk = 1,
+		/obj/item/spellbook_unfinished/pre_arcyne = 1
 		)
 	H.adjust_skillrank(/datum/skill/combat/polearms, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 5, TRUE)
@@ -140,7 +140,7 @@
 
 /datum/outfit/job/roguetown/wapprentice/apprentice/pre_equip(mob/living/carbon/human/H)
 	backpack_contents = list(
-		/obj/item/roguegem/amethyst = 1, 
+		/obj/item/roguegem/amethyst = 1,
 		/obj/item/recipe_book/alchemy = 1,
     	/obj/item/recipe_book/magic = 1,
     	/obj/item/spellbook_unfinished/pre_arcyne = 1,
