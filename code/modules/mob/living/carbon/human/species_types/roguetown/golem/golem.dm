@@ -78,13 +78,18 @@
 
 /datum/species/golem/metal/check_roundstart_eligible()
 	return TRUE
-	
+
 /datum/species/golem/metal/get_skin_list()
 	return list(
-		"BRASS" = "dfbd6c",
-		"IRON" = "525352",
-		"STEEL" = "babbb9",
-		"BRONZE" = "e2a670"
+		"Brass" = GOLEM_BRASS,
+		"Iron" = GOLEM_IRON,
+		"Steel" = GOLEM_STEEL,
+		"Bronze" = GOLEM_BRONZE,
+		"Marble" = GOLEM_MARBLE,
+		"Coal" = GOLEM_COAL,
+		"Cobalt" = GOLEM_COBALT,
+		"Granite" = GOLEM_GRANITE,
+		"Jade" = GOLEM_JADE
 	)
 
 /datum/species/golem/metal/get_hairc_list()
