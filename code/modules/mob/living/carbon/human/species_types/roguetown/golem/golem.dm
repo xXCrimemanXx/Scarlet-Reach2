@@ -75,6 +75,7 @@
 	)
 	body_markings = list(
 		/datum/body_marking/eyeliner,
+		/datum/body_marking/plain,
 		/datum/body_marking/tonage,
 		/datum/body_marking/nose,
 	)
