@@ -246,6 +246,13 @@
 
 
 	if(thrown_thing)
+		// Admin alert for coin throws
+		if(istype(thrown_thing, /obj/item/roguecoin))
+			var/obj/item/roguecoin/coin = thrown_thing
+			var/coin_text = coin.quantity > 1 ? "[coin.quantity] [coin.name]" : coin.name
+			message_admins("[ADMIN_LOOKUPFLW(src)] has thrown [coin_text] at [target] ([AREACOORD(target)])")
+			log_admin("[key_name(src)] has thrown [coin_text] at [target] ([AREACOORD(target)])")
+		
 		if(!thrown_speed)
 			thrown_speed = thrown_thing.throw_speed
 		if(!thrown_range)
