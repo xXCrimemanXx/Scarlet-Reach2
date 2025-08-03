@@ -111,7 +111,6 @@
 
 /obj/item/rogueweapon/huntingknife/Initialize()
 	. = ..()
-	AddElement(/datum/element/tipped_item)
 	var/static/list/slapcraft_recipe_list = list(
 		/datum/crafting_recipe/roguetown/survival/peasantry/maciejowski_knife,
 		)
