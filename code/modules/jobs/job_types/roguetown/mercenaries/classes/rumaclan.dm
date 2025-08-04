@@ -22,6 +22,7 @@
 			H.set_blindness(0)
 			to_chat(H, span_warning("You are relatively versed in the art of \"swinging a sword until enemy death.\" - You would gladly take up most jobs for money, or a chance to cut loose."))
 			belt = /obj/item/storage/belt/rogue/leather
+			neck = /obj/item/clothing/neck/roguetown/leather //minimal defense
 			beltr = /obj/item/scabbard/rumahench
 			beltl = /obj/item/rogueweapon/sword/sabre/mulyeog/rumahench
 			shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/eastshirt2
@@ -82,4 +83,5 @@
 			
 	ADD_TRAIT(H, TRAIT_CRITICAL_RESISTANCE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC) //i swear this isn't as good as it sounds
+	ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC)	
 	H.grant_language(/datum/language/kazengunese)
