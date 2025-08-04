@@ -155,6 +155,7 @@ GLOBAL_LIST_INIT(youngfolk_positions, list(
 	"Servant",
 	"Shophand",
 	"Vagabond",
+	"Wandering Fae",
 ))
 
 GLOBAL_LIST_INIT(allmig_positions, list(

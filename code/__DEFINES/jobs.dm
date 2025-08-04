@@ -166,7 +166,7 @@
 #define COURTAGENT	(1<<20)
 #define WRETCH		(1<<21)
 
-#define YOUNGFOLK	(1<<6)
+#define YOUNGFOLK	(1<<7)
 
 #define APPRENTICE	(1<<0)
 #define CHURCHLING	(1<<1)
@@ -307,6 +307,7 @@
 #define JDO_TRIBALSMITH 39
 #define JDO_PURITAN 40
 #define JDO_ORTHODOXIST 40.1
+#define JDO_FAE 40.2
 
 #define BITFLAG_CHURCH (1<<0)
 #define BITFLAG_ROYALTY (1<<1)
@@ -379,7 +380,8 @@
 	/datum/job/roguetown/mercenary/desert_rider,\
 	/datum/job/roguetown/mercenary/grenzelhoft,\
 	/datum/job/roguetown/bandit,\
-	/datum/job/roguetown/wretch
+	/datum/job/roguetown/wretch,\
+	/datum/job/roguetown/wanderingfae
 
 #define GARRISON_ROLES \
 	/datum/job/roguetown/warden,\

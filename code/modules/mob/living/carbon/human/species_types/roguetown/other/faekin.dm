@@ -38,7 +38,7 @@
 		OFFSET_NECK_F = list(0,-1), OFFSET_MOUTH_F = list(0,-1), OFFSET_PANTS_F = list(0,0), \
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES_F = list(0,0), \
 		)
-	race_bonus = list(STAT_STRENGTH = -8, STAT_ENDURANCE = -2, STAT_CONSTITUTION = -6, STAT_PERCEPTION = 2, STAT_INTELLIGENCE = 2) 
+	race_bonus = list(STAT_STRENGTH = -8, STAT_ENDURANCE = -2, STAT_CONSTITUTION = -8, STAT_PERCEPTION = 2, STAT_INTELLIGENCE = 2) 
 	enflamed_icon = "widefire"
 	organs = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain,
@@ -125,63 +125,74 @@
 /datum/species/faekin/after_creation(mob/living/carbon/C)
 	..()
 	C.voice_pitch = 2
-	C.mind.AddSpell(new /obj/effect/proc_holder/spell/self/fly_up)
-	C.mind.AddSpell(new /obj/effect/proc_holder/spell/self/fly_down)
+	C.mind.AddSpell(new /obj/effect/proc_holder/spell/self/fae_flight)
 
 /datum/species/faekin/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
 	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
-	RegisterSignal(C, COMSIG_LIVING_MOBILITY_UPDATED, PROC_REF(handle_mobility_update)) //for hover animation updating
 	passtable_on(C, SPECIES_TRAIT)
-	C.cmode_music = 'sound/music/combat_jester.ogg'
 	C.pass_flags |= PASSMOB
-	C.set_mob_offsets("pixie_hover", _x = 0, _y = 4) //so they aren't on the ground
 	C.transform = C.transform.Scale(0.5, 0.5) //fae must be small
-	C.movement_type = FLYING  //they fly now
 	C.update_transform()
 
 /datum/species/faekin/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	UnregisterSignal(C, COMSIG_MOB_SAY)
-	UnregisterSignal(C, COMSIG_LIVING_MOBILITY_UPDATED)
-	C.update_transform()
 	passtable_off(C, SPECIES_TRAIT)
 	C.pass_flags &= ~PASSMOB
-	C.reset_offsets("pixie_hover") //back in the dirt groundcel
 	C.transform = C.transform.Scale(2, 2)
 	C.update_transform()
 
-/// Apply the hovering animation
-/datum/species/faekin/proc/fairy_hover(mob/living/carbon/human/owner)
-	if(!owner.resting && !owner.wallpressed)
-		animate(owner, pixel_y = owner.pixel_y + 2, time = 0.5 SECONDS, loop = -1)
-	sleep(0.5 SECONDS)
-	if(!owner.resting && !owner.wallpressed)
-		animate(owner, pixel_y = owner.pixel_y - 2, time = 0.5 SECONDS, loop = -1)
+/obj/effect/proc_holder/spell/self/fae_flight
+	name = "Take Flight"
+	desc = "Take flight."
+	overlay_state = "jump"
+	recharge_time = 90 SECONDS
+	chargetime = 5
+	chargedrain = 1
+	charging_slowdown = 2
+	releasedrain = 30
 
-/datum/species/faekin/spec_life(mob/living/carbon/human/owner)
-	. = ..()
-	if(is_faekin_floating(owner))
-		fairy_hover(owner)
-
-/datum/species/faekin/proc/is_faekin_floating(mob/living/carbon/human/owner)
-	return !owner.incapacitated(ignore_restraints = TRUE) && (owner.mobility_flags & MOBILITY_STAND) && !owner.buckled
-
-/datum/species/faekin/is_floor_hazard_immune(mob/living/carbon/human/owner)
-	return is_faekin_floating(owner)
-
-/datum/species/faekin/proc/handle_mobility_update(mob/living/carbon/human/faekin) //can't hover if buckled or unable to stand
-	SIGNAL_HANDLER
-	if(is_faekin_floating(faekin))
-		faekin.set_mob_offsets("pixie_hover", _x = 0, _y = 4)
+/obj/effect/proc_holder/spell/self/fae_flight/cast(mob/living/user)
+	if(!user.incapacitated(ignore_restraints = TRUE) && (user.mobility_flags & MOBILITY_STAND) && !user.buckled)
+		user.apply_status_effect(/datum/status_effect/buff/fae_flight)
+		return TRUE
 	else
-		faekin.reset_offsets("pixie_hover")
+		to_chat(user, span_warning("I can't fly like this!"))
+		return
+
+/atom/movable/screen/alert/status_effect/buff/fae_flight
+	name = "Flight!"
+	desc = "With a buzz, I take wing!"
+	icon_state = "buff"
+
+/datum/status_effect/buff/fae_flight
+	id = "faeflight"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/fae_flight
+	duration = 60 SECONDS
+
+/datum/status_effect/buff/fae_flight/on_apply()
+	. = ..()
+	owner.visible_message(span_notice("[owner] begins to ascend!"), span_notice("You take flight..."))
+	owner.mind.AddSpell(new /obj/effect/proc_holder/spell/self/fly_up)
+	owner.mind.AddSpell(new /obj/effect/proc_holder/spell/self/fly_down)
+	owner.movement_type = FLYING
+	owner.set_mob_offsets("fae_hover", _x = 0, _y = 4)
+
+/datum/status_effect/buff/fae_flight/on_remove()
+	. = ..()
+	to_chat(owner, span_warning("I can't keep flapping!"))
+	owner.mind.RemoveSpell(new /obj/effect/proc_holder/spell/self/fly_up)
+	owner.mind.RemoveSpell(new /obj/effect/proc_holder/spell/self/fly_down)
+	owner.movement_type = GROUND
+	owner.reset_offsets("fae_hover")
 
 /obj/effect/proc_holder/spell/self/fly_up
 	name = "Fly Up"
 	desc = "Take flight."
 	overlay_state = "rune5"
-	recharge_time = 0
+	recharge_time = 2 SECONDS
+	releasedrain = 60
 
 /obj/effect/proc_holder/spell/self/fly_up/cast(mob/living/user)
 	if(user.pulledby != null)
@@ -199,7 +210,8 @@
 	name = "Fly Down"
 	desc = "Take flight."
 	overlay_state = "rune3"
-	recharge_time = 0
+	recharge_time = 2 SECONDS
+	releasedrain = 60
 
 /obj/effect/proc_holder/spell/self/fly_down/cast(mob/living/user)
 	if(user.pulledby != null)
@@ -212,3 +224,4 @@
 			to_chat(user, span_notice("I fly down."))
 		else
 			to_chat(user, span_notice("I can't fly away while being grabbed!"))
+

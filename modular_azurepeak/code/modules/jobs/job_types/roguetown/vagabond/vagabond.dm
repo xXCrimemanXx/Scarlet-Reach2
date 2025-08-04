@@ -3,7 +3,6 @@
 	outfit = null
 	outfit_female = null
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
-	allowed_races = RACES_ALL_PLUS_FAE
 	advclass_cat_rolls = list(CTAG_VAGABOND = 20)
 	wanderer_examine = TRUE
 	advjob_examine = FALSE
