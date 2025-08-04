@@ -98,7 +98,7 @@
 			H.adjust_skillrank(/datum/skill/misc/stealing, 3, TRUE)
 			H.adjust_skillrank(/datum/skill/misc/lockpicking, 3, TRUE)
 			H.change_stat("strength", 3)
-			//H.change_stat("constitution", -1) //doesn't seem clear the idea of reduce some cqc focused role constitution compared to the atgervi
+			H.change_stat("constitution", 2) //doesn't seem clear the idea of reduce some cqc focused role constitution compared to the atgervi
 			H.change_stat("endurance", 1)
 			H.change_stat("perception", -1)
 			H.change_stat("speed", 2)
