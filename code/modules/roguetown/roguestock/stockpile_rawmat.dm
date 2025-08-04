@@ -35,7 +35,7 @@
 	export_price = 10
 	stockpile_limit = 50
 	importexport_amt = 5
-
+	passive_generation = 1
 
 /datum/roguestock/stockpile/stone
 	name = "Stone"
