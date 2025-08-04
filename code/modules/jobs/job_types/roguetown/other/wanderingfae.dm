@@ -1,6 +1,6 @@
 /datum/job/roguetown/wanderingfae
 	title = "Wandering Fae"
-	department_flag = YOUNGFOLK
+	department_flag = PEASANTS
 	faction = "Station"
 	total_positions = 4
 	spawn_positions = 4
@@ -33,6 +33,6 @@
 		H.adjust_skillrank(/datum/skill/misc/climbing , 2, TRUE)
 		H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
-		H?.mind.adjust_spellpoints(12)
+		H?.mind.adjust_spellpoints(8)
 		ADD_TRAIT(H, TRAIT_ARCYNE_T2, TRAIT_GENERIC)
 		H.cmode_music = 'sound/music/combat_jester.ogg'

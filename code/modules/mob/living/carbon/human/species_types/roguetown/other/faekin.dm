@@ -186,6 +186,10 @@
 	owner.mind.RemoveSpell(new /obj/effect/proc_holder/spell/self/fly_down)
 	owner.movement_type = GROUND
 	owner.reset_offsets("fae_hover")
+	var/turf/turf = get_turf(owner)
+	if(istype(turf, /turf/open/transparent/openspace))
+		turf = GET_TURF_BELOW(turf)
+		owner.forceMove(turf)
 
 /obj/effect/proc_holder/spell/self/fly_up
 	name = "Fly Up"

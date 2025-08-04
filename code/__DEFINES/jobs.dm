@@ -141,7 +141,7 @@
 #define SCRIBE		(1<<9)
 #define ELDER		(1<<10)
 
-#define PEASANTS	(1<<5)
+#define PEASANTS	(1<<6)
 
 #define HUNTER		(1<<0)
 #define FARMER		(1<<1)
@@ -166,7 +166,7 @@
 #define COURTAGENT	(1<<20)
 #define WRETCH		(1<<21)
 
-#define YOUNGFOLK	(1<<7)
+#define YOUNGFOLK	(1<<6)
 
 #define APPRENTICE	(1<<0)
 #define CHURCHLING	(1<<1)
