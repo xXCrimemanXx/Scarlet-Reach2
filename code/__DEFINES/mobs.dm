@@ -554,6 +554,17 @@
 #define DARKBROWN_FUR "3b2e27"
 #define BLACK_FUR	 "271f1a"
 
+//GOLEM MATERIALS
+#define GOLEM_BRASS "dfbd6c"
+#define GOLEM_IRON "525352"
+#define GOLEM_STEEL  "babbb9"
+#define GOLEM_BRONZE "e2a670"
+#define GOLEM_MARBLE "FFF2F2"
+#define GOLEM_COAL "1f1f1f"
+#define GOLEM_COBALT "323666"
+#define GOLEM_GRANITE "ff8f8f"
+#define GOLEM_JADE "517051"
+
 //FAEKIN SKIN TONES
 #define SKIN_COLOR_AQUEOUS "87a8de"
 #define SKIN_COLOR_EARTHEN "915b33"
@@ -565,17 +576,6 @@
 #define SKIN_COLOR_ARCYNE "44317d"
 #define SKIN_COLOR_ENVENOMED "2b3620"
 #define SKIN_COLOR_CHAOTIC "bf3290"
-
-//GOLEM MATERIALS
-#define GOLEM_BRASS "dfbd6c"
-#define GOLEM_IRON "525352"
-#define GOLEM_STEEL  "babbb9"
-#define GOLEM_BRONZE "e2a670"
-#define GOLEM_MARBLE "FFF2F2"
-#define GOLEM_COAL "1f1f1f"
-#define GOLEM_COBALT "323666"
-#define GOLEM_GRANITE "ff8f8f"
-#define GOLEM_JADE "517051"
 
 // Pixel shifting
 #define PIXEL_SHIFT_MAXIMUM 16
