@@ -107,7 +107,6 @@
 			ADD_TRAIT(H, TRAIT_CIVILIZEDBARBARIAN, TRAIT_GENERIC) //No weapons. Just beating them to death as God intended.
 			ADD_TRAIT(H, TRAIT_STEELHEARTED, TRAIT_GENERIC) //Their entire purpose is to rip people apart with their hands and teeth. I don't think they'd be too preturbed to see someone lose a limb.
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC) //Either no armor, or light armor. So dodge expert.
-			ADD_TRAIT(H, TRAIT_NOPAINSTUN, TRAIT_GENERIC)
 			ADD_TRAIT(H, TRAIT_ARCYNE_T1, TRAIT_GENERIC)
 			H.cmode_music = 'sound/music/combat_shaman2.ogg'
 
