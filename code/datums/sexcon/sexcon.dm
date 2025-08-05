@@ -3,6 +3,10 @@
 	var/mob/living/carbon/human/user
 	/// Target of our actions, can be ourself
 	var/mob/living/carbon/human/target
+	/// Who is targeting us
+	// Disabled as it'd require properly stopping actions when the popup is closed.
+	// Different behavior which might be invasive.
+	//var/receiving = list()
 	/// Whether the user desires to stop his current action
 	var/desire_stop = FALSE
 	/// What is the current performed action
@@ -13,8 +17,6 @@
 	var/force = SEX_FORCE_MID
 	/// Our arousal
 	var/arousal = 0
-	///Makes genital arousal automatic by default
-	var/manual_arousal = SEX_MANUAL_AROUSAL_DEFAULT
 	/// Our charge gauge
 	var/charge = SEX_MAX_CHARGE
 	/// Whether we want to screw until finished, or non stop
@@ -26,19 +28,63 @@
 	var/last_moan = 0
 	var/last_pain = 0
 	var/aphrodisiac = 1 //1 by default, acts as a multiplier on arousal gain. If this is different than 1, set/freeze arousal is disabled.
+	/// Which zones we are using in the current action.
+	var/using_zones = list()
 
 /datum/sex_controller/New(mob/living/carbon/human/owner)
 	user = owner
 
 /datum/sex_controller/Destroy()
+	//remove_from_target_receiving()
 	user = null
 	target = null
+	//receiving = list()
 	. = ..()
 
 /datum/sex_controller/proc/is_spent()
 	if(charge < CHARGE_FOR_CLIMAX)
 		return TRUE
 	return FALSE
+
+/datum/sex_action/proc/check_location_accessible(mob/living/carbon/human/user, mob/living/carbon/human/target, location = BODY_ZONE_CHEST, grabs = FALSE, skipundies = TRUE)
+	var/obj/item/bodypart/bodypart = target.get_bodypart(location)
+
+	var/self_target = FALSE
+	var/datum/sex_controller/user_controller = user.sexcon
+	if(user_controller.target == user)
+		self_target = TRUE
+
+	var/signalargs = list(src, bodypart, self_target)
+	signalargs += args
+
+	var/sigbitflags = SEND_SIGNAL(target, COMSIG_ERP_LOCATION_ACCESSIBLE, signalargs)
+	bodypart = signalargs[ERP_BODYPART]
+
+	if(sigbitflags & SIG_CHECK_FAIL)
+		return FALSE
+
+	if(!user.Adjacent(target) && !(sigbitflags & SKIP_ADJACENCY_CHECK))
+		return FALSE
+
+	if(!bodypart)
+		return FALSE
+
+	if(src.check_same_tile && (user != target || self_target) && !(sigbitflags & SKIP_TILE_CHECK))
+		var/same_tile = (get_turf(user) == get_turf(target))
+		var/grab_bypass = (src.aggro_grab_instead_same_tile && user.get_highest_grab_state_on(target) == GRAB_AGGRESSIVE)
+		if(!same_tile && !grab_bypass)
+			return FALSE
+
+	if(src.require_grab && (user != target || self_target) && !(sigbitflags & SKIP_GRAB_CHECK))
+		var/grabstate = user.get_highest_grab_state_on(target)
+		if((grabstate == null || grabstate < src.required_grab_state))
+			return FALSE
+
+	var/result = get_location_accessible(target, location = location, grabs = grabs, skipundies = skipundies)
+	if(result && user == target && !(bodypart in user_controller.using_zones) && user_controller.current_action == SEX_ACTION(src))
+		user_controller.using_zones += location
+	
+	return result
 
 /datum/sex_controller/proc/finished_check()
 	if(!do_until_finished)
@@ -52,8 +98,6 @@
 
 /datum/sex_controller/proc/adjust_force(amt)
 	force = clamp(force + amt, SEX_FORCE_MIN, SEX_FORCE_MAX)
-/datum/sex_controller/proc/adjust_arousal_manual(amt)
-	manual_arousal = clamp(manual_arousal + amt, SEX_MANUAL_AROUSAL_MIN, SEX_MANUAL_AROUSAL_MAX)
 
 /datum/sex_controller/proc/update_pink_screen()
 	var/severity = 0
@@ -127,23 +171,17 @@
 
 /datum/sex_controller/proc/after_intimate_climax()
 	if(user == target)
-		if(HAS_TRAIT(target, TRAIT_GOODLOVER))
-			user.add_stress(/datum/stressevent/cumgood)
 		return
 	if(HAS_TRAIT(target, TRAIT_GOODLOVER))
 		if(!user.mob_timers["cumtri"])
 			user.mob_timers["cumtri"] = world.time
 			user.adjust_triumphs(1)
 			to_chat(user, span_love("Our loving is a true TRIUMPH!"))
-			user.add_stress(/datum/stressevent/goodloving)
-			user.apply_status_effect(/datum/status_effect/buff/goodloving)
 	if(HAS_TRAIT(user, TRAIT_GOODLOVER))
 		if(!target.mob_timers["cumtri"])
 			target.mob_timers["cumtri"] = world.time
 			target.adjust_triumphs(1)
 			to_chat(target, span_love("Our loving is a true TRIUMPH!"))
-			target.add_stress(/datum/stressevent/goodloving)
-			target.apply_status_effect(/datum/status_effect/buff/goodloving)
 
 /datum/sex_controller/proc/just_ejaculated()
 	return (last_ejaculation_time + 2 SECONDS >= world.time)
@@ -383,11 +421,7 @@
 	var/list/dat = list()
 	var/force_name = get_force_string()
 	var/speed_name = get_speed_string()
-	var/manual_arousal_name = get_manual_arousal_string()
-	if(!user.getorganslot(ORGAN_SLOT_PENIS))
-		dat += "<center><a href='?src=[REF(src)];task=speed_down'>\<</a> [speed_name] <a href='?src=[REF(src)];task=speed_up'>\></a> ~|~ <a href='?src=[REF(src)];task=force_down'>\<</a> [force_name] <a href='?src=[REF(src)];task=force_up'>\></a></center>"
-	else
-		dat += "<center><a href='?src=[REF(src)];task=speed_down'>\<</a> [speed_name] <a href='?src=[REF(src)];task=speed_up'>\></a> ~|~ <a href='?src=[REF(src)];task=force_down'>\<</a> [force_name] <a href='?src=[REF(src)];task=force_up'>\></a> ~|~ <a href='?src=[REF(src)];task=manual_arousal_down'>\<</a> [manual_arousal_name] <a href='?src=[REF(src)];task=manual_arousal_up'>\></a></center>"
+	dat += "<center><a href='?src=[REF(src)];task=speed_down'>\<</a> [speed_name] <a href='?src=[REF(src)];task=speed_up'>\></a> ~|~ <a href='?src=[REF(src)];task=force_down'>\<</a> [force_name] <a href='?src=[REF(src)];task=force_up'>\></a></center>"
 	dat += "<center>| <a href='?src=[REF(src)];task=toggle_finished'>[do_until_finished ? "UNTIL IM FINISHED" : "UNTIL I STOP"]</a> |</center>"
 	dat += "<center><a href='?src=[REF(src)];task=set_arousal'>SET AROUSAL</a> | <a href='?src=[REF(src)];task=freeze_arousal'>[arousal_frozen ? "UNFREEZE AROUSAL" : "FREEZE AROUSAL"]</a></center>"
 	if(target == user)
@@ -418,7 +452,7 @@
 			dat += "</tr><tr>"
 
 	dat += "</tr></table>"
-	var/datum/browser/popup = new(user, "sexcon", "<center>Sate Desire</center>", 490, 550)
+	var/datum/browser/popup = new(user, "sexcon", "<center>Sate Desire</center>", 430, 540)
 	popup.set_content(dat.Join())
 	popup.open()
 	return
@@ -443,10 +477,6 @@
 			adjust_force(1)
 		if("force_down")
 			adjust_force(-1)
-		if("manual_arousal_up")
-			adjust_arousal_manual(1)
-		if("manual_arousal_down")
-			adjust_arousal_manual(-1)
 		if("toggle_finished")
 			do_until_finished = !do_until_finished
 		if("set_arousal")
@@ -474,6 +504,7 @@
 	desire_stop = FALSE
 	user.doing = FALSE
 	current_action = null
+	using_zones = list()
 
 /datum/sex_controller/proc/try_start_action(action_type)
 	if(action_type == current_action)
@@ -537,23 +568,24 @@
 		return FALSE
 	if(user.stat != CONSCIOUS)
 		return FALSE
-	if(!user.Adjacent(target))
-		return FALSE
 	if(action.check_incapacitated && user.incapacitated())
 		return FALSE
-	if(action.check_same_tile)
-		var/same_tile = (get_turf(user) == get_turf(target))
-		var/grab_bypass = (action.aggro_grab_instead_same_tile && user.get_highest_grab_state_on(target) == GRAB_AGGRESSIVE)
-		if(!same_tile && !grab_bypass)
-			return FALSE
-	if(action.require_grab)
-		var/grabstate = user.get_highest_grab_state_on(target)
-		if(grabstate == null || grabstate < action.required_grab_state)
-			return FALSE
 	return TRUE
 
+/*
+/datum/sex_controller/proc/remove_from_target_receiving()
+	if(!target)
+		return
+	var/datum/sex_controller/target_con = target.sexcon
+	if (user in target_con.receiving)
+		target_con.receiving -= user
+*/
+
 /datum/sex_controller/proc/set_target(mob/living/carbon/human/new_target)
+	//remove_from_target_receiving()
 	target = new_target
+	//var/datum/sex_controller/target_con = new_target.sexcon
+	//target_con.receiving += user
 
 /datum/sex_controller/proc/get_speed_multiplier()
 	switch(speed)
@@ -643,16 +675,7 @@
 			return "<font color='#f05ee1'>QUICK</font>"
 		if(SEX_SPEED_EXTREME)
 			return "<font color='#d146f5'>UNRELENTING</font>"
-/datum/sex_controller/proc/get_manual_arousal_string()
-	switch(manual_arousal)
-		if(SEX_MANUAL_AROUSAL_DEFAULT)
-			return "<font color='#eac8de'>NATURAL</font>"
-		if(SEX_MANUAL_AROUSAL_UNAROUSED)
-			return "<font color='#e9a8d1'>UNAROUSED</font>"
-		if(SEX_MANUAL_AROUSAL_PARTIAL)
-			return "<font color='#f05ee1'>PARTIALLY ERECT</font>"
-		if(SEX_MANUAL_AROUSAL_FULL)
-			return "<font color='#d146f5'>FULLY ERECT</font>"
+
 /datum/sex_controller/proc/get_generic_force_adjective()
 	switch(force)
 		if(SEX_FORCE_LOW)
