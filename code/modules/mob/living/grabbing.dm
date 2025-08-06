@@ -169,6 +169,10 @@
 		skill_diff += (user.get_skill_level(/datum/skill/combat/wrestling))
 	if(M.mind)
 		skill_diff -= (M.get_skill_level(/datum/skill/combat/wrestling))
+	if(HAS_TRAIT(M, TRAIT_GRABIMMUNE))
+		if(M.cmode)
+			to_chat(user, span_warning("Can't get a grip on this one!"))
+			return
 
 	if(M.compliance || M.surrendering)
 		combat_modifier = 2
@@ -689,7 +693,7 @@
 			var/skip_vomit = FALSE
 			if(user.mind)
 				var/datum/antagonist/vampire/Vamp = user.mind.has_antag_datum(/datum/antagonist/vampire)
-				if(Vamp && Vamp.wretch_antag)
+				if(Vamp)
 					skip_vomit = TRUE
 			if(!skip_vomit)
 				to_chat(user, "<span class='warning'>I'm going to puke...</span>")
@@ -707,7 +711,7 @@
 
 	if(user.mind && user.mind.has_antag_datum(/datum/antagonist/vampire))
 		var/datum/antagonist/vampire/VDrinker = user.mind.has_antag_datum(/datum/antagonist/vampire)
-		if(VDrinker && VDrinker.wretch_antag)
+		if(VDrinker)
 			var/vitae_gain = 600
 			var/blood_loss = 60
 			var/old_vitae = VDrinker.vitae
