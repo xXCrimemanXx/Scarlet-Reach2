@@ -351,8 +351,8 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, magic_power*1.2)
 			var/healydoodle_again = magic_power+1
 			M.apply_status_effect(/datum/status_effect/buff/rockmuncher_lesser, healydoodle_again)
+			playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/icicle.ogg', 100)
 			qdel(src)
-			playsound(loc, 'modular_azurepeak/sound/spellbooks/icicle.ogg', 100)
 			if(M == user)
 				user.visible_message(span_notice("[user] eats the [src]!"), span_notice("I devour the [src]!"))
 			else

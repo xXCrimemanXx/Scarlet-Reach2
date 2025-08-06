@@ -22,8 +22,8 @@
 		if(iskobold(M))
 			var/healydoodle_gems = sellprice*0.6
 			M.apply_status_effect(/datum/status_effect/buff/gemmuncher, healydoodle_gems)
+			playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/glass.ogg', 100)
 			qdel(src)
-			playsound(loc, 'modular_azurepeak/sound/spellbooks/glass.ogg', 100)
 			if(M == user)
 				user.visible_message(span_danger("[user] eats the [src]! Egads!"), span_notice("I devour the [src]!"))
 			else
@@ -196,12 +196,12 @@
 	testing("attack")
 	if(!user.cmode)
 
-		if(iskobold(M))
+		if(iskobold(M))//Not as effective, on a per-value basis. But it's still MUCH better.
 			var/healydoodle_riddle = sellprice*0.5
 			M.apply_status_effect(/datum/status_effect/buff/gemmuncher, healydoodle_riddle)
 			M.add_stress(/datum/stressevent/riddle_munch)//Why would you do this?
+			playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/crystal.ogg', 100)
 			qdel(src)
-			playsound(loc, 'modular_azurepeak/sound/spellbooks/crystal.ogg', 100)
 			if(M == user)
 				user.visible_message(span_danger("[user] eats [src]! Wretched creature!"), span_notice("I devour [src]! Was this a good idea?"))
 			else
