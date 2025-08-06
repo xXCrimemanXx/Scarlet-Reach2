@@ -41,7 +41,7 @@
 /obj/item/roguecoin/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	playsound(loc, 'sound/foley/coins1.ogg', 100, TRUE, -2)
 	scatter(get_turf(src))
-	..() 
+	..()
 
 /obj/item/roguecoin/proc/scatter(turf/T)
 	if(istransparentturf(T))
@@ -197,6 +197,26 @@
 			G.merge(src, user)
 		return
 	return ..()
+
+//Kobolds eating coins. Weep.
+/obj/item/roguecoin/attack(mob/living/M, mob/user)
+	testing("attack")
+	if(!user.cmode)
+
+		if(iskobold(M))
+			var/zenny_nut_value = src.get_real_price()
+			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, zenny_nut_value*0.2)
+			playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/icicle.ogg', 100)
+			qdel(src)
+			if(M == user)
+				user.visible_message(span_danger("[user] eats [src]!"), span_notice("I devour [src]!"))
+			else
+				user.visible_message(span_danger("[user] forces [M] to eat [src]!"), span_notice("I force [M] to eat [src]!"))
+
+		else
+			return ..()
+	else
+		return ..()
 
 //GOLD
 /obj/item/roguecoin/gold
