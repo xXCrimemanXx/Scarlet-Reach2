@@ -522,7 +522,7 @@ var/forgerites = list("Ritual of Blessed Reforgance")
 	spawn(20)
 		playsound(loc, 'sound/combat/hits/onmetal/grille (2).ogg', 50)
 		target.equipOutfit(/datum/outfit/job/roguetown/gildedrite)
-		target.apply_status_effect(/datum/status_effect/debuff/devitalised)
+		// target.apply_status_effect(/datum/status_effect/debuff/devitalised) // Removed: do not consume lux
 		spawn(40)
 			to_chat(target, span_cult("More to the maw, this shall help feed our greed."))
 
