@@ -14,6 +14,26 @@
 	static_price = FALSE
 	resistance_flags = FIRE_PROOF
 
+//Kobolds eating GEMS. Dwarves, behold, your BANE.
+/obj/item/roguegem/attack(mob/living/M, mob/user)
+	testing("attack")
+	if(!user.cmode)
+
+		if(iskobold(M))
+			var/healydoodle_gems = sellprice*0.6
+			M.apply_status_effect(/datum/status_effect/buff/gemmuncher, healydoodle_gems)
+			qdel(src)
+			playsound(loc, 'modular_azurepeak/sound/spellbooks/glass.ogg', 100)
+			if(M == user)
+				user.visible_message(span_danger("[user] eats the [src]! Egads!"), span_notice("I devour the [src]!"))
+			else
+				user.visible_message(span_danger("[user] forces [M] to eat the [src]! Egads!"), span_notice("I force [M] to eat the [src]!"))
+
+		else
+			return ..()
+	else
+		return ..()
+
 /obj/item/roguegem/getonmobprop(tag)
 	. = ..()
 	if(tag)
@@ -170,6 +190,27 @@
 		/datum/element/slapcrafting,\
 		slapcraft_recipes = slapcraft_recipe_list,\
 	)
+
+//Kobolds eating RIDDLES. PSYDON WEPT.
+/obj/item/riddleofsteel/attack(mob/living/M, mob/user)
+	testing("attack")
+	if(!user.cmode)
+
+		if(iskobold(M))
+			var/healydoodle_riddle = sellprice*0.5
+			M.apply_status_effect(/datum/status_effect/buff/gemmuncher, healydoodle_riddle)
+			M.add_stress(/datum/stressevent/riddle_munch)//Why would you do this?
+			qdel(src)
+			playsound(loc, 'modular_azurepeak/sound/spellbooks/crystal.ogg', 100)
+			if(M == user)
+				user.visible_message(span_danger("[user] eats [src]! Wretched creature!"), span_notice("I devour [src]! Was this a good idea?"))
+			else
+				user.visible_message(span_danger("[user] forces [M] to eat [src]! Oh, the Humenity..."), span_notice("I force [M] to eat [src]! Why did I do that?"))
+
+		else
+			return ..()
+	else
+		return ..()
 
 /obj/item/pearl
 	name = "pearl"
