@@ -348,15 +348,20 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 				user.visible_message(span_notice("[user] presses the stone to [M]'s body, and it is absorbed."), span_notice("I press the stone to [M], and it is absorbed."))
 
 		if(iskobold(M))
-			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, magic_power*1.2)
-			var/healydoodle_again = magic_power+1
-			M.apply_status_effect(/datum/status_effect/buff/rockmuncher_lesser, healydoodle_again)
-			playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/icicle.ogg', 100)
-			qdel(src)
 			if(M == user)
-				user.visible_message(span_notice("[user] eats the [src]!"), span_notice("I devour the [src]!"))
+				user.visible_message(span_warning("[user] is attempting to eat the [src]!"), span_warning("I begin to eat the [src]!"))
 			else
-				user.visible_message(span_notice("[user] forces [M] to eat the [src]!"), span_notice("I force [M] to eat the [src]!"))
+				user.visible_message(span_warning("[user] begins to force [M] to eat the [src]!"), span_warning("I attempt to force [M] to eat the [src]!"))
+			if(do_after(user, 40))
+				M.reagents.add_reagent(/datum/reagent/consumable/nutriment, magic_power*1.2)
+				var/healydoodle_again = magic_power+1
+				M.apply_status_effect(/datum/status_effect/buff/rockmuncher_lesser, healydoodle_again)
+				playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/icicle.ogg', 100)
+				qdel(src)
+				if(M == user)
+					user.visible_message(span_danger("[user] eats the [src]!"), span_danger("I devour the [src]!"))
+				else
+					user.visible_message(span_danger("[user] forces [M] to eat the [src]!"), span_danger("I force [M] to eat the [src]!"))
 
 
 		else // if theyre not either a construct or kobold, and we're not in cmode, beat them 2 death with rocks.

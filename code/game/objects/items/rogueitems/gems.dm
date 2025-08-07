@@ -20,14 +20,19 @@
 	if(!user.cmode)
 
 		if(iskobold(M))
-			var/healydoodle_gems = sellprice*0.6
-			M.apply_status_effect(/datum/status_effect/buff/gemmuncher, healydoodle_gems)
-			playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/glass.ogg', 100)
-			qdel(src)
 			if(M == user)
-				user.visible_message(span_danger("[user] eats the [src]! Egads!"), span_notice("I devour the [src]!"))
+				user.visible_message(span_warning("[user] is attempting to eat [src]!"), span_warning("I begin to eat [src]!"))
 			else
-				user.visible_message(span_danger("[user] forces [M] to eat the [src]! Egads!"), span_notice("I force [M] to eat the [src]!"))
+				user.visible_message(span_warning("[user] begins to force [M] to eat [src]!"), span_warning("I attempt to force [M] to eat [src]!"))
+			if(do_after(user, 40))
+				var/healydoodle_gems = sellprice*0.6
+				M.apply_status_effect(/datum/status_effect/buff/gemmuncher, healydoodle_gems)
+				playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/glass.ogg', 100)
+				qdel(src)
+				if(M == user)
+					user.visible_message(span_danger("[user] eats [src]! Egads!"), span_danger("I devour [src]!"))
+				else
+					user.visible_message(span_danger("[user] forces [M] to eat [src]! Egads!"), span_danger("I force [M] to eat [src]!"))
 
 		else
 			return ..()
@@ -197,15 +202,20 @@
 	if(!user.cmode)
 
 		if(iskobold(M))//Not as effective, on a per-value basis. But it's still MUCH better.
-			var/healydoodle_riddle = sellprice*0.5
-			M.apply_status_effect(/datum/status_effect/buff/gemmuncher, healydoodle_riddle)
-			M.add_stress(/datum/stressevent/riddle_munch)//Why would you do this?
-			playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/crystal.ogg', 100)
-			qdel(src)
 			if(M == user)
-				user.visible_message(span_danger("[user] eats [src]! Wretched creature!"), span_notice("I devour [src]! Was this a good idea?"))
+				user.visible_message(span_warning("[user] is attempting to eat [src]!"), span_warning("I begin to eat [src]!"))
 			else
-				user.visible_message(span_danger("[user] forces [M] to eat [src]! Oh, the Humenity..."), span_notice("I force [M] to eat [src]! Why did I do that?"))
+				user.visible_message(span_warning("[user] begins to force [M] to eat [src]!"), span_warning("I attempt to force [M] to eat [src]!"))
+			if(do_after(user, 40))
+				var/healydoodle_riddle = sellprice*0.5
+				M.apply_status_effect(/datum/status_effect/buff/gemmuncher, healydoodle_riddle)
+				M.add_stress(/datum/stressevent/riddle_munch)//Why would you do this?
+				playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/crystal.ogg', 100)
+				qdel(src)
+				if(M == user)
+					user.visible_message(span_danger("[user] eats [src]! Wretched creature!"), span_danger("I devour [src]! Was this a good idea?"))
+				else
+					user.visible_message(span_danger("[user] forces [M] to eat [src]! Oh, the Humenity..."), span_danger("I force [M] to eat [src]! Why did I do that?"))
 
 		else
 			return ..()
