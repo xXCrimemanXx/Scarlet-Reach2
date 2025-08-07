@@ -198,31 +198,6 @@
 		return
 	return ..()
 
-//Kobolds eating coins. Weep.
-/obj/item/roguecoin/attack(mob/living/M, mob/user)
-	testing("attack")
-	if(!user.cmode)
-
-		if(iskobold(M))
-			if(M == user)
-				user.visible_message(span_warning("[user] is attempting to eat [src]!"), span_warning("I begin to eat [src]!"))
-			else
-				user.visible_message(span_warning("[user] begins to force [M] to eat [src]!"), span_warning("I attempt to force [M] to eat [src]!"))
-			if(do_after(user, 40))
-				var/zenny_nut_value = src.get_real_price()
-				M.reagents.add_reagent(/datum/reagent/consumable/nutriment, zenny_nut_value*0.2)
-				playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/icicle.ogg', 100)
-				qdel(src)
-				if(M == user)
-					user.visible_message(span_danger("[user] eats [src]!"), span_danger("I devour [src]!"))
-				else
-					user.visible_message(span_danger("[user] forces [M] to eat [src]!"), span_danger("I force [M] to eat [src]!"))
-
-		else
-			return ..()
-	else
-		return ..()
-
 //GOLD
 /obj/item/roguecoin/gold
 	name = "zenar"
