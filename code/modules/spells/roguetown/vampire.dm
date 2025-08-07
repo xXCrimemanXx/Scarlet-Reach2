@@ -22,6 +22,7 @@
 	overlay_state = "zad"
 	desc = ""
 	invocation = ""
+	gesture_required = TRUE
 	chargetime = 5 SECONDS
 	recharge_time = 50
 	cooldown_min = 50
