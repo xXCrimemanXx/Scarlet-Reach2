@@ -349,9 +349,9 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 
 		if(iskobold(M))
 			if(M == user)
-				user.visible_message(span_warning("[user] is attempting to eat the [src]!"), span_warning("I begin to eat the [src]!"))
+				user.visible_message(span_warning("[user] is attempting to eat [src]!"), span_warning("I begin to eat [src]!"))
 			else
-				user.visible_message(span_warning("[user] begins to force [M] to eat the [src]!"), span_warning("I attempt to force [M] to eat the [src]!"))
+				user.visible_message(span_warning("[user] begins to force [M] to eat [src]!"), span_warning("I attempt to force [M] to eat [src]!"))
 			if(do_after(user, 40))
 				M.reagents.add_reagent(/datum/reagent/consumable/nutriment, magic_power*1.2)
 				var/healydoodle_again = magic_power+1
@@ -359,9 +359,9 @@ GLOBAL_LIST_INIT(stone_personality_descs, list(
 				playsound(get_turf(src), 'modular_azurepeak/sound/spellbooks/icicle.ogg', 100)
 				qdel(src)
 				if(M == user)
-					user.visible_message(span_danger("[user] eats the [src]!"), span_danger("I devour the [src]!"))
+					user.visible_message(span_danger("[user] eats [src]!"), span_danger("I devour [src]!"))
 				else
-					user.visible_message(span_danger("[user] forces [M] to eat the [src]!"), span_danger("I force [M] to eat the [src]!"))
+					user.visible_message(span_danger("[user] forces [M] to eat [src]!"), span_danger("I force [M] to eat [src]!"))
 
 
 		else // if theyre not either a construct or kobold, and we're not in cmode, beat them 2 death with rocks.
