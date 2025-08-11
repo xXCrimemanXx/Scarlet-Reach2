@@ -126,47 +126,46 @@
 /datum/antagonist/vampire/proc/finalize_vampire()
 	owner.current.playsound_local(get_turf(owner.current), 'sound/music/vampintro.ogg', 80, FALSE, pressure_affected = FALSE)
 
-/datum/antagonist/vampire/on_life(mob/user)
+/datum/antagonist/vampire/on_life(mob/living/carbon/human/user)
 	if(!user)
+		CRASH("Our user was null. What's going on here?")
+	if(user.stat == DEAD)
 		return
-	var/mob/living/carbon/human/H = user
-	if(H.stat == DEAD)
-		return
-	if(H.advsetup)
+	if(user.advsetup)
 		return
 
 	if(world.time % 5)
 		if(GLOB.tod != "night")
-			if(isturf(H.loc))
-				var/turf/T = H.loc
+			if(isturf(user.loc))
+				var/turf/T = user.loc
 				if(T.can_see_sky())
 					if(T.get_lumcount() > 0.15)
 						// Cache antagonist lookup to avoid repeated lookups
-						var/datum/antagonist/vampire/wretch_vamp = H.mind?.has_antag_datum(/datum/antagonist/vampire)
+						var/datum/antagonist/vampire/wretch_vamp = user.mind?.has_antag_datum(/datum/antagonist/vampire)
 						var/is_wretch = wretch_vamp && wretch_vamp.wretch_antag
 						
 						if(!disguised)
-							H.fire_act(1,2)
+							user.fire_act(1,2)
 						// Only apply additional fire damage if wretch vampire and not already handled
 						if(is_wretch && !disguised)
-							H.fire_act(1,5)
+							user.fire_act(1,5)
 							wretch_vamp.vitae = max(wretch_vamp.vitae - 10, 0)
 
-	if(H.on_fire)
+	if(user.on_fire)
 		if(disguised)
 			last_transform = world.time
-			H.vampire_undisguise(src)
-		H.freak_out()
+			user.vampire_undisguise(src)
+		user.freak_out()
 
-	if(H.stat)
-		if(istype(H.loc, /obj/structure/closet/crate/coffin))
-			H.fully_heal()
+	if(user.stat)
+		if(istype(user.loc, /obj/structure/closet/crate/coffin))
+			user.fully_heal()
 
 	// Optimized vitae management for wretch vampires
 	if(wretch_antag)
 		// Only check blood volume when it might exceed the cap
-		if(H.blood_volume > 5000)
-			H.blood_volume = 5000
+		if(user.blood_volume > 5000)
+			user.blood_volume = 5000
 		// Only check vitae cap when it might exceed
 		if(vitae > 5000)
 			vitae = 5000
@@ -179,20 +178,20 @@
 		vitae = CLAMP(vitae, 0, 1666)
 		// Non-wretch vampire vitae management
 		if(vitae > 0)
-			H.blood_volume = BLOOD_VOLUME_MAXIMUM
+			user.blood_volume = BLOOD_VOLUME_MAXIMUM
 			if(vitae < 200)
 				if(disguised)
-					to_chat(H, "<span class='warning'>My disguise fails!</span>")
-					H.vampire_undisguise(src)
+					to_chat(user, "<span class='warning'>My disguise fails!</span>")
+					user.vampire_undisguise(src)
 			// Only decrement vitae every 5 ticks
 			if(world.time % 50 == 0)
 				vitae -= 1
 		else
-			to_chat(H, "<span class='userdanger'>I RAN OUT OF VITAE!</span>")
-			var/obj/shapeshift_holder/SS = locate() in H
+			to_chat(user, "<span class='userdanger'>I RAN OUT OF VITAE!</span>")
+			var/obj/shapeshift_holder/SS = locate() in user
 			if(SS)
 				SS.shape.dust()
-			H.dust()
+			user.dust()
 			return
 
 /mob/living/carbon/human/proc/disguise_button()
@@ -401,16 +400,16 @@
 /datum/status_effect/buff/fortitude/on_apply()
 	. = ..()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		QDEL_NULL(H.skin_armor)
-		H.skin_armor = new /obj/item/clothing/suit/roguetown/armor/skin_armor/vampire_fortitude(H)
+		var/mob/living/carbon/human/user = owner
+		QDEL_NULL(user.skin_armor)
+		user.skin_armor = new /obj/item/clothing/suit/roguetown/armor/skin_armor/vampire_fortitude(user)
 	owner.add_stress(/datum/stressevent/weed)
 
 /datum/status_effect/buff/fortitude/on_remove()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		if(istype(H.skin_armor, /obj/item/clothing/suit/roguetown/armor/skin_armor/vampire_fortitude))
-			QDEL_NULL(H.skin_armor)
+		var/mob/living/carbon/human/user = owner
+		if(istype(user.skin_armor, /obj/item/clothing/suit/roguetown/armor/skin_armor/vampire_fortitude))
+			QDEL_NULL(user.skin_armor)
 	. = ..()
 
 /obj/item/clothing/suit/roguetown/armor/skin_armor/vampire_fortitude
@@ -550,11 +549,11 @@
 		SSdroning.kill_loop(client)
 		SSdroning.kill_droning(client)
 		client.move_delay = initial(client.move_delay)
-		var/atom/movable/screen/gameover/hog/H = new()
-		H.layer = SPLASHSCREEN_LAYER+0.1
-		client.screen += H
-		H.Fade()
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable/screen/gameover, Fade), TRUE), 100)
+		var/atom/movable/screen/gameover/hog/hog = new()
+		hog.layer = SPLASHSCREEN_LAYER+0.1
+		client.screen += hog
+		hog.Fade()
+		addtimer(CALLBACK(hog, TYPE_PROC_REF(/atom/movable/screen/gameover, Fade), TRUE), 100)
 
 /datum/antagonist/vampire/proc/wretch_vamp_look()
 	var/mob/living/carbon/human/V = owner.current
