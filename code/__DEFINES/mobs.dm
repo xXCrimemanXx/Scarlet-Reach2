@@ -574,6 +574,10 @@
 #define GOLEM_GRANITE "ff8f8f"
 #define GOLEM_JADE "517051"
 
+//DOLL PAINT COLOR
+#define DOLL_LEAD "ffffff"
+#define DOLL_SIENNA "a0522d"
+
 //FAEKIN SKIN TONES
 #define SKIN_COLOR_AQUEOUS "87a8de"
 #define SKIN_COLOR_EARTHEN "915b33"
