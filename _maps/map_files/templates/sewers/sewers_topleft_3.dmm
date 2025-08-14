@@ -233,7 +233,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)
 "S" = (
-/obj/structure/roguebin/crackers,
+/obj/item/roguebin/crackers,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/town/sewer)

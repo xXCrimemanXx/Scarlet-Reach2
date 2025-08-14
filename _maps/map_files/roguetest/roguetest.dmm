@@ -501,7 +501,7 @@
 /turf/open/floor/rogue/hay,
 /area/rogue/indoors)
 "rf" = (
-/obj/structure/roguebin/water/gross,
+/obj/item/roguebin/water/gross,
 /turf/open/floor/rogue/ruinedwood,
 /area/rogue/indoors)
 "rK" = (
