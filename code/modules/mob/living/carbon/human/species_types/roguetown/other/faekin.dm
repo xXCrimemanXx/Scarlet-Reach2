@@ -95,6 +95,9 @@
 	stress_examine = TRUE
 	stress_desc = span_red("Awful little creacher.")
 
+/datum/species/faekin/check_roundstart_eligible()
+	return TRUE
+
 /datum/species/faekin/qualifies_for_rank(rank, list/features)
 	return TRUE
 
