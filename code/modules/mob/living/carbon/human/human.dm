@@ -713,10 +713,10 @@
 /mob/living/carbon/human/MouseDrop_T(atom/dragged, mob/living/user)
 	if(istype(dragged, /mob/living))
 		var/mob/living/target = dragged
-    if(isfaekin(dragged) && !(HAS_TRAIT(src, TRAIT_TINY)) && istype(user.rmb_intent, /datum/rmb_intent/weak))
-		  if(can_piggyback(dragged))
-			  shoulder_ride(dragged)
-			  return TRUE
+		if(isfaekin(dragged) && !(HAS_TRAIT(src, TRAIT_TINY)) && istype(user.rmb_intent, /datum/rmb_intent/weak))
+			if(can_piggyback(dragged))
+				shoulder_ride(dragged)
+				return TRUE
 		if(pulling == target && stat == CONSCIOUS)
 			//If they dragged themselves and we're currently aggressively grabbing them try to piggyback (not on cmode)
 			if(user == target && can_piggyback(target))

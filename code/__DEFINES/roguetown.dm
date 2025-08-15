@@ -192,8 +192,8 @@
 	/datum/species/kobold,\
 	/datum/species/goblinp,\
 	/datum/species/dullahan,\
-  /datum/species/faekin,\
-
+	/datum/species/faekin,\
+)
 #define RACES_NOBILITY_ELIGIBLE \
     /datum/species/human/northern,\
     /datum/species/elf/wood,\
@@ -230,7 +230,7 @@
     /datum/species/kobold,\
     /datum/species/goblinp,\
     /datum/species/anthromorphsmall,\
-  	/datum/species/dullahan,\
+	/datum/species/dullahan,\
 
 //Fae need to be restricted pretty specifically
 #define RACES_FAE \
@@ -303,8 +303,8 @@
 	/datum/species/golem/metal,\
 	/datum/species/golem/porcelain,\
 	/datum/species/dullahan,\
-  /datum/species/faekin,\
-  
+	/datum/species/faekin,\
+)
 // Non-dwarf non-kobold non-goblin mostly
 #define NON_DWARVEN_RACE_TYPES list(\
 	/datum/species/human/northern,\
