@@ -78,7 +78,7 @@
 				add_filter("druqks_ripple", 2, ripple_filter(0, 50, 1, x = 80))
 				var/filter = get_filter("druqks_ripple")
 				add_filter("druqks_color", 2, color_matrix_filter(list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0)))
-				animate(filter, 10, -1, radius=480, size=50, flags=ANIMATION_PARALLEL)
+				animate(filter, 1 SECONDS, -1, radius=480, size=50, flags=ANIMATION_PARALLEL)
 //			if(L.has_status_effect(/datum/status_effect/buff/weed))
 //				filters += filter(type="bloom",threshold=rgb(255, 128, 255),size=5,offset=5)
 /*
@@ -158,7 +158,7 @@
 				add_filter("druqks_ripple", 2, ripple_filter(0, 50, 1, x = 80))
 				var/filter = get_filter("druqks_ripple")
 				add_filter("druqks_color", 2, color_matrix_filter(list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0)))
-				animate(filter, 10, -1, radius=480, size=50, flags=ANIMATION_PARALLEL)
+				animate(filter, 1 SECONDS, -1, radius=480, size=50, flags=ANIMATION_PARALLEL)
 	filters += filter(type = "alpha", render_source = FIELD_OF_VISION_BLOCKER_RENDER_TARGET, flags = MASK_INVERSE)
 
 /atom/movable/screen/plane_master/game_world_above
@@ -180,7 +180,7 @@
 				add_filter("druqks_ripple", 1, ripple_filter(0, 50, 1, x = 80))
 				var/filter = get_filter("druqks_ripple")
 				add_filter("druqks_color", 2, color_matrix_filter(list(0,0,1,0, 0,1,0,0, 1,0,0,0, 0,0,0,1, 0,0,0,0)))
-				animate(filter, 10, -1, radius=480, size=50, flags=ANIMATION_PARALLEL)
+				animate(filter, 1 SECONDS, -1, radius=480, size=50, flags=ANIMATION_PARALLEL)
 
 
 /atom/movable/screen/plane_master/field_of_vision_blocker
