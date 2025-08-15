@@ -130,18 +130,48 @@
 /datum/species/faekin/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
 	RegisterSignal(C, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+	RegisterSignal(C, COMSIG_LIVING_MOBILITY_UPDATED, PROC_REF(handle_mobility_update)) //for hover animation updating
 	passtable_on(C, SPECIES_TRAIT)
 	C.pass_flags |= PASSMOB
+	C.set_mob_offsets("fae_hover", _x = 0, _y = 3) //hovering
 	C.transform = C.transform.Scale(0.5, 0.5) //fae must be small
 	C.update_transform()
 
 /datum/species/faekin/on_species_loss(mob/living/carbon/C)
 	. = ..()
 	UnregisterSignal(C, COMSIG_MOB_SAY)
+	UnregisterSignal(C, COMSIG_LIVING_MOBILITY_UPDATED)
 	passtable_off(C, SPECIES_TRAIT)
 	C.pass_flags &= ~PASSMOB
+	C.reset_offsets("fae_hover") //nae more hovering
 	C.transform = C.transform.Scale(2, 2)
 	C.update_transform()
+
+/// Apply the hovering animation
+/datum/species/faekin/proc/fairy_hover(mob/living/carbon/human/owner)
+	if(!owner.resting && !owner.wallpressed)
+		animate(owner, pixel_y = owner.pixel_y + 2, time = 0.5 SECONDS, loop = -1)
+	sleep(0.5 SECONDS)
+	if(!owner.resting && !owner.wallpressed)
+		animate(owner, pixel_y = owner.pixel_y - 2, time = 0.5 SECONDS, loop = -1)
+
+/datum/species/faekin/spec_life(mob/living/carbon/human/owner)
+	. = ..()
+	if(is_faekin_floating(owner))
+		fairy_hover(owner)
+
+/datum/species/faekin/proc/is_faekin_floating(mob/living/carbon/human/owner)
+	return !owner.incapacitated(ignore_restraints = TRUE) && (owner.mobility_flags & MOBILITY_STAND) && !owner.buckled
+
+/datum/species/faekin/is_floor_hazard_immune(mob/living/carbon/human/owner)
+	return is_faekin_floating(owner)
+
+/datum/species/faekin/proc/handle_mobility_update(mob/living/carbon/human/faekin) //can't hover if buckled or unable to stand
+	SIGNAL_HANDLER
+	if(is_faekin_floating(faekin))
+		faekin.set_mob_offsets("fae_hover", _x = 0, _y = 3)
+	else
+		faekin.reset_offsets("fae_hover")
 
 /obj/effect/proc_holder/spell/self/fae_flight
 	name = "Take Flight"
@@ -177,7 +207,6 @@
 	owner.mind.AddSpell(new /obj/effect/proc_holder/spell/self/fly_up)
 	owner.mind.AddSpell(new /obj/effect/proc_holder/spell/self/fly_down)
 	owner.movement_type = FLYING
-	owner.set_mob_offsets("fae_hover", _x = 0, _y = 4)
 
 /datum/status_effect/buff/fae_flight/on_remove()
 	. = ..()
@@ -185,7 +214,6 @@
 	owner.mind.RemoveSpell(new /obj/effect/proc_holder/spell/self/fly_up)
 	owner.mind.RemoveSpell(new /obj/effect/proc_holder/spell/self/fly_down)
 	owner.movement_type = GROUND
-	owner.reset_offsets("fae_hover")
 	var/turf/turf = get_turf(owner)
 	if(istype(turf, /turf/open/transparent/openspace))
 		turf = GET_TURF_BELOW(turf)

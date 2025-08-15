@@ -348,7 +348,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 	data += "<font color='#FFD700'><span class='bold'>Zardmen & Dracon:</span></font> [GLOB.scarlet_round_stats[STATS_ALIVE_LIZARDS] + GLOB.scarlet_round_stats[STATS_ALIVE_DRACON]]<br>"
 	data += "<font color='#d49d7c'><span class='bold'>Half & Wildkins:</span></font> [GLOB.scarlet_round_stats[STATS_ALIVE_HALFKIN] + GLOB.scarlet_round_stats[STATS_ALIVE_WILDKIN]]<br>"
 	data += "<font color='#99dfd5'><span class='bold'>Lupians, Vulpkin & Tabaxi:</span></font> [GLOB.scarlet_round_stats[STATS_ALIVE_LUPIANS] + GLOB.scarlet_round_stats[STATS_ALIVE_VULPS] + GLOB.scarlet_round_stats[STATS_ALIVE_TABAXI]]<br>"
-  data += data += "<font color='#c0c6c7'><span class='bold'>Golems, Dolls & Fae:</span></font> [GLOB.scarlet_round_stats[STATS_ALIVE_GOLEMS] + GLOB.scarlet_round_stats[STATS_ALIVE_DOLLS] + GLOB.scarlet_round_stats[STATS_ALIVE_FAEKIN]]<br>"
+	data += "<font color='#c0c6c7'><span class='bold'>Golems, Dolls & Fae:</span></font> [GLOB.scarlet_round_stats[STATS_ALIVE_GOLEMS] + GLOB.scarlet_round_stats[STATS_ALIVE_DOLLS] + GLOB.scarlet_round_stats[STATS_ALIVE_FAEKIN]]<br>"
 	data += "<font color='#9ACD32'><span class='bold'>Fluvian & Axians:</span></font> [GLOB.scarlet_round_stats[STATS_ALIVE_MOTHS] + GLOB.scarlet_round_stats[STATS_ALIVE_AXIAN]]<br>"
 	data += "</div>"
 
