@@ -2,8 +2,8 @@
 	title = "Wandering Fae"
 	department_flag = PEASANTS
 	faction = "Station"
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 9
+	spawn_positions = 9
 	allowed_races = list(/datum/species/faekin,)
 	allowed_ages = ALL_AGES_LIST
 	tutorial = "Whether you came to be from this land, or simply wandered here from afar, here now you are. Did you come to charm the land with your faerie blessings, or cause trouble?"
