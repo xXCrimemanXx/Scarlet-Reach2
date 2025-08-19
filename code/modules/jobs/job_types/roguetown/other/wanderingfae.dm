@@ -24,6 +24,7 @@
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltl = /obj/item/rogueweapon/huntingknife
+	backr = /obj/item/storage/backpack/rogue/satchel
 	if(H.mind)
 		H.adjust_skillrank(/datum/skill/misc/swimming, 1, TRUE)
 		H.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)

@@ -38,7 +38,7 @@
 		OFFSET_NECK_F = list(0,-1), OFFSET_MOUTH_F = list(0,-1), OFFSET_PANTS_F = list(0,0), \
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES_F = list(0,0), \
 		)
-	race_bonus = list(STAT_STRENGTH = -8, STAT_ENDURANCE = -2, STAT_CONSTITUTION = -8, STAT_PERCEPTION = 2, STAT_INTELLIGENCE = 2) 
+	race_bonus = list(STAT_STRENGTH = -8, STAT_ENDURANCE = -2, STAT_CONSTITUTION = -8, STAT_PERCEPTION = 2, STAT_INTELLIGENCE = 2, STAT_SPEED = 2) 
 	enflamed_icon = "widefire"
 	organs = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain,
@@ -70,6 +70,7 @@
 		/datum/customizer/organ/frills/anthro,
 		/datum/customizer/organ/wings/faekin,
 		/datum/customizer/organ/neck_feature/anthro,
+		/datum/customizer/bodypart_feature/underwear,
 		/datum/customizer/organ/testicles/anthro,
 		/datum/customizer/organ/penis/anthro,
 		/datum/customizer/organ/breasts/animal,
@@ -129,6 +130,7 @@
 	..()
 	C.voice_pitch = 2
 	C.mind.AddSpell(new /obj/effect/proc_holder/spell/self/fae_flight)
+	C.mind.AddSpell(new /obj/effect/proc_holder/spell/self/fae_light)
 
 /datum/species/faekin/on_species_gain(mob/living/carbon/C, datum/species/old_species)
 	..()
@@ -260,3 +262,43 @@
 		else
 			to_chat(user, span_notice("I can't fly away while being grabbed!"))
 
+/obj/effect/proc_holder/spell/self/fae_light
+	name = "Toggle Glow"
+	desc = "Toggle glow."
+	overlay_state = "createlight"
+	recharge_time = 1 SECONDS
+	var/fae_light_enabled = FALSE
+
+/obj/effect/proc_holder/spell/self/fae_light/cast(mob/living/user)
+	if(!fae_light_enabled)
+		user.apply_status_effect(/datum/status_effect/buff/fae_light)
+		fae_light_enabled = TRUE
+		return TRUE
+	else
+		user.remove_status_effect(/datum/status_effect/buff/fae_light)
+		fae_light_enabled = FALSE
+		return TRUE
+
+/datum/status_effect/buff/fae_light
+	id = "faelight"
+	alert_type = /atom/movable/screen/alert/status_effect/buff/fae_light
+	duration = 5 MINUTES
+	examine_text = "SUBJECTPRONOUN is producing a soft glow."
+	var/obj/effect/dummy/lighting_obj/moblight/mob_light_obj
+
+/atom/movable/screen/alert/status_effect/buff/fae_light
+	name = "Faerie Glow"
+	desc = "I'm glowing!"
+	icon_state = "buff"
+
+/datum/status_effect/buff/fae_light/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	var/light_color = H.skin_tone
+	to_chat(owner, span_notice("I begin to emit a glow."))
+	mob_light_obj = owner.mob_light(6, 6, _color = light_color)
+
+/datum/status_effect/buff/fae_light/on_remove()
+	. = ..()
+	to_chat(owner, span_notice("I stop glowing."))
+	QDEL_NULL(mob_light_obj)

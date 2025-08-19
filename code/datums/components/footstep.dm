@@ -97,7 +97,8 @@
 		return
 	var/mob/living/carbon/human/H = parent
 	var/feetCover = (H.wear_armor && (H.wear_armor.body_parts_covered & FEET)) || (H.wear_pants && (H.wear_pants.body_parts_covered & FEET))
-
+	if(isfaekin(H))
+		return
 	var/used_sound
 	var/list/used_footsteps
 	var/obj/item/clothing/shoes/humshoes = H.shoes
