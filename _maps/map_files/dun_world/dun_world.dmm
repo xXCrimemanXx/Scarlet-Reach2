@@ -23329,7 +23329,7 @@
 /obj/item/clothing/suit/roguetown/shirt/tunic/random,
 /obj/item/clothing/suit/roguetown/shirt/tunic/random,
 /obj/item/clothing/shoes/roguetown/shortboots,
-/obj/item/clothing/under/roguetown/tights/stockings/silk/black,
+/obj/item/legwears/silk/black,
 /obj/item/clothing/under/roguetown/tights/black,
 /obj/item/clothing/mask/rogue/spectacles,
 /turf/open/floor/carpet/royalblack,
@@ -23706,7 +23706,7 @@
 /obj/structure/closet/crate/roguecloset,
 /obj/item/clothing/suit/roguetown/shirt/dress/gen/black,
 /obj/item/clothing/cloak/apron/waist,
-/obj/item/clothing/under/roguetown/tights/stockings,
+/obj/item/legwears,
 /turf/open/floor/rogue/ruinedwood/chevron,
 /area/rogue/indoors/town/tavern)
 "hEg" = (
@@ -27871,9 +27871,9 @@
 /turf/open/transparent/openspace,
 /area/rogue/outdoors/mountains)
 "iVW" = (
-/obj/item/clothing/under/roguetown/tights/stockings/silk/random,
-/obj/item/clothing/under/roguetown/tights/stockings/silk/random,
-/obj/item/clothing/under/roguetown/tights/stockings/silk/random,
+/obj/item/legwears/silk/random,
+/obj/item/legwears/silk/random,
+/obj/item/legwears/silk/random,
 /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
 /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
 /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/random,
@@ -73815,7 +73815,7 @@
 /obj/item/clothing/suit/roguetown/shirt/tunic/random,
 /obj/item/clothing/suit/roguetown/shirt/tunic/random,
 /obj/item/clothing/shoes/roguetown/shortboots,
-/obj/item/clothing/under/roguetown/tights/stockings/silk/black,
+/obj/item/legwears/silk/black,
 /obj/item/clothing/under/roguetown/tights/black,
 /obj/item/clothing/mask/rogue/spectacles,
 /turf/open/floor/rogue/ruinedwood/spiral,
